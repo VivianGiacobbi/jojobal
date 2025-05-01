@@ -1,9 +1,9 @@
-local csau = next(SMODS.find_mod('Cardsauce'))
-if csau and csau.can_load then
-	local init, error = NFS.load(SMODS.current_mod.path .. "includes/disabled_ui.lua")
-	if error then sendErrorMessage("[Stands] Failed to load 'disabled_ui' with error "..error) else
+G.has_csau = next(SMODS.find_mod('Cardsauce'))
+if G.has_csau and G.has_csau.can_load then
+	local init, error = NFS.load(SMODS.current_mod.path .. "includes/ui.lua")
+	if error then sendErrorMessage("[Stands] Failed to load 'ui' with error "..error) else
 		init()
-		sendDebugMessage("[Stands] Loaded module: 'disabled_ui'")
+		sendDebugMessage("[Stands] Loaded module: 'ui'")
 	end
     return
 end
