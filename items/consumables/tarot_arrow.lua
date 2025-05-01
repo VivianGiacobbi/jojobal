@@ -1,5 +1,6 @@
 local consumInfo = {
     key = 'c_csau_tarot_arrow',
+    prefix_config = false,
     name = 'The Arrow',
     set = 'Tarot',
     cost = 3,
