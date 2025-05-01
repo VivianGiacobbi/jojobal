@@ -1,0 +1,50 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+#
+# Adds the ability to emplace cards at a specified index
+#
+
+# CardArea:emplace()
+[[patches]]
+[patches.pattern]
+target = "cardarea.lua"
+pattern = '''
+function CardArea:emplace(card, location, stay_flipped)'''
+position = "at"
+payload = '''function CardArea:emplace(card, location, stay_flipped, created, copied, index)'''
+match_indent = true
+times = 1
+
+# CardArea:emplace()
+[[patches]]
+[patches.pattern]
+target = "cardarea.lua"
+pattern = '''if location == 'front' or self.config.type == 'deck' then 
+    table.insert(self.cards, 1, card)
+else
+    self.cards[#self.cards+1] = card
+end'''
+position = "at"
+payload = '''
+if index then
+    table.insert(self.cards, index, card)
+elseif location == 'front' or self.config.type == 'deck' then 
+    table.insert(self.cards, 1, card)
+else
+    self.cards[#self.cards+1] = card
+end'''
+match_indent = true
+times = 1
+
+
+[[patches]]
+[patches.pattern]
+target = "back.lua"
+pattern = '''if G.localization.descriptions.Back[key_override or back_config.key].unlock_parsed then'''
+position = "before"
+payload = '''sendDebugMessage(back_config.key)'''
+match_indent = true
+times = 1
+

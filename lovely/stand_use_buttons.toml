@@ -1,0 +1,56 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+#
+# Removes "use" and "buy and use" buttons from Stands
+#
+
+#G.UIDEF.card_focus_ui
+[[patches]]
+[patches.pattern]
+target = "functions/UI_definitions.lua"
+pattern = '''local buy_and_use = nil
+if card.ability.consumeable then'''
+position = "at"
+payload = '''local buy_and_use = nil
+if card.ability.consumeable and card.ability.set ~= 'csau_Stand' then'''
+match_indent = true
+times = 1
+
+#G.UIDEF.card_focus_ui
+[[patches]]
+[patches.pattern]
+target = "functions/UI_definitions.lua"
+pattern = '''card.ability.consumeable then --Add a use button'''
+position = "at"
+payload = '''card.ability.consumeable and card.ability.set ~= 'csau_Stand' then'''
+match_indent = true
+times = 1
+
+#G.UIDEF.card_focus_ui
+[[patches]]
+[patches.pattern]
+target = "functions/UI_definitions.lua"
+pattern = '''if card.ability.consumeable then --and card:can_use_consumeable(true, true)'''
+position = "at"
+payload = '''if card.ability.consumeable and card.ability.set ~= 'csau_Stand' then'''
+match_indent = true
+times = 1
+
+#G.UIDEF.card_focus_ui
+[[patches]]
+[patches.pattern]
+target = "functions/UI_definitions.lua"
+pattern = '''if card.ability.consumeable then
+    if (card.area == G.pack_cards and G.pack_cards) then'''
+position = "at"
+payload = '''if card.ability.consumeable and card.ability.set ~= 'csau_Stand' then
+    if (card.area == G.pack_cards and G.pack_cards) then'''
+match_indent = true
+times = 1
+
+
+
+
+
