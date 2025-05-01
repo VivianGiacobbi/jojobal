@@ -94,13 +94,23 @@ function StandLoadStandItem(file_key, item_type)
 		info.prefix_config = false
 		
 		-- add universal set_consumable_usage() for stands
-		local ref_add_to_deck = function(self, card) end
+		local ref_add_to_deck = function(self, card, from_debuff) end
 		if info.add_to_deck then
 			ref_add_to_deck = info.add_to_deck
 		end
-		function info.add_to_deck(self, card)
-			ref_add_to_deck(self, card)
-			set_consumeable_usage(card)
+		function info.add_to_deck(self, card, from_debuff)
+			ref_add_to_deck(self, card, from_debuff)
+
+			-- only set initially
+			if not from_debuff then
+				set_consumeable_usage(card)
+			end
+			
+		end
+
+		-- force no use for stands
+		function info.can_use(self, card)
+			return false
 		end
 
 		-- add universal update to evolved Stand badges
