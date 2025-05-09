@@ -56,6 +56,7 @@ return {
 
 			-- stand related loc strings
 			k_stand_evolved = 'Evolved!',
+			k_stand_devolved = 'Devolved!',
 			k_echoes_recorded = 'Recorded!',
 			k_boing = "Boing!",
 			k_metal = "Metal!",
