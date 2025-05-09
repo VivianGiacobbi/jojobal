@@ -1,28 +1,30 @@
-G.csau_badge_colours = {
-	-- badge colors for jojo parts
-    co_jojo = 'B85F8E',
-	te_jojo = 'FFFFFF',
-	co_phantom = '245482',
-	te_phantom = 'EEE4A6',
-	co_battle = 'DD5668',
-	te_battle = '338FC4',
-	co_stardust = '425F7C',
-	te_stardust = 'EFCB70',
-	co_diamond = 'BEE5E5',
-	te_diamond = 'C479BE',
-	co_vento = 'EDCE49',
-	te_vento = 'D168BC',
-	co_feedback = '7E2786',
-	te_feedback = 'FE9818',
-	co_stone = '0076b2',
-	te_stone = '97C348',
-	co_steel = 'A38168',
-	te_steel = 'A9CF3C',
-	co_lion = 'DCF5FC',
-	te_lion = '7832C4',
-	co_lands = '394E90',
-	te_lands = '409CE8',
-}
+if not (next(G.has_csau) and G.has_csau[1].can_load) then
+	G.csau_badge_colours = {
+		-- badge colors for jojo parts
+		co_jojo = 'B85F8E',
+		te_jojo = 'FFFFFF',
+		co_phantom = '245482',
+		te_phantom = 'EEE4A6',
+		co_battle = 'DD5668',
+		te_battle = '338FC4',
+		co_stardust = '425F7C',
+		te_stardust = 'EFCB70',
+		co_diamond = 'BEE5E5',
+		te_diamond = 'C479BE',
+		co_vento = 'EDCE49',
+		te_vento = 'D168BC',
+		co_feedback = '7E2786',
+		te_feedback = 'FE9818',
+		co_stone = '0076b2',
+		te_stone = '97C348',
+		co_steel = 'A38168',
+		te_steel = 'A9CF3C',
+		co_lion = 'DCF5FC',
+		te_lion = '7832C4',
+		co_lands = '394E90',
+		te_lands = '409CE8',
+	}
+end
 
 --- Table containing all names of people who contributed to the mod, used in crediting
 G.stands_mod_team = {
