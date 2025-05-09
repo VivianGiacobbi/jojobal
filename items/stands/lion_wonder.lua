@@ -20,7 +20,7 @@ local consumInfo = {
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_lucky
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.csau_team.cauthen } }
+    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.cauthen } }
     return {vars = {card.ability.extra.xmult_mod, card.ability.extra.xmult}}
 end
 
@@ -32,7 +32,7 @@ local forms = {
 
 for i = 1, #forms do
     if forms[i] then
-        SMODS.Atlas({ key = forms[i], path ="stands/"..forms[i]..".png", px = 71, py = 95 })
+        SMODS.Atlas({ key = 'csau_'..forms[i], path ="stands/"..forms[i]..".png", px = 71, py = 95, prefix_config = false,})
     end
 end
 

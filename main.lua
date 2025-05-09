@@ -1,9 +1,16 @@
 G.has_csau = SMODS.find_mod('Cardsauce')
+
+local min_load = {
+	'ui',
+	'tables'
+}
 if next(G.has_csau) and G.has_csau[1].can_load then
-	local init, error = NFS.load(SMODS.current_mod.path .. "includes/ui.lua")
-	if error then sendErrorMessage("[Stands] Failed to load 'ui' with error "..error) else
-		init()
-		sendDebugMessage("[Stands] Loaded module: 'ui'")
+	for i, v in ipairs(min_load) do
+		local init, error = NFS.load(SMODS.current_mod.path .. "includes/"..v..".lua")
+		if error then sendErrorMessage("[Stands] Failed to load '"..v.."' with error "..error) else
+			init()
+			sendDebugMessage("[Stands] Loaded module: '"..v.."'")
+		end
 	end
     return
 end
@@ -35,7 +42,6 @@ local includes = {
 	'hooks/cardarea',
 	'hooks/misc_functions',
 	'hooks/smods',
-
 
 	'ui',
 	'items',
