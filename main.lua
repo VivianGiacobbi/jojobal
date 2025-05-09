@@ -1,5 +1,5 @@
-G.has_csau = next(SMODS.find_mod('Cardsauce'))
-if G.has_csau and G.has_csau.can_load then
+G.has_csau = SMODS.find_mod('Cardsauce')
+if next(G.has_csau) and G.has_csau[1].can_load then
 	local init, error = NFS.load(SMODS.current_mod.path .. "includes/ui.lua")
 	if error then sendErrorMessage("[Stands] Failed to load 'ui' with error "..error) else
 		init()
@@ -11,8 +11,15 @@ end
 stand_config = SMODS.current_mod.config
 stand_enabled = copy_table(stand_config)
 
-SMODS.optional_features.quantum_enhancements = true
-SMODS.optional_features.cardareas.unscored = true
+SMODS.current_mod.optional_features = {
+	retrigger_joker = true,
+	post_trigger = true,
+	quantum_enhancements = true,
+	cardareas = {
+		deck = true,
+		discard = true,
+	},
+}
 
 G.C.STAND = SMODS.current_mod.badge_colour
 
