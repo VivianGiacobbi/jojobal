@@ -25,7 +25,7 @@ G.csau_badge_colours = {
 }
 
 --- Table containing all names of people who contributed to the mod, used in crediting
-G.csau_team = {
+G.stands_mod_team = {
 	['gote'] = "BarrierTrio/Gote",
 	['cejai'] = "SagaciousCejai",
 	['eremel'] = "Eremel",

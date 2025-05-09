@@ -21,7 +21,7 @@ end
 
 function deckInfo.loc_vars(self, info_queue, card)
     if info_queue then
-        info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.csau_team.gote } }
+        info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
     end
 end
 
