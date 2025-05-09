@@ -1,7 +1,7 @@
 {
 	"id": "stands_mod",
 	"name": "Stands Module",
-	"author": ["BarrierTrio", "Kekulism"],
+	"author": ["BarrierTrio", "Keku"],
 	"description": "A standalone module containing Stands and related items!",
 	"prefix": "stand",
 	"main_file": "main.lua",
