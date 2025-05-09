@@ -31,12 +31,11 @@ function consumInfo.in_pool(self, args)
 end
 
 local get_btd = function()
-    for i, v in ipairs(G.consumeables.cards) do
-        if v.config.center.key == 'c_csau_diamond_killer_btd' then
-            return true
-        end
+    if not G.consumeables then
+        return false
     end
-    return false
+
+    return next(SMODS.find_card('c_csau_diamond_killer_btd'))
 end
 
 local get_card_areas = SMODS.get_card_areas
