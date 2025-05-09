@@ -14,6 +14,7 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'lands',
+    in_progress = true,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -107,8 +108,5 @@ function consumInfo.calculate(self, card, context)
 
 end
 
-function consumInfo.can_use(self, card)
-    return false
-end
 
 return consumInfo

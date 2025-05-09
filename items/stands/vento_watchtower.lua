@@ -12,6 +12,7 @@ local consumInfo = {
     rarity = 'csau_StandRarity',
     alerted = true,
     hasSoul = true,
+    in_progress = true,
     part = 'feedback',
 }
 
@@ -34,13 +35,17 @@ local reference_deck = {
 local function is_full_deck(deck, reference)
     for suit, cards in pairs(deck) do
         if not reference[suit] then
+            send('extra suit found: '..suit)
             return false
         end
         for rank, count in pairs(cards) do
             if not reference[suit][rank] then
+                send('extra rank found: '..rank..' of '..suit)
                 return false
             end
             if count ~= reference[suit][rank] then
+                send('incorrect count for '..rank..' of '..suit)
+                send(count..' ~= '..reference[suit][rank])
                 return false
             end
         end
@@ -48,10 +53,13 @@ local function is_full_deck(deck, reference)
 
     for suit, cards in pairs(reference) do
         if not deck[suit] then
+            send('missing suit: '..suit)
             return false
         end
         for rank, ref_count in pairs(cards) do
             if deck[suit][rank] ~= ref_count then
+                send('missing or incorrect count for '..rank..' of '..suit)
+                send(deck[suit][rank]..' ~= '..ref_count)
                 return false
             end
         end
@@ -98,8 +106,5 @@ function consumInfo.calculate(self, card, context)
     end
 end
 
-function consumInfo.can_use(self, card)
-    return false
-end
 
 return consumInfo

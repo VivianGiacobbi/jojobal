@@ -9,6 +9,7 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'diamond',
+    in_progress = true,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -53,18 +54,18 @@ function consumInfo.calculate(self, card, context)
             end
         end
         if juice then
-            G.E_MANAGER:add_event(Event({
+            return {
                 func = function()
                     card:juice_up()
-                    return true
-                end
-            }))
+                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                end,
+                card = card,
+                message = localize('k_thehand'),
+                colour = G.C.STAND
+            }
         end
     end
 end
 
-function consumInfo.can_use(self, card)
-    return false
-end
 
 return consumInfo

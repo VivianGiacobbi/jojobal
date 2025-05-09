@@ -13,15 +13,12 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'stardust',
+    in_progress = 'true',
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
     return { vars = {card.ability.extra.preview}}
-end
-
-local function get_card()
-
 end
 
 -- Modified Code from Jimbo's Pack
@@ -62,28 +59,25 @@ function consumInfo.generate_ui(self, info_queue, card, desc_nodes, specific_var
         local cards = G.FUNCS.stand_preview_deck(card.ability.extra.preview)
         if cards[1] then
             local cardarea = create_tohth_cardarea(card, cards)
-            desc_nodes[#desc_nodes+1] = {{
-                                             n=G.UIT.R, config = {
+            desc_nodes[#desc_nodes+1] = {
+                { n=G.UIT.R, config = {
                     align = "cm", colour = G.C.CLEAR, r = 0.0
                 },
-                                             nodes={
-                                                 {
-                                                     n=G.UIT.C,
-                                                     config = {align = "cm", padding = 0.1},
-                                                     nodes={
-                                                         {n=G.UIT.T, config={text = '/', scale = 0.15, colour = G.C.CLEAR}},
-                                                     }
-                                                 }
-                                             },
-                                         }}
+                     nodes={
+                         {
+                             n=G.UIT.C,
+                             config = {align = "cm", padding = 0.1},
+                             nodes={
+                                 {n=G.UIT.T, config={text = '/', scale = 0.15, colour = G.C.CLEAR}},
+                             }
+                         }
+                     },
+                 }}
             desc_nodes[#desc_nodes+1] = {cardarea}
         end
     end
 end
 
 
-function consumInfo.can_use(self, card)
-    return false
-end
 
 return consumInfo

@@ -8,6 +8,7 @@ local consumInfo = {
             chips = 13,
             evolve_scores = 0,
             evolve_num = 20,
+            evolved = false,
         }
     },
     cost = 4,
@@ -15,6 +16,7 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'steel',
+    in_progress = true,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -43,8 +45,9 @@ function consumInfo.calculate(self, card, context)
             if not bad_context then
                 card.ability.extra.evolve_scores = card.ability.extra.evolve_scores + 1
             end
-            if card.ability.extra.evolve_scores >= card.ability.extra.evolve_num then
-                if not bad_context then
+            if to_big(card.ability.extra.evolve_scores) >= to_big(card.ability.extra.evolve_num) then
+                if not card.ability.extra.evolved and not bad_context then
+                    card.ability.extra.evolved = true
                     G.FUNCS.csau_evolve_stand(card)
                 end
             else
@@ -59,8 +62,5 @@ function consumInfo.calculate(self, card, context)
     end
 end
 
-function consumInfo.can_use(self, card)
-    return false
-end
 
 return consumInfo

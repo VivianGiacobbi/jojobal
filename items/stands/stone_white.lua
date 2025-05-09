@@ -16,6 +16,7 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'stone',
+    in_progress = true,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -58,7 +59,7 @@ function consumInfo.calculate(self, card, context)
             end
         end
         card.ability.extra.evolve_cards = card.ability.extra.evolve_cards + #six
-        if card.ability.extra.evolve_cards >= card.ability.extra.evolve_num then
+        if to_big(card.ability.extra.evolve_cards) >= to_big(card.ability.extra.evolve_num) then
             G.FUNCS.csau_evolve_stand(card)
         elseif #six > 0 then
             return {
@@ -69,8 +70,5 @@ function consumInfo.calculate(self, card, context)
     end
 end
 
-function consumInfo.can_use(self, card)
-    return false
-end
 
 return consumInfo

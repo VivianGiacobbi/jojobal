@@ -11,6 +11,7 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'vento',
+    in_progress = true,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -22,7 +23,7 @@ function consumInfo.in_pool(self, args)
         return true
     end
     
-    return G.GAME.used_jokers['c_csau_vento_epitaph'] ~= nil
+    return (not G.GAME.used_jokers['c_csau_vento_epitaph'])
 end
 
 function consumInfo.calculate(self, card, context)
@@ -34,8 +35,5 @@ function consumInfo.calculate(self, card, context)
     end
 end
 
-function consumInfo.can_use(self, card)
-    return false
-end
 
 return consumInfo

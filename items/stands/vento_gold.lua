@@ -10,6 +10,7 @@ local consumInfo = {
     rarity = 'csau_StandRarity',
     alerted = true,
     hasSoul = true,
+    in_progress = true,
     part = 'vento',
 }
 
@@ -24,7 +25,7 @@ function consumInfo.in_pool(self, args)
         return true
     end
     
-    return G.GAME.used_jokers['c_csau_vento_gold_requiem'] ~= nil
+    return (not G.GAME.used_jokers['c_csau_vento_gold_requiem'])
 end
 
 function consumInfo.calculate(self, card, context)
@@ -56,8 +57,5 @@ function consumInfo.calculate(self, card, context)
     end
 end
 
-function consumInfo.can_use(self, card)
-    return false
-end
 
 return consumInfo

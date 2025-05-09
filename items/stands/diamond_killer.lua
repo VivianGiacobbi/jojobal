@@ -17,6 +17,7 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'diamond',
+    in_progress = true,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -44,7 +45,7 @@ function consumInfo.calculate(self, card, context)
         end
         card.ability.extra.hands = hands
         card.ability.extra.evolve_cards = card.ability.extra.evolve_cards + hands
-        if card.ability.extra.evolve_cards >= card.ability.extra.evolve_num then
+        if to_big(card.ability.extra.evolve_cards) >= to_big(card.ability.extra.evolve_num) then
             check_for_unlock({ type = "evolve_btd" })
             G.FUNCS.csau_evolve_stand(card)
             return
@@ -64,8 +65,5 @@ function consumInfo.calculate(self, card, context)
     end
 end
 
-function consumInfo.can_use(self, card)
-    return false
-end
 
 return consumInfo
