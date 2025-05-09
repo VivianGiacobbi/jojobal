@@ -14,6 +14,7 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'stone',
+    in_progress = true,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -25,12 +26,14 @@ local debt_collection = function(card)
     local percentage_left = (G.GAME.blind.chips-G.GAME.chips) / G.GAME.blind.chips
     local debt = math.ceil(percentage_left / card.ability.extra.conv_score)*card.ability.extra.conv_money
     local recoverable = 0
-    if G.GAME.dollars - debt >= G.GAME.bankrupt_at then
+    if to_big(G.GAME.dollars - debt) >= to_big(G.GAME.bankrupt_at) then
+        send("Debt satisfied with only money")
         return {
             saved = true,
             ease = -debt
         }
     else
+        send("Not enough money. (Debt: "..debt..")")
         local sell = {}
         if #G.jokers.cards > 0 then
             local pool = {}
@@ -46,12 +49,18 @@ local debt_collection = function(card)
                     end
                 end
                 recoverable = recoverable + joker.sell_cost
-                if (G.GAME.dollars + recoverable) - debt >= G.GAME.bankrupt_at then
+                send("Selling "..joker.ability.name.." for $"..joker.sell_cost)
+                send("funds: "..G.GAME.dollars + recoverable.." (recoverable: "..recoverable.." + money: "..G.GAME.dollars..")")
+                send("debt: "..debt)
+                send("difference: "..(G.GAME.dollars + recoverable) - debt)
+                send("bankrupt at: "..G.GAME.bankrupt_at)
+                if to_big((G.GAME.dollars + recoverable) - debt) >= to_big(G.GAME.bankrupt_at) then
                     table.insert(sell, joker)
                     local ease = debt
-                    if (G.GAME.dollars + recoverable) - debt > 0 then
+                    if to_big((G.GAME.dollars + recoverable) - debt) > to_big(0) then
                         ease = ease + (G.GAME.dollars + recoverable) - debt
                     end
+                    send("Debt satisfied. (Debt: "..debt..", Recovered: "..recoverable..")")
                     return {
                         saved = true,
                         ease = -ease,
@@ -62,13 +71,20 @@ local debt_collection = function(card)
                 end
             end
         end
-        if (G.GAME.dollars + recoverable) - debt < G.GAME.bankrupt_at then
+        send("funds: "..G.GAME.dollars + recoverable.." (recoverable: "..recoverable.." + money: "..G.GAME.dollars..")")
+        send("debt: "..debt)
+        send("difference: "..(G.GAME.dollars + recoverable) - debt)
+        send("bankrupt at: "..G.GAME.bankrupt_at)
+        if to_big((G.GAME.dollars + recoverable) - debt) < to_big(G.GAME.bankrupt_at) then
+            send("Not enough money.")
             if #G.playing_cards > 0 then
+                send("Playing cards found.")
                 local pool = {}
                 for i, v in ipairs(G.playing_cards) do
                     table.insert(pool, v)
                 end
                 while #pool > 0 do
+                    send("Checking for valuable cards...")
                     local card = pseudorandom_element(pool, pseudoseed('debtcollector_cards'))
                     for i = #pool, 1, -1 do
                         if pool[i] == card then
@@ -76,13 +92,19 @@ local debt_collection = function(card)
                             break
                         end
                     end
+                    send("Selling "..card.base.value.." of "..card.base.suit)
+                    send("funds: "..G.GAME.dollars + recoverable)
+                    send("debt: "..debt)
+                    send("difference: "..(G.GAME.dollars + recoverable) - debt)
+                    send("bankrupt at: "..G.GAME.bankrupt_at)
                     recoverable = recoverable + card.sell_cost
-                    if (G.GAME.dollars + recoverable) - debt >= G.GAME.bankrupt_at then
+                    if to_big((G.GAME.dollars + recoverable) - debt) >= to_big(G.GAME.bankrupt_at) then
                         table.insert(sell, card)
                         local ease = -debt
-                        if (G.GAME.dollars + recoverable) - debt > 0 then
+                        if to_big((G.GAME.dollars + recoverable) - debt) > to_big(0) then
                             ease = (G.GAME.dollars + recoverable) - debt
                         end
+                        send("Debt satisfied. (Debt: "..debt..", Recovered: "..recoverable..")")
                         return {
                             saved = true,
                             ease = -ease,
@@ -94,6 +116,7 @@ local debt_collection = function(card)
                 end
             end
         end
+        send("Debt not satisfied. DEATH")
         return {
             death = "*fucking kills you*"
         }
@@ -126,8 +149,5 @@ function consumInfo.calculate(self, card, context)
     end
 end
 
-function consumInfo.can_use(self, card)
-    return false
-end
 
 return consumInfo

@@ -13,18 +13,19 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'stardust',
+    in_progress = true,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.csau_team.gote } }
-    return { vars = { card.ability.extra.hand_mod } }
+    return { vars = { card.ability.extra.hand_mod, localize(G.GAME and G.GAME.wigsaw_suit or 'Spades', 'suits_plural'), colours = {G.C.SUITS[G.GAME and G.GAME.wigsaw_suit or 'Spades']} } }
 end
 
 function consumInfo.calculate(self, card, context)
-    if context.before and not card.debuff and G.GAME.current_round.hands_played == 0 then
+    if context.before and not card.debuff and to_big(G.GAME.current_round.hands_played) == to_big(0) then
         local all = true
         for _, v in ipairs(context.full_hand) do
-            if not v:is_suit('Spades', nil, true) then
+            if not v:is_suit(G.GAME and G.GAME.wigsaw_suit or 'Spades', nil, true) then
                 all = false
                 break
             end
@@ -43,8 +44,5 @@ function consumInfo.calculate(self, card, context)
     end
 end
 
-function consumInfo.can_use(self, card)
-    return false
-end
 
 return consumInfo

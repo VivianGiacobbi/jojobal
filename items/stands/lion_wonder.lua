@@ -15,6 +15,7 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'lion',
+    in_progress = true,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -72,10 +73,10 @@ function consumInfo.calculate(self, card, context)
             end
         end
         local update_sprite = false
-        if card.ability.extra.xmult >= 2 and card.ability.extra.form == 'lion_wonder' then
+        if to_big(card.ability.extra.xmult) >= to_big(1.9) and card.ability.extra.form == 'lion_wonder' then
             card.ability.extra.form = 'lion_wonder_2'
             update_sprite = true
-        elseif card.ability.extra.xmult >= 3 and card.ability.extra.form == 'lion_wonder_2' then
+        elseif to_big(card.ability.extra.xmult) >= to_big(3) and card.ability.extra.form == 'lion_wonder_2' then
             card.ability.extra.form = 'lion_wonder_3'
             update_sprite = true
         end
@@ -97,7 +98,7 @@ function consumInfo.calculate(self, card, context)
         end
     end
     if context.destroy_card and not bad_context then
-        if context.destroy_card.ability.effect == 'Lucky Card' then
+        if context.destroy_card.ability.effect == 'Lucky Card' and table.contains(context.scoring_hand, context.destroy_card) and not context.destroy_card.debuff then
             return {
                 remove = true,
             }
@@ -105,9 +106,6 @@ function consumInfo.calculate(self, card, context)
     end
 end
 
-function consumInfo.can_use(self, card)
-    return false
-end
 
 function consumInfo.update(self, card)
     if card.area.config.collection and G.SETTINGS.highest_wonderofu and card.ability.extra.form ~= G.SETTINGS.highest_wonderofu then

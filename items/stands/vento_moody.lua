@@ -10,6 +10,10 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'vento',
+    in_progress = true,
+    csau_dependencies = {
+        'enableVHSs'
+    }
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -33,8 +37,5 @@ function consumInfo.remove_from_deck(self, card)
     end
 end
 
-function consumInfo.can_use(self, card)
-    return false
-end
 
 return consumInfo

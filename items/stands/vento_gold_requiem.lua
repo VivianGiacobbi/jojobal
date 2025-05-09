@@ -14,6 +14,8 @@ local consumInfo = {
     rarity = 'csau_EvolvedRarity',
     alerted = true,
     hasSoul = true,
+    in_progress = true,
+    part = 'vento',
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -27,7 +29,7 @@ function consumInfo.in_pool(self, args)
         return true
     end
     
-    return G.GAME.used_jokers['c_csau_vento_gold'] ~= nil
+    return (not G.GAME.used_jokers['c_csau_vento_gold'])
 end
 
 function consumInfo.calculate(self, card, context)
@@ -46,7 +48,7 @@ function consumInfo.calculate(self, card, context)
                 }))
             end
         end
-        if pseudorandom('thisisrequiem') < G.FUNCS.csau_add_chance(card.ability.extra.chance+#gold, true) / card.ability.extra.divide then
+        if pseudorandom('thisisrequiem') < G.FUNCS.csau_add_chance(card.ability.extra.chance+#gold, {multiply = true}) / card.ability.extra.divide then
             return {
                 func = function()
                     G.FUNCS.csau_flare_stand_aura(card, 0.38)
@@ -67,8 +69,5 @@ function consumInfo.calculate(self, card, context)
     end
 end
 
-function consumInfo.can_use(self, card)
-    return false
-end
 
 return consumInfo

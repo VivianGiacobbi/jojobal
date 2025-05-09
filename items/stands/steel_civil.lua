@@ -13,18 +13,15 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'steel',
+    in_progress = true,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.c_fool
-    info_queue[#info_queue+1] = G.P_CENTERS.c_hanged_man
     info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.csau_team.gote } }
     return { vars = {localize{type = 'name_text', key = card.ability.extra.tarot, set = 'Tarot'}}}
 end
 
-function consumInfo.can_use(self, card)
-    return false
-end
 
 function consumInfo.calculate(self, card, context)
     local bad_context = context.repetition or context.blueprint or context.individual or context.retrigger_joker
