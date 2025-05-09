@@ -1,4 +1,7 @@
-G.has_csau = next(SMODS.find_mod('Cardsauce'))
+if #SMODS.find_mod('Cardsauce') > 0 then
+	G.has_csau = SMODS.find_mod('Cardsauce')[1]
+	if not G.has_csau.can_load thenG.has_csau = nil end
+end
 if G.has_csau and G.has_csau.can_load then
 	local init, error = NFS.load(SMODS.current_mod.path .. "includes/ui.lua")
 	if error then sendErrorMessage("[Stands] Failed to load 'ui' with error "..error) else
