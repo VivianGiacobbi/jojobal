@@ -32,6 +32,7 @@ function consumInfo.in_pool(self, args)
 end
 
 local get_btd = function()
+    if not G.consumeables then return false end
     for i, v in ipairs(G.consumeables.cards) do
         if v.config.center.key == 'c_csau_diamond_killer_btd' then
             return true
@@ -43,7 +44,7 @@ end
 local get_card_areas = SMODS.get_card_areas
 function SMODS.get_card_areas(_type, context)
     local t = get_card_areas(_type, context)
-    if  _type == 'playing_cards' then
+    if _type == 'playing_cards' then
         if get_btd() then
             local new_area = {cards = {}, reverse = true}
             for i= #G.play.cards - 1, 1, -1 do
