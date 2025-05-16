@@ -20,12 +20,7 @@ stand_enabled = copy_table(stand_config)
 
 SMODS.current_mod.optional_features = {
 	retrigger_joker = true,
-	post_trigger = true,
 	quantum_enhancements = true,
-	cardareas = {
-		deck = true,
-		discard = true,
-	},
 }
 
 G.C.STAND = SMODS.current_mod.badge_colour
