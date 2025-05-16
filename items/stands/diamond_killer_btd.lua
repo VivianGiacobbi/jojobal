@@ -44,7 +44,7 @@ end
 local get_card_areas = SMODS.get_card_areas
 function SMODS.get_card_areas(_type, context)
     local t = get_card_areas(_type, context)
-    if  _type == 'playing_cards' then
+    if _type == 'playing_cards' then
         if get_btd() then
             local new_area = {cards = {}, reverse = true}
             for i= #G.play.cards - 1, 1, -1 do
