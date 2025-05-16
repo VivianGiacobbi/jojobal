@@ -30,7 +30,6 @@ local items_to_load = {
 		-- vento aureo
 		'vento_gold',
 		'vento_gold_requiem',
-		'vento_moody',
 		'vento_metallica',
 		'vento_epitaph',
 		'vento_epitaph_king',
