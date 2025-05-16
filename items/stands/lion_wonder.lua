@@ -32,7 +32,7 @@ local forms = {
 
 for i = 1, #forms do
     if forms[i] then
-        SMODS.Atlas({ key = 'csau_'..forms[i], path ="stands/"..forms[i]..".png", px = 71, py = 95, prefix_config = false,})
+        SMODS.Atlas({ key = forms[i], path ="stands/"..forms[i]..".png", px = 71, py = 95 })
     end
 end
 
