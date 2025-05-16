@@ -224,6 +224,23 @@ G.FUNCS.csau_set_stand_sprites = function(stand)
 	end
 end
 
+function G.FUNCS.stand_preview_deck(amount)
+	local preview_cards = {}
+	local count = 0
+	local i = #G.deck.cards
+
+	while count < amount and i >= 1 do
+		local card = G.deck.cards[i]
+		if card then
+			table.insert(preview_cards, card)
+			count = count + 1
+		end
+		i = i - 1
+	end
+
+	return preview_cards
+end
+
 
 
 

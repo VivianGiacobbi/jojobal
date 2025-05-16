@@ -319,13 +319,6 @@ return {
 					"Each scoring {C:attention}Gold Card{} increases odds by {C:green}#3#{}",
 				},
 			},
-			c_csau_vento_moody = {
-				name = "Moody Blues",
-				text = {
-					"{C:vhs}VHS Tapes{} have {C:attention}double{}",
-					"the Running Time",
-				},
-			},
 			c_csau_vento_metallica = {
 				name = "Metallica",
 				text = {
