@@ -224,7 +224,7 @@ return {
 				name = "Star Platinum",
 				text = {
 					"If {C:attention}first hand{} of round",
-					"is all {C:diamonds}Diamonds{}, gain {C:blue}+1{} Hand",
+					"is all {V:1}#2#{}, gain {C:blue}+1{} Hand",
 				},
 			},
 			c_csau_stardust_tohth = {
@@ -237,7 +237,7 @@ return {
 				name = "DIO's World",
 				text = {
 					"If {C:attention}first hand{} of round",
-					"is all {C:spades}Spades{}, gain {C:blue}+1{} Hand",
+					"is all {V:1}#2#{}, gain {C:blue}+1{} Hand",
 				},
 			},
 			c_csau_diamond_crazy = {
@@ -283,15 +283,17 @@ return {
 			c_csau_diamond_echoes_3 = {
 				name = "Echoes ACT3",
 				text = {
-					"{C:attention}#1#s{} count as {C:attention}all suits{}",
-					"and give {C:mult}+#2#{} Mult when scored",
+					"If played hand contains a {C:attention}Flush{}",
+					"each card scored gives {C:mult}+#1#{} Mult",
+					"{C:attention}Stone Cards{} count as {C:attention}all suits{}",
+					"and give {X:mult,C:white}X#2#{} Mult when scored",
 				},
 			},
 			c_csau_diamond_killer = {
 				name = "Killer Queen",
 				text = {
 					"Whenever you {C:attention}destroy{} a card,",
-					"gain {C:chips}+#1#{} hand next round {C:inactive}({C:chips}+#2#{C:inactive})",
+					"gain {C:chips}+#1#{} hand this Ante {C:inactive}({C:chips}+#2#{C:inactive})",
 					"{s:0.1} {}",
 					"{C:stand}Evolves{} after destroying {C:attention}#3#{} cards {C:inactive}({C:attention}#4#{C:inactive}/#3#)"
 				},
@@ -306,7 +308,8 @@ return {
 			c_csau_vento_gold = {
 				name = "Gold Experience",
 				text = {
-					"All played {V:1}#1#{} become {C:attention}Gold Cards{}",
+					"{C:green}#1# in #2#{} chance for scored {V:1}#3#{}",
+					"to become {C:attention}Gold Cards{}",
 					"{s:0.1} {}",
 					"{C:stand}Evolves{} after using {C:tarot}The Arrow{}",
 				},
@@ -317,6 +320,13 @@ return {
 					"{C:green}#1# in #2#{} chance to {C:planet}level up{} played {C:attention}poker hand{}",
 					"{s:0.1} {}",
 					"Each scoring {C:attention}Gold Card{} increases odds by {C:green}#3#{}",
+				},
+			},
+			c_csau_vento_moody = {
+				name = "Moody Blues",
+				text = {
+					"{C:vhs}VHS Tapes{} have {C:attention}double{}",
+					"the Running Time",
 				},
 			},
 			c_csau_vento_metallica = {
@@ -343,7 +353,7 @@ return {
 				},
 			},
 			c_csau_vento_watchtower = {
-				name = "All Along The Watchtower",
+				name = "All Along Watchtower",
 				text = {
 					"{X:mult,C:white}X#1#{} Mult if deck is {C:attention}52{} cards,",
 					"{C:attention}2-A{} for each suit"
@@ -378,11 +388,19 @@ return {
 			c_csau_stone_white_moon = {
 				name = "C-MOON",
 				text = {
-					"All cards in played",
-					"{C:attention}straights{} are retriggered",
+					"{C:attention}Retrigger{} each played {C:attention}6{}",
+					"{C:attention}Retrigger{} each played {C:attention}Straight{}",
 					"{s:0.1} {}",
-					"{C:stand}Evolves{} after playing straights",
-					"containing {C:attention}#1#{} unique ranks",
+					"{C:dark_edition,s:0.8}The time for Heaven has almost come...",
+				},
+			},
+			c_csau_stone_white_moon_detailed = {
+				name = "C-MOON",
+				text = {
+					"{C:attention}Retrigger{} each played {C:attention}6{}",
+					"{C:attention}Retrigger{} each played {C:attention}Straight{}",
+					"{s:0.1} {}",
+					"{C:stand}Evolves{} after using {C:attention}#1#{} {C:tarot}The Moon{} cards",
 				},
 			},
 			c_csau_stone_white_heaven = {
@@ -438,8 +456,8 @@ return {
 			c_csau_steel_civil = {
 				name = "Civil War",
 				text = {
-					"{C:tarot}The Fool{} always creates",
-					"{C:tarot,T:c_hanged_man}#1#{}",
+					"{C:tarot}The Fool{} and {C:tarot}The Emperor{}",
+					"always create {C:tarot,T:c_hanged_man}#1#{}",
 				},
 			},
 			c_csau_steel_d4c = {
@@ -491,10 +509,9 @@ return {
 			c_csau_lion_rock = {
 				name = "I Am a Rock",
 				text = {
-					"If played hand contains",
-					"a {C:attention}Stone Card{}, add a",
-					"{C:attention}Stone Card{} to your hand",
-					
+					"Add one {C:attention}Stone Card{} to deck",
+					"every time a {C:attention}playing card",
+					"is added to your deck",
 				},
 			},
 			c_csau_lion_wonder= {
@@ -518,17 +535,16 @@ return {
 				name = "Smooth Operators",
 				text = {
 					"Before scoring, if an unscored card",
-					"is an {C:attention}adjacent rank{} to a scored card",
+					"is an {C:attention}adjacent rank{} to a scored card,",
 					"{C:attention}upgrade or downgrade{} it one rank",
 				},
 			},
 			c_csau_lands_bigmouth = {
 				name = "Bigmouth Strikes Again",
 				text = {
-					"If played hand is {C:attention}#1#{} cards",
-					"and {C:attention}#2#{} are the {C:attention}same suit{},",
-					"transform the {C:attention}fifth card{}",
-					"into that suit",
+					"{C:attention}Flushes{} may be made with {C:attention}4{} cards",
+					"If a fifth is played with a different suit,",
+					"{C:attention}transform{} it into the {C:attention}Flush's suit{}",
 				},
 			},
 		},
