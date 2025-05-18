@@ -22,8 +22,9 @@ end
 function consumInfo.use(self, card, area, copier)
     G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
         play_sound('timpani')
-        if next(SMODS.find_card("c_csau_vento_gold")) then
-            G.FUNCS.csau_evolve_stand(stand)
+        local ge = SMODS.find_card("c_csau_vento_gold")
+        if next(ge) then
+            G.FUNCS.csau_evolve_stand(ge[1])
         else
             G.FUNCS.csau_new_stand(false)
         end
