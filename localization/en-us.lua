@@ -391,15 +391,6 @@ return {
 					"{C:attention}Retrigger{} each played {C:attention}6{}",
 					"{C:attention}Retrigger{} each played {C:attention}Straight{}",
 					"{s:0.1} {}",
-					"{C:dark_edition,s:0.8}The time for Heaven has almost come...",
-				},
-			},
-			c_csau_stone_white_moon_detailed = {
-				name = "C-MOON",
-				text = {
-					"{C:attention}Retrigger{} each played {C:attention}6{}",
-					"{C:attention}Retrigger{} each played {C:attention}Straight{}",
-					"{s:0.1} {}",
 					"{C:stand}Evolves{} after using {C:attention}#1#{} {C:tarot}The Moon{} cards",
 				},
 			},

@@ -27,10 +27,6 @@ function consumInfo.loc_vars(self, info_queue, card)
     return { vars = {card.ability.extra.evolve_num - card.ability.extra.evolve_moons}}
 end
 
-function consumInfo.generate_ui(self, info_queue, card, desc_nodes, specific_vars, full_UI_table)
-    G.FUNCS.csau_generate_detail_desc(self, info_queue, card, desc_nodes, specific_vars, full_UI_table)
-end
-
 function consumInfo.in_pool(self, args)
     if next(SMODS.find_card('j_showman')) then
         return true
