@@ -95,7 +95,7 @@ function consumInfo.calculate(self, card, context)
 
     return {
         func = function()
-            G.FUNCS.flare_stand_aura(card, 0.38)
+            G.FUNCS.flare_stand_aura(card, 0.50)
         end,
         message = localize('k_smooth_operators'),
         message_card = card

@@ -43,7 +43,7 @@ function consumInfo.calculate(self, card, context)
                 if #cards > 0 then
                     playing_card_joker_effects({cards})
                     card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {message = localize('k_iamarock'), colour = G.C.STAND})
-                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.38)
+                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
                 end
                 return true
             end}

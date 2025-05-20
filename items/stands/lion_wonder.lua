@@ -15,7 +15,7 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'lion',
-    in_progress = true,
+    blueprint_compat = true,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -63,15 +63,26 @@ function consumInfo.calculate(self, card, context)
             xmult = card.ability.extra.xmult,
         }
     end
-    local bad_context = context.repetition or context.blueprint or context.individual or context.retrigger_joker
-    if context.final_scoring_step and not bad_context then
+        
+    if context.destroy_card and not context.blueprint and not context.retrigger_joker and not card.debuff then
+        if SMODS.has_enhancement(context.destroy_card, 'm_lucky') and SMODS.in_scoring(context.destroy_card, context.scoring_hand) and not context.destroy_card.debuff then
+            context.destroy_card.jjba_removed_by_wonder = true
+            return {
+                remove = true,
+            }
+        end
+    end
+
+    if context.remove_playing_cards and not context.blueprint and not context.retrigger_joker then
         local trigger = false
-        for i, v in ipairs(context.scoring_hand) do
-            if v.ability.effect == 'Lucky Card' and not v.debuff then
+        for _, v in ipairs(context.removed) do
+            if v.jjba_removed_by_wonder then
                 trigger = true
                 card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_mod
             end
+            
         end
+
         local update_sprite = false
         if to_big(card.ability.extra.xmult) >= to_big(1.9) and card.ability.extra.form == 'lion_wonder' then
             card.ability.extra.form = 'lion_wonder_2'
@@ -89,18 +100,11 @@ function consumInfo.calculate(self, card, context)
         if trigger then
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.50)
                 end,
                 message = localize('k_upgrade_ex'),
                 colour = G.C.RED,
                 card = card
-            }
-        end
-    end
-    if context.destroy_card and not bad_context then
-        if context.destroy_card.ability.effect == 'Lucky Card' and SMODS.in_scoring(context.destroy_card, context.scoring_hand) and not context.destroy_card.debuff then
-            return {
-                remove = true,
             }
         end
     end

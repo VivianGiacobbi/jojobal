@@ -65,14 +65,14 @@ function consumInfo.calculate(self, card, context)
                 local ref_card = context.full_hand[1]
                 if SMODS.has_any_suit(ref_card) then
                     card.ability.extra.ref_suit = "wild"
-                    G.FUNCS.flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.50)
                     return {
                         message = localize('k_echoes_recorded'),
                         card = card
                     }
                 elseif not SMODS.has_no_suit(ref_card) then
                     card.ability.extra.ref_suit = ref_card.base.suit
-                    G.FUNCS.flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.50)
                     return {
                         message = localize('k_echoes_recorded'),
                         card = card,
@@ -90,7 +90,7 @@ function consumInfo.calculate(self, card, context)
             if card.ability.extra.ref_suit == "wild" or context.other_card:is_suit(G.GAME and G.GAME.wigsaw_suit or card.ability.extra.ref_suit) then
                 return {
                     func = function()
-                        G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.38)
+                        G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
                     end,
                     extra = {
                         mult = card.ability.extra.mult,

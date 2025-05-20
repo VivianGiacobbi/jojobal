@@ -44,7 +44,7 @@ function consumInfo.calculate(self, card, context)
         if context.other_card:get_id() == 14 or context.other_card:get_id() == 2 or context.other_card:get_id() == 3 or context.other_card:get_id() == 5 then
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.50)
                 end,
                 chips = card.ability.extra.chips
             }

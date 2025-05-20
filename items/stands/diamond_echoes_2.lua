@@ -109,7 +109,7 @@ function consumInfo.calculate(self, card, context)
             if card.ability.extra.ref_suit == "wild" or context.other_card:is_suit(G.GAME and G.GAME.wigsaw_suit or card.ability.extra.ref_suit) then
                 return {
                     func = function()
-                        G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.38)  
+                        G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)  
                     end,
                     extra = {
                         mult = card.ability.extra.mult,

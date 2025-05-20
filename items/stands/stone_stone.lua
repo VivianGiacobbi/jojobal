@@ -31,7 +31,7 @@ function consumInfo.calculate(self, card, context)
                 func = function()
                     G.E_MANAGER:add_event(Event({
                         func = (function()
-                            G.FUNCS.flare_stand_aura(card, 0.38)
+                            G.FUNCS.flare_stand_aura(card, 0.50)
                             card:juice_up()
                             oc:set_ability(G.P_CENTERS.c_base)
                             oc.ability.perma_bonus = oc.ability.perma_bonus or 0

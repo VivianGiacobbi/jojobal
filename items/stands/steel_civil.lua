@@ -119,7 +119,7 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'steel',
-    in_progress = true,
+    blueprint_compat = false
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -130,11 +130,10 @@ end
 
 
 function consumInfo.calculate(self, card, context)
-    local bad_context = context.repetition or context.blueprint or context.individual or context.retrigger_joker
-    if context.using_consumeable and not card.debuff and not bad_context then
+    if context.using_consumeable and not card.debuff and not context.blueprint and not context.retrigger_joker then
         local cons = context.consumeable
         if cons.ability.name == "Hanged Man" then
-            G.FUNCS.flare_stand_aura(card, 0.38)
+            G.FUNCS.flare_stand_aura(card, 0.50)
         end
     end
 end

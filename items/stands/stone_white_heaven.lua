@@ -36,7 +36,7 @@ function consumInfo.calculate(self, card, context)
         ease_hands_played(1)
         return {
             func = function()
-                G.FUNCS.flare_stand_aura(card, 0.38)
+                G.FUNCS.flare_stand_aura(card, 0.50)
             end,
             card = card,
             message = localize{type = 'variable', key = 'a_plus_hand', vars = {1}},
@@ -47,7 +47,7 @@ function consumInfo.calculate(self, card, context)
         ease_discard(1)
         return {
             func = function()
-                G.FUNCS.flare_stand_aura(card, 0.38)
+                G.FUNCS.flare_stand_aura(card, 0.50)
             end,
             card = card,
             message = localize{type = 'variable', key = 'a_plus_discard', vars = {1}},

@@ -50,7 +50,7 @@ function consumInfo.calculate(self, card, context)
             return
         end
         
-        G.FUNCS.flare_stand_aura(card, 0.38)
+        G.FUNCS.flare_stand_aura(card, 0.50)
         G.E_MANAGER:add_event(Event({func = function()
             play_sound('generic1')
             card:juice_up()
@@ -61,7 +61,7 @@ function consumInfo.calculate(self, card, context)
     if context.setting_blind and card.ability.extra.hands > 0 then
         return {
             func = function()
-                G.FUNCS.flare_stand_aura(card, 0.38)
+                G.FUNCS.flare_stand_aura(card, 0.50)
                 ease_hands_played(card.ability.extra.hands)
             end,
             extra = {

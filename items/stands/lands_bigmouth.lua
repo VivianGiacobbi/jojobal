@@ -22,7 +22,7 @@ function consumInfo.loc_vars(self, info_queue, card)
         vars = {
             card.ability.extra.hand_size,
             card.ability.extra.suit_count,
-            format_display_number(card.ability.extra.hand_size, 'order')
+            arrow_format_display_number(card.ability.extra.hand_size, 'order')
         }
     }
 end

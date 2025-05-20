@@ -42,7 +42,7 @@ function consumInfo.calculate(self, card, context)
         if context.other_card.ability.effect == 'Stone Card' then
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.38)
+                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
                 end,
                 extra = {
                     x_mult = card.ability.extra.xmult
@@ -52,13 +52,12 @@ function consumInfo.calculate(self, card, context)
         if next(context.poker_hands['Flush']) and not context.other_card.debuff then
 			return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.38)
+                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
                 end,
                 extra = {
                     mult = card.ability.extra.mult,
 				    card = context.blueprint_card or card
                 }
-				
 			}
 		end
     end

@@ -66,7 +66,7 @@ function consumInfo.calculate(self, card, context)
         if context.other_card:get_id() == 6 then reps = reps + 1 end
         
         if reps > 0 then
-            G.FUNCS.flare_stand_aura(card, 0.38)
+            G.FUNCS.flare_stand_aura(card, 0.50)
             G.E_MANAGER:add_event(Event({
                 trigger = 'immediate',
                 blocking = false,

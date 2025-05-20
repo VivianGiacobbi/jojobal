@@ -48,7 +48,7 @@ function consumInfo.calculate(self, card, context)
             end
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.50)
                 end,
                 message = localize('k_metal'),
                 card = card,
@@ -60,7 +60,7 @@ function consumInfo.calculate(self, card, context)
         if context.other_card:get_id() == 11 and context.other_card.ability.effect == "Steel Card" then
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.50)
                 end,
                 xmult = (next(SMODS.find_card("j_csau_plaguewalker")) and 3 or card.ability.extra.x_mult),
                 card = context.other_card

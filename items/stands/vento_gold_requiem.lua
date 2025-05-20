@@ -43,7 +43,7 @@ function consumInfo.calculate(self, card, context)
         if pseudorandom('thisisrequiem') < G.FUNCS.arrow_add_chance(card.ability.extra.chance+#gold, {multiply = true}) / card.ability.extra.divide then
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.50)
                 end,
                 card = card,
                 level_up = true,

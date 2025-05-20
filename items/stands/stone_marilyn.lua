@@ -116,7 +116,7 @@ function consumInfo.calculate(self, card, context)
             ease_dollars(collect.ease)
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.50)
                     card:juice_up()
                     play_sound('tarot1')
                 end,

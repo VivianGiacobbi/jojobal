@@ -37,7 +37,7 @@ function consumInfo.calculate(self, card, context)
         if to_big(chip_val) <= to_big(9) then
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.38)
+                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
                 end,
                 chips = card.ability.extra.chips
             }
