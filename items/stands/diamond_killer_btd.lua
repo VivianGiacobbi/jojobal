@@ -11,7 +11,7 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'diamond',
-    in_progress = true,
+    blueprint_compat = false,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -59,18 +59,18 @@ end
 local calc_main = SMODS.calculate_main_scoring
 function SMODS.calculate_main_scoring(context, scoring_hand)
     if get_btd() and context.cardarea and context.cardarea.reverse then
-        calc_main(context, true)
+        return calc_main(context, true)
     else
-        calc_main(context, scoring_hand)
+        return calc_main(context, scoring_hand)
     end
 end
 
 function consumInfo.calculate(self, card, context)
-    if context.before then
+    if not context.blueprint and context.before then
         card.ability.index = 0
     end
-    local bad_context = context.repetition or context.blueprint or context.retrigger_joker
-    if context.individual and context.cardarea == G.play and not card.debuff then
+
+    if not context.blueprint and context.individual and context.cardarea == G.play and not card.debuff then
         card.ability.index = card.ability.index + 1
         if card.ability.index == #context.scoring_hand then
             return {
@@ -81,7 +81,7 @@ function consumInfo.calculate(self, card, context)
                 colour = G.C.STAND,
                 card = card
             }
-        elseif card.ability.index > #context.scoring_hand and not bad_context then
+        elseif card.ability.index > #context.scoring_hand then
             return {
                 func = function()
                     G.FUNCS.flare_stand_aura(card, 0.38)
@@ -89,7 +89,8 @@ function consumInfo.calculate(self, card, context)
             }
         end
     end
-    if context.end_of_round then
+
+    if not context.blueprint and context.end_of_round and not context.individual then
         card.ability.index = 0
     end
 end

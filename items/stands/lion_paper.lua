@@ -10,7 +10,7 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'lion',
-    in_progress = true,
+    blueprint_compat = false,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)

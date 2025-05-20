@@ -17,7 +17,7 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'diamond',
-    in_progress = true,
+    blueprint_compat = true
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -35,10 +35,8 @@ function consumInfo.in_pool(self, args)
     return true
 end
 
-function consumInfo.calculate(self, card, context)
-    local bad_context = context.repetition or context.blueprint or context.individual or context.retrigger_joker
-    
-    if context.remove_playing_cards and not bad_context then
+function consumInfo.calculate(self, card, context)  
+    if not context.blueprint and context.remove_playing_cards then
         local hands = 0
         for i, _ in ipairs(context.removed) do
             check_for_unlock({ type = "destroy_killer" })
@@ -60,7 +58,7 @@ function consumInfo.calculate(self, card, context)
         end }))
     end
 
-    if context.setting_blind and not bad_context and card.ability.extra.hands > 0 then
+    if context.setting_blind and card.ability.extra.hands > 0 then
         return {
             func = function()
                 G.FUNCS.flare_stand_aura(card, 0.38)
@@ -72,7 +70,7 @@ function consumInfo.calculate(self, card, context)
         }
     end
 
-    if context.end_of_round and not bad_context and G.GAME.blind:get_type() == 'Boss' and card.ability.extra.hands > 0 then
+    if not context.blueprint and context.end_of_round and not context.individual and G.GAME.blind:get_type() == 'Boss' and card.ability.extra.hands > 0 then
         card.ability.extra.hands = 0
         return {
             message = localize('k_reset'),
