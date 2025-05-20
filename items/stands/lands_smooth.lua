@@ -14,7 +14,7 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'lands',
-    in_progress = true,
+    blueprint_compat = false,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -23,8 +23,7 @@ function consumInfo.loc_vars(self, info_queue, card)
 end
 
 function consumInfo.calculate(self, card, context)
-    local bad_context = context.repetition or context.blueprint or context.individual or context.retrigger_joker
-    if not context.before or bad_context then return end
+    if not context.before or context.blueprint then return end
 
     local scoring_ranks = {}
     for _, scored in ipairs(context.scoring_hand) do

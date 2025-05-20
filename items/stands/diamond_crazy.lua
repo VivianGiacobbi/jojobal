@@ -10,7 +10,7 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'diamond',
-    in_progress = true,
+    blueprint_compat = false,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -18,8 +18,7 @@ function consumInfo.loc_vars(self, info_queue, card)
 end
 
 function consumInfo.calculate(self, card, context)
-    local bad_context = context.repetition or context.blueprint or context.individual or context.retrigger_joker
-    if context.before and not card.debuff and not bad_context then
+    if context.before and not card.debuff and not context.blueprint and not context.retrigger_joker then
          local activated = false
          for i, v in ipairs(context.full_hand) do
              if v.debuff then

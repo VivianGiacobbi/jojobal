@@ -17,7 +17,7 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'diamond',
-    in_progress = true,
+    blueprint_compat = true,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -67,13 +67,9 @@ local get_first_non_matching = function(suit, hand)
     return nil
 end
 
-function consumInfo.on_evolve(self, old_stand, new_stand)
-    sendDebugMessage('hello')
-end
-
 function consumInfo.calculate(self, card, context)
     local bad_context = context.repetition or context.blueprint or context.individual or context.retrigger_joker
-    if context.before and not card.debuff and not bad_context then
+    if context.before and not card.debuff and not context.blueprint and not context.retrigger_joker then
         if to_big(G.GAME.current_round.hands_played) == to_big(0) then
             if #context.full_hand == card.ability.extra.num_cards then
                 local ref_card = context.full_hand[1]
@@ -112,12 +108,18 @@ function consumInfo.calculate(self, card, context)
         if to_big(G.GAME.current_round.hands_played) > to_big(0) and card.ability.extra.ref_suit then
             if card.ability.extra.ref_suit == "wild" or context.other_card:is_suit(G.GAME and G.GAME.wigsaw_suit or card.ability.extra.ref_suit) then
                 return {
-                    mult = card.ability.extra.mult,
-                    card = card
+                    func = function()
+                        G.FUNCS.csau_flare_stand_aura(context.blueprint_card or card, 0.38)  
+                    end,
+                    extra = {
+                        mult = card.ability.extra.mult,
+                        card = context.blueprint_card or card,
+                    }
                 }
             end
         end
     end
+
     if context.end_of_round and not bad_context then
         card.ability.extra.ref_suit = nil
         card.ability.extra.nm = false
