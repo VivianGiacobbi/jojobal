@@ -1,20 +1,3 @@
-G.has_csau = SMODS.find_mod('Cardsauce')
-
-local min_load = {
-	'ui',
-	'tables'
-}
-if next(G.has_csau) and G.has_csau[1].can_load then
-	for i, v in ipairs(min_load) do
-		local init, error = NFS.load(SMODS.current_mod.path .. "includes/"..v..".lua")
-		if error then sendErrorMessage("[Stands] Failed to load '"..v.."' with error "..error) else
-			init()
-			sendDebugMessage("[Stands] Loaded module: '"..v.."'")
-		end
-	end
-    return
-end
-
 stand_config = SMODS.current_mod.config
 stand_enabled = copy_table(stand_config)
 
@@ -29,7 +12,6 @@ local includes = {
 	-- includes utility functions required for following files
 	'tables',
 	'utility',
-	'shaders',
 	'compat',
 
 	-- object hooks

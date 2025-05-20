@@ -1,12 +1,12 @@
 local consumInfo = {
     name = 'Crazy Diamond',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         stand_mask = true,
         aura_colors = { 'e099e8DC' , 'f5ccf4DC' },
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'diamond',
@@ -14,7 +14,7 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.cejai } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.cejai } }
 end
 
 function consumInfo.calculate(self, card, context)
@@ -37,7 +37,7 @@ function consumInfo.calculate(self, card, context)
              return {
                  func = function()
                      card:juice_up()
-                     G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                     G.FUNCS.flare_stand_aura(card, 0.38)
                  end,
                  card = card,
                  message = localize('k_cd_healed'),

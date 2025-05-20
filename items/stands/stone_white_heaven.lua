@@ -1,13 +1,13 @@
 local consumInfo = {
     name = 'Made in Heaven',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { 'bd53f3DC', '491d96DC' },
         stand_mask = true,
         evolved = true,
     },
     cost = 10,
-    rarity = 'csau_EvolvedRarity',
+    rarity = 'arrow_EvolvedRarity',
     alerted = true,
     hasSoul = true,
     part = 'stone',
@@ -15,7 +15,7 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.wario } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.wario } }
 end
 
 function consumInfo.in_pool(self, args)
@@ -23,8 +23,8 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_csau_stone_white_moon']
-    or G.GAME.used_jokers['c_csau_stone_white'] then
+    if G.GAME.used_jokers['c_jojo_stone_white_moon']
+    or G.GAME.used_jokers['c_jojo_stone_white'] then
         return false
     end
     
@@ -36,7 +36,7 @@ function consumInfo.calculate(self, card, context)
         ease_hands_played(1)
         return {
             func = function()
-                G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                G.FUNCS.flare_stand_aura(card, 0.38)
             end,
             card = card,
             message = localize{type = 'variable', key = 'a_plus_hand', vars = {1}},
@@ -47,7 +47,7 @@ function consumInfo.calculate(self, card, context)
         ease_discard(1)
         return {
             func = function()
-                G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                G.FUNCS.flare_stand_aura(card, 0.38)
             end,
             card = card,
             message = localize{type = 'variable', key = 'a_plus_discard', vars = {1}},

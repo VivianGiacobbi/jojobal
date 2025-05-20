@@ -1,10 +1,10 @@
 local consumInfo = {
     name = 'Epitaph',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { 'fd5481DC', 'ee3c69DC' },
         aura_hover = true,
-        evolve_key = 'c_csau_vento_epitaph_king',
+        evolve_key = 'c_jojo_vento_epitaph_king',
         extra = {
             evolve_skips = 0,
             evolve_num = 3,
@@ -12,7 +12,7 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'vento',
@@ -20,7 +20,7 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
     return {vars = {card.ability.extra.evolve_num - card.ability.extra.evolve_skips}}
 end
 
@@ -29,7 +29,7 @@ function consumInfo.in_pool(self, args)
         return true
     end
     
-    return (not G.GAME.used_jokers['c_csau_vento_epitaph_king'])
+    return (not G.GAME.used_jokers['c_jojo_vento_epitaph_king'])
 end
 
 -- Modified Code from Jimbo's Pack
@@ -95,7 +95,7 @@ function consumInfo.calculate(self, card, context)
         card.ability.extra.evolve_skips = card.ability.extra.evolve_skips + 1
         if card.ability.extra.evolve_skips >= card.ability.extra.evolve_num then
             check_for_unlock({ type = "evolve_kingcrimson" })
-            G.FUNCS.csau_evolve_stand(card)
+            G.FUNCS.evolve_stand(card)
         else
             return {
                 message = card.ability.extra.evolve_skips..'/'..card.ability.extra.evolve_num,

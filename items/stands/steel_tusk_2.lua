@@ -1,10 +1,10 @@
 local consumInfo = {
     name = 'Tusk ACT2',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { 'ff7dbcDC', '81476fDC' },
         evolved = true,
-        evolve_key = 'c_csau_steel_tusk_3',
+        evolve_key = 'c_jojo_steel_tusk_3',
         extra = {
             chips = 21,
             evolve_destroys = 0,
@@ -13,7 +13,7 @@ local consumInfo = {
         }
     },
     cost = 10,
-    rarity = 'csau_EvolvedRarity',
+    rarity = 'arrow_EvolvedRarity',
     alerted = true,
     hasSoul = true,
     part = 'steel',
@@ -21,7 +21,7 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit_2", set = "Other", vars = { G.stands_mod_team.wario, G.stands_mod_team.cauthen } }
+    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.stands_mod_team.wario, G.stands_mod_team.cauthen } }
     return {vars = {card.ability.extra.chips, card.ability.extra.evolve_num - card.ability.extra.evolve_destroys}}
 end
 
@@ -30,9 +30,9 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_csau_steel_tusk_1']
-    or G.GAME.used_jokers['c_csau_steel_tusk_3']
-    or G.GAME.used_jokers['c_csau_steel_tusk_4'] then
+    if G.GAME.used_jokers['c_jojo_steel_tusk_1']
+    or G.GAME.used_jokers['c_jojo_steel_tusk_3']
+    or G.GAME.used_jokers['c_jojo_steel_tusk_4'] then
         return false
     end
     
@@ -44,7 +44,7 @@ function consumInfo.calculate(self, card, context)
         if context.other_card:get_id() == 14 or context.other_card:get_id() == 2 or context.other_card:get_id() == 3 then
             return {
                 func = function()
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.38)
                 end,
                 chips = card.ability.extra.chips
             }
@@ -59,7 +59,7 @@ function consumInfo.calculate(self, card, context)
         card.ability.extra.evolve_destroys = card.ability.extra.evolve_destroys + cards
         if to_big(card.ability.extra.evolve_destroys) >= to_big(card.ability.extra.evolve_num) and not card.ability.extra.evolved then
             card.ability.extra.evolved = true
-            G.FUNCS.csau_evolve_stand(card)
+            G.FUNCS.evolve_stand(card)
             return
         else
             return {

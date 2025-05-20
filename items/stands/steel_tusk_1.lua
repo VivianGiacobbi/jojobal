@@ -1,9 +1,9 @@
 local consumInfo = {
     name = 'Tusk ACT1',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { 'ff7dbcDC', 'e675c2DC' },
-        evolve_key = 'c_csau_steel_tusk_2',
+        evolve_key = 'c_jojo_steel_tusk_2',
         extra = {
             chips = 13,
             evolve_scores = 0,
@@ -12,7 +12,7 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'steel',
@@ -20,7 +20,7 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit_2", set = "Other", vars = { G.stands_mod_team.wario, G.stands_mod_team.cauthen } }
+    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.stands_mod_team.wario, G.stands_mod_team.cauthen } }
     return {vars = {card.ability.extra.chips, card.ability.extra.evolve_num - card.ability.extra.evolve_scores}}
 end
 
@@ -29,9 +29,9 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_csau_steel_tusk_2']
-    or G.GAME.used_jokers['c_csau_steel_tusk_3']
-    or G.GAME.used_jokers['c_csau_steel_tusk_4'] then
+    if G.GAME.used_jokers['c_jojo_steel_tusk_2']
+    or G.GAME.used_jokers['c_jojo_steel_tusk_3']
+    or G.GAME.used_jokers['c_jojo_steel_tusk_4'] then
         return false
     end
     
@@ -48,12 +48,12 @@ function consumInfo.calculate(self, card, context)
             if to_big(card.ability.extra.evolve_scores) >= to_big(card.ability.extra.evolve_num) then
                 if not card.ability.extra.evolved and not bad_context then
                     card.ability.extra.evolved = true
-                    G.FUNCS.csau_evolve_stand(card)
+                    G.FUNCS.evolve_stand(card)
                 end
             else
                 return {
                     func = function()
-                        G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                        G.FUNCS.flare_stand_aura(card, 0.38)
                     end,
                     chips = card.ability.extra.chips
                 }

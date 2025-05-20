@@ -1,8 +1,8 @@
 local consumInfo = {
     name = 'Echoes ACT2',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {   
-        evolve_key = 'c_csau_diamond_echoes_3',
+        evolve_key = 'c_jojo_diamond_echoes_3',
         evolved = true,
         aura_colors = { 'adebbbDC' , '3bcc7bDC' },
         extra = {
@@ -13,7 +13,7 @@ local consumInfo = {
         }
     },
     cost = 10,
-    rarity = 'csau_EvolvedRarity',
+    rarity = 'arrow_EvolvedRarity',
     alerted = true,
     hasSoul = true,
     part = 'diamond',
@@ -21,7 +21,7 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit_2", set = "Other", vars = { G.stands_mod_team.chvsau, G.stands_mod_team.dolos } }
+    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.stands_mod_team.chvsau, G.stands_mod_team.dolos } }
     local color = G.C.IMPORTANT
     if G.GAME and G.GAME.wigsaw_suit then
         color = G.C.SUITS[G.GAME and G.GAME.wigsaw_suit]
@@ -50,8 +50,8 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_csau_diamond_echoes_1']
-    or G.GAME.used_jokers['c_csau_diamond_echoes_3'] then
+    if G.GAME.used_jokers['c_jojo_diamond_echoes_1']
+    or G.GAME.used_jokers['c_jojo_diamond_echoes_3'] then
         return false
     end
     
@@ -124,7 +124,7 @@ function consumInfo.calculate(self, card, context)
         card.ability.extra.evolve_rounds = card.ability.extra.evolve_rounds + 1
         if card.ability.extra.evolve_rounds >= card.ability.extra.evolve_num then
             check_for_unlock({ type = "evolve_echoes" })
-            G.FUNCS.csau_evolve_stand(card)
+            G.FUNCS.evolve_stand(card)
         else
             return {
                 message = card.ability.extra.evolve_rounds..'/'..card.ability.extra.evolve_num,

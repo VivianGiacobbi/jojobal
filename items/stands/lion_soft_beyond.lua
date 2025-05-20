@@ -1,6 +1,6 @@
 local consumInfo = {
     name = 'Soft & Wet: Go Beyond',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { 'ebfafeDC', 'b48df1DC' },
         stand_mask = true,
@@ -10,7 +10,7 @@ local consumInfo = {
         }
     },
     cost = 10,
-    rarity = 'csau_EvolvedRarity',
+    rarity = 'arrow_EvolvedRarity',
     alerted = true,
     hasSoul = true,
     part = 'lion',
@@ -20,7 +20,7 @@ local consumInfo = {
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_bonus
     info_queue[#info_queue+1] = G.P_CENTERS.m_mult
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.stup } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.stup } }
 end
 
 function consumInfo.in_pool(self, args)
@@ -28,7 +28,7 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_csau_lion_soft'] then
+    if G.GAME.used_jokers['c_jojo_lion_soft'] then
         return false
     end
     
@@ -65,7 +65,7 @@ function consumInfo.calculate(self, card, context)
         if #enhanced > 0 then
             G.E_MANAGER:add_event(Event({
                 func = function()
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.38)
                     card:juice_up()
                     return true
                 end

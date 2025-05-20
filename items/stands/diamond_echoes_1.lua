@@ -1,10 +1,9 @@
 local consumInfo = {
-    key = 'c_csau_diamond_echoes_1',
     name = 'Echoes ACT1',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { 'DCFB8CDC', '5EEB2FDC' },
-        evolve_key = 'c_csau_diamond_echoes_2',
+        evolve_key = 'c_jojo_diamond_echoes_2',
         extra = {
             num_cards = 1,
             mult = 3,
@@ -13,7 +12,7 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'diamond',
@@ -21,7 +20,7 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit_2", set = "Other", vars = { G.stands_mod_team.chvsau, G.stands_mod_team.dolos } }
+    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.stands_mod_team.chvsau, G.stands_mod_team.dolos } }
     local color = G.C.IMPORTANT
     if G.GAME and G.GAME.wigsaw_suit then
         color = G.C.SUITS[G.GAME and G.GAME.wigsaw_suit]
@@ -50,8 +49,8 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_csau_diamond_echoes_2']
-    or G.GAME.used_jokers['c_csau_diamond_echoes_3'] then
+    if G.GAME.used_jokers['c_jojo_diamond_echoes_2']
+    or G.GAME.used_jokers['c_jojo_diamond_echoes_3'] then
         return false
     end
     
@@ -66,14 +65,14 @@ function consumInfo.calculate(self, card, context)
                 local ref_card = context.full_hand[1]
                 if SMODS.has_any_suit(ref_card) then
                     card.ability.extra.ref_suit = "wild"
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.38)
                     return {
                         message = localize('k_echoes_recorded'),
                         card = card
                     }
                 elseif not SMODS.has_no_suit(ref_card) then
                     card.ability.extra.ref_suit = ref_card.base.suit
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.38)
                     return {
                         message = localize('k_echoes_recorded'),
                         card = card,
@@ -90,7 +89,7 @@ function consumInfo.calculate(self, card, context)
             if card.ability.extra.ref_suit == "wild" or context.other_card:is_suit(G.GAME and G.GAME.wigsaw_suit or card.ability.extra.ref_suit) then
                 return {
                     func = function()
-                        G.FUNCS.csau_flare_stand_aura(card, 0.38)  
+                        G.FUNCS.flare_stand_aura(card, 0.38)
                     end,
                     extra = {
                         mult = card.ability.extra.mult,
@@ -105,7 +104,7 @@ function consumInfo.calculate(self, card, context)
         card.ability.extra.nm = false
         card.ability.extra.evolve_rounds = card.ability.extra.evolve_rounds + 1
         if card.ability.extra.evolve_rounds >= card.ability.extra.evolve_num then
-            G.FUNCS.csau_evolve_stand(card)
+            G.FUNCS.evolve_stand(card)
         else
             return {
                 message = card.ability.extra.evolve_rounds..'/'..card.ability.extra.evolve_num,

@@ -26,8 +26,8 @@ local function dynamic_badges(info)
 			localize('ba_jojo'),
 			localize('ba_'..info.part)
 		}
-		local badge_colour = SMODS.Gradients['stand_'..info.part] or HEX(G.csau_badge_colours['co_'..info.part]) or G.C.STAND
-		local text_colour = HEX(G.csau_badge_colours['te_'..info.part]) or G.C.WHITE
+		local badge_colour = SMODS.Gradients['stand_'..info.part] or HEX(G.arrow_badge_colours['co_'..info.part]) or G.C.STAND
+		local text_colour = HEX(G.arrow_badge_colours['te_'..info.part]) or G.C.WHITE
 
 		for i = 1, #strings do
 			scale_fac[i] = calc_scale_fac(strings[i])
@@ -90,8 +90,6 @@ function StandLoadStandItem(file_key, item_type)
 	local smods_item = item_type
 	if item_type == 'Stand' then
 		smods_item = 'Consumable'
-		info.key = 'c_csau_'..file_key
-		info.prefix_config = false
 		
 		-- add universal set_consumable_usage() for stands
 		local ref_add_to_deck = function(self, card, from_debuff) end
@@ -114,13 +112,13 @@ function StandLoadStandItem(file_key, item_type)
 		end
 
 		-- add universal update to evolved Stand badges
-		if info.rarity == 'csau_EvolvedRarity' then
+		if info.rarity == 'arrow_EvolvedRarity' then
 			local ref_type_badge = function(self, card, badges) end
 			if info.set_card_type_badge then
 				ref_type_badge = info.set_card_type_badge
 			end
 			function info.set_card_type_badge(self, card, badges)
-				badges[1] = create_badge(localize('k_csau_evolved'), get_type_colour(self or card.config, card), nil, 1.2)
+				badges[1] = create_badge(localize('k_evolved_stand'), get_type_colour(self or card.config, card), nil, 1.2)
 				ref_type_badge(self, card)
 			end
 		end
@@ -170,81 +168,11 @@ function StandLoadStandItem(file_key, item_type)
 
     if item_type == 'Blind' then
         -- separation for animated spritess
-        SMODS.Atlas({ key = file_key, atlas_table = "ANIMATION_ATLAS", path = "blinds/" .. file_key .. ".png", px = 34, py = 34, frames = 21, prefix_config = false })
+        SMODS.Atlas({ key = file_key, atlas_table = "ANIMATION_ATLAS", path = "blinds/" .. file_key .. ".png", px = 34, py = 34, frames = 21 })
 	else
 		local width = 71
 		local height = 95
 		if item_type == 'Tag' then width = 34; height = 34 end
-        SMODS.Atlas({ key = file_key, path = key .. "/" .. file_key .. ".png", px = new_item.width or width, py = new_item.height or height, prefix_config = false })
+        SMODS.Atlas({ key = file_key, path = key .. "/" .. file_key .. ".png", px = new_item.width or width, py = new_item.height or height })
     end
-end
-
---- x^4 easing function both in and out
---- @param x number Value to ease (between 0 and 1)
---- @return number # Eased value between 0 and 1
-function csau_ease_in_out_quart(x) 
-	return x < 0.5 and 8 * x * x * x * x or 1 - (-2 * x + 2)^4 / 2;
-end
-
---- sin ease out function
---- @param x number Value to ease (between 0 and 1)
---- @return number # Eased value between 0 and 1
-function csau_ease_out_quint(x) 
-	return 1 - (1-x)^5;
-end
-
---- x^4 easing function in
---- @param x number Value to ease (between 0 and 1)
---- @return number # Eased value between 0 and 1
-function csau_ease_in_cubic(x)
-	return x * x * x
-end
-
---- Formats a numeral for display. Numerals between 0 and 1 are written out fully
---- @param n number Numeral to format
---- @param number_type string Type of display number ('number', 'order')
---- @param caps_style string | nil Style of capitalization ('lower', 'upper', 'first')
-function csau_format_display_number(n, number_type, caps_style)
-	number_type = number_type or 'number'
-	local dict = {
-		[0] = {number = 'zero', order = 'zeroth'},
-		[1] = {number = 'one', order = 'first'},
-		[2] = {number = 'two', order = 'second'},
-		[3] = {number = 'three', order = 'third'},
-		[4] = {number = 'four', order = 'fourth'},
-		[5] = {number = 'five', order = 'fifth'},
-		[6] = {number = 'six', order = 'sixth'},
-		[7] = {number = 'seven', order = 'seventh'},
-		[8] = {number = 'eight', order = 'eighth'},
-		[9] = {number = 'nine', order = 'ninth'},
-		[10] = {number = 'ten', order = 'tenth'},
-		[11] = {number = '11', order = '11th'},
-		[12] = {number = '12', order = '12th'},
-	}
-	if n < 0 or n > #dict then
-		if number_type == 'number' then return n end
-
-		local ret = ''
-		local mod = n % 10
-		if mod == 1 then 
-			ret = n..'st'
-		elseif mod == 2 then
-			ret = n..'nd'
-		elseif mod == 3 then
-			ret = n..'rd'
-		else
-			ret = n..'th'
-		end
-		return ret
-	end
-
-	local ret = dict[n][number_type]
-	local style = caps_style and string.lower(caps_style) or 'lower'
-	if style == 'upper' then
-		ret = string.upper(ret)
-	elseif n < 11 and style == 'first' then
-		ret = ret:gsub("^%l", string.upper)
-	end
-
-	return ret
 end

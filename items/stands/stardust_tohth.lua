@@ -1,6 +1,6 @@
 local consumInfo = {
     name = 'Tohth',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { '9d8f64DC' , 'b2a784DC' },
         aura_hover = true,
@@ -9,7 +9,7 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'stardust',
@@ -17,7 +17,7 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
     return { vars = {card.ability.extra.preview}}
 end
 

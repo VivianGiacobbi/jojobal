@@ -1,12 +1,12 @@
 local consumInfo = {
     name = 'I Am a Rock',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { '7ec7ffDC', 'ffbb49DC' },
         stand_mask = true,
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'lion',
@@ -15,7 +15,7 @@ local consumInfo = {
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_stone
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
 end
 
 local function has_stone(hand)
@@ -43,7 +43,7 @@ function consumInfo.calculate(self, card, context)
                 if #cards > 0 then
                     playing_card_joker_effects({cards})
                     card_eval_status_text(card, 'extra', nil, nil, nil, {message = localize('k_iamarock'), colour = G.C.STAND})
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.38)
                 end
                 return true
             end}

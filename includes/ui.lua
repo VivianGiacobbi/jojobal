@@ -7,34 +7,6 @@ SMODS.Atlas({
 })
 
 SMODS.current_mod.config_tab = function()
-	if G.has_csau then
-		return {
-			n = G.UIT.ROOT,
-			config = {
-				emboss = 0.05,
-				minh = 6,
-				r = 0.1,
-				minw = 10,
-				align = "cm",
-				padding = 0.05,
-				colour = G.C.BLACK,
-			},
-			nodes = {
-				{ n = G.UIT.R, config = { align = "cm", padding = 0.3 }, nodes = {
-					{n=G.UIT.T, config={text = "This Mod inherits from Cardsauce", scale = 0.5, shadow = true}},
-				}},
-				--{ n = G.UIT.B, config = { h = 0.2, w = 1 } },
-				{ n = G.UIT.R, config = { align = "cm" }, nodes = {
-					{n=G.UIT.T, config={text = "Disable Cardsauce to use Stand", scale = 0.5, shadow = true}},
-				}},
-				{ n = G.UIT.R, config = { align = "cm" }, nodes = {
-					{n=G.UIT.T, config={text = "content independently", scale = 0.5, shadow = true}},
-				}},s
-			}
-		}
-	end
-
-
 	local ordered_config = {
 		'enableStands',
 		'enableDecks',

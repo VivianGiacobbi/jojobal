@@ -1,12 +1,12 @@
 local consumInfo = {
     name = 'Paper Moon King',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { 'afb5b1DC', '4a7e38DC' },
         aura_hover = true,
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'lion',
@@ -14,7 +14,7 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
     return {vars = {(G.GAME and G.GAME.current_round and G.GAME.current_round.paper_rank) or 'Jack'}}
 end
 

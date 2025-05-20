@@ -1,6 +1,4 @@
 local deckInfo = {
-    key = 'b_csau_disc',
-    prefix_config = false,
     name = 'DISC Deck',
     config = {
         vouchers = {
@@ -21,12 +19,12 @@ end
 
 function deckInfo.loc_vars(self, info_queue, card)
     if info_queue then
-        info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+        info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
     end
 end
 
 function deckInfo.apply(self, back)
-    G.GAME.csau_unlimited_stands = true
+    G.GAME.unlimited_stands = true
 end
 
 return deckInfo

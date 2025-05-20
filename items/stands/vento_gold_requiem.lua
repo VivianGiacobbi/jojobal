@@ -1,6 +1,6 @@
 local consumInfo = {
     name = 'Gold Experience Requiem',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         stand_mask = true,
         aura_colors = { '99d3ffDC' , 'd3f5fbDC' },
@@ -11,7 +11,7 @@ local consumInfo = {
         }
     },
     cost = 10,
-    rarity = 'csau_EvolvedRarity',
+    rarity = 'arrow_EvolvedRarity',
     alerted = true,
     hasSoul = true,
     in_progress = true,
@@ -20,7 +20,7 @@ local consumInfo = {
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_gold
-    info_queue[#info_queue+1] = {key = "csau_artistcredit_2", set = "Other", vars = { G.stands_mod_team.reda, G.stands_mod_team.wario } }
+    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.stands_mod_team.reda, G.stands_mod_team.wario } }
     return { vars = { card.ability.extra.chance, card.ability.extra.divide, G.GAME.probabilities.normal}}
 end
 
@@ -28,7 +28,7 @@ function consumInfo.in_pool(self, args)
     if next(SMODS.find_card('j_showman')) then
         return true
     end
-    return (not G.GAME.used_jokers['c_csau_vento_gold'])
+    return (not G.GAME.used_jokers['c_jojo_vento_gold'])
 end
 
 function consumInfo.calculate(self, card, context)
@@ -40,10 +40,10 @@ function consumInfo.calculate(self, card, context)
                 gold[#gold+1] = v
             end
         end
-        if pseudorandom('thisisrequiem') < G.FUNCS.csau_add_chance(card.ability.extra.chance+#gold, {multiply = true}) / card.ability.extra.divide then
+        if pseudorandom('thisisrequiem') < G.FUNCS.arrow_add_chance(card.ability.extra.chance+#gold, {multiply = true}) / card.ability.extra.divide then
             return {
                 func = function()
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.38)
                 end,
                 card = card,
                 level_up = true,

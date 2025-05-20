@@ -1,7 +1,6 @@
 local consumInfo = {
-    key = 'c_csau_lands_smooth',
     name = 'Smooth Operators',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { 'f2be53DC', 'f7e580DC' },
         extra = {
@@ -10,7 +9,7 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'lands',
@@ -18,7 +17,7 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
     return
 end
 
@@ -97,7 +96,7 @@ function consumInfo.calculate(self, card, context)
 
     return {
         func = function()
-            G.FUNCS.csau_flare_stand_aura(card, 0.38)
+            G.FUNCS.flare_stand_aura(card, 0.38)
         end,
         message = localize('k_smooth_operators'),
         message_card = card

@@ -1,12 +1,11 @@
 local consumInfo = {
-    key = 'c_csau_stone_white_moon',
     name = 'C-MOON',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { '73b481DC', 'a3d88fDC' },
         stand_mask = true,
         evolved = true,
-        evolve_key = 'c_csau_stone_white_heaven',
+        evolve_key = 'c_jojo_stone_white_heaven',
         extra = {
             repetitions = 1,
             evolve_moons = 0,
@@ -15,7 +14,7 @@ local consumInfo = {
         }
     },
     cost = 10,
-    rarity = 'csau_EvolvedRarity',
+    rarity = 'arrow_EvolvedRarity',
     alerted = true,
     hasSoul = true,
     part = 'stone',
@@ -23,7 +22,7 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit_2", set = "Other", vars = { G.stands_mod_team.wario, G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.stands_mod_team.wario, G.stands_mod_team.gote } }
     return { vars = {card.ability.extra.evolve_num - card.ability.extra.evolve_moons}}
 end
 
@@ -32,8 +31,8 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_csau_stone_white']
-    or G.GAME.used_jokers['c_csau_stone_white_heaven'] then
+    if G.GAME.used_jokers['c_jojo_stone_white']
+    or G.GAME.used_jokers['c_jojo_stone_white_heaven'] then
         return false
     end
     
@@ -46,13 +45,13 @@ function consumInfo.calculate(self, card, context)
         
         card.ability.extra.evolve_moons = card.ability.extra.evolve_moons + 1
         if card.ability.extra.evolve_moons >= card.ability.extra.evolve_num then
-            G.FUNCS.csau_evolve_stand(card)
+            G.FUNCS.evolve_stand(card)
             return
         end
 
         return {
             func = function()
-                G.FUNCS.csau_flare_stand_aura(card, 0.5)
+                G.FUNCS.flare_stand_aura(card, 0.5)
             end,
             extra = {
                 message = localize{type='variable',key='a_remaining',vars={card.ability.extra.evolve_num - card.ability.extra.evolve_moons}},
@@ -67,7 +66,7 @@ function consumInfo.calculate(self, card, context)
         if context.other_card:get_id() == 6 then reps = reps + 1 end
         
         if reps > 0 then
-            G.FUNCS.csau_flare_stand_aura(card, 0.38)
+            G.FUNCS.flare_stand_aura(card, 0.38)
             G.E_MANAGER:add_event(Event({
                 trigger = 'immediate',
                 blocking = false,

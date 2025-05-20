@@ -1,6 +1,6 @@
 local consumInfo = {
     name = 'Metallica',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         stand_mask = true,
         aura_colors = { 'F97C87DA', 'CE3749DA' },
@@ -9,7 +9,7 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     in_progress = true,
@@ -19,7 +19,7 @@ local consumInfo = {
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_steel
     info_queue[#info_queue+1] = G.P_CENTERS.m_glass
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
 end
 
 local function detect_jacks(scoring_hand)
@@ -48,7 +48,7 @@ function consumInfo.calculate(self, card, context)
             end
             return {
                 func = function()
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.38)
                 end,
                 message = localize('k_metal'),
                 card = card,
@@ -60,7 +60,7 @@ function consumInfo.calculate(self, card, context)
         if context.other_card:get_id() == 11 and context.other_card.ability.effect == "Steel Card" then
             return {
                 func = function()
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.38)
                 end,
                 xmult = (next(SMODS.find_card("j_csau_plaguewalker")) and 3 or card.ability.extra.x_mult),
                 card = context.other_card

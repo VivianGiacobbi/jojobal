@@ -1,16 +1,16 @@
 local consumInfo = {
     name = 'Soft & Wet',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { 'cc90f6DC', '734caeDC' },
         stand_mask = true,
-        evolve_key = 'c_csau_lion_soft_beyond',
+        evolve_key = 'c_jojo_lion_soft_beyond',
         extra = {
             perma_reduction = 0.5,
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'lion',
@@ -20,7 +20,7 @@ local consumInfo = {
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_bonus
     info_queue[#info_queue+1] = G.P_CENTERS.m_mult
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.stup } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.stup } }
 end
 
 function consumInfo.in_pool(self, args)
@@ -28,7 +28,7 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_csau_lion_soft_beyond'] then
+    if G.GAME.used_jokers['c_jojo_lion_soft_beyond'] then
         return false
     end
     
@@ -53,7 +53,7 @@ function consumInfo.calculate(self, card, context)
     if context.before and not card.debuff and not bad_context then
         if not SMODS.PokerHands[context.scoring_name].visible then
             check_for_unlock({ type = "evolve_soft" })
-            G.FUNCS.csau_evolve_stand(card)
+            G.FUNCS.evolve_stand(card)
         else
             local enhanced = {}
             for k, v in ipairs(context.scoring_hand) do
@@ -82,7 +82,7 @@ function consumInfo.calculate(self, card, context)
             if #enhanced > 0 then
                 G.E_MANAGER:add_event(Event({
                     func = function()
-                        G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                        G.FUNCS.flare_stand_aura(card, 0.38)
                         card:juice_up()
                         return true
                     end

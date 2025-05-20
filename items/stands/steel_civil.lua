@@ -1,11 +1,10 @@
 local function force_fool_card()
     if G.consumeables then
-        return next(SMODS.find_card('c_csau_steel_civil')) and 'c_hanged_man' or nil
+        return next(SMODS.find_card('c_jojo_steel_civil')) and 'c_hanged_man' or nil
     end
 
     return nil
 end
-
 
 SMODS.Consumable:take_ownership('c_fool', {
     loc_vars = function(self, info_queue, card)
@@ -16,8 +15,8 @@ SMODS.Consumable:take_ownership('c_fool', {
         
         -- imported cardsauce logic
         local last_tarot_planet = localize('k_none')
-        if fool_c and fool_c.key == 'c_csau_arrow' then
-            last_tarot_planet = fool_c and localize{type = 'name_text', key = fool_c.key, set = fool_c.set, vars = { G.GAME.modifiers.max_stands or 1, (card.area.config.collection and localize('k_csau_stand')) or (G.GAME.modifiers.max_stands > 1 and localize('b_csau_stand_cards') or localize('k_csau_stand')) }} or localize('k_none')
+        if fool_c and fool_c.key == 'c_arrow_tarot_arrow' then
+            last_tarot_planet = fool_c and localize{type = 'name_text', key = fool_c.key, set = fool_c.set, vars = { G.GAME.modifiers.max_stands or 1, (card.area.config.collection and localize('k_stand')) or (G.GAME.modifiers.max_stands > 1 and localize('b_stand_cards') or localize('k_stand')) }} or localize('k_none')
         else
             last_tarot_planet = fool_c and localize{type = 'name_text', key = fool_c.key, set = fool_c.set} or localize('k_none')
         end
@@ -107,7 +106,7 @@ SMODS.Consumable:take_ownership('c_emperor', {
 
 local consumInfo = {
     name = 'Civil War',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { 'c09f5fDC', '6c161fDC' },
         stand_mask = true,
@@ -116,7 +115,7 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'steel',
@@ -125,7 +124,7 @@ local consumInfo = {
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.c_hanged_man
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
     return { vars = {localize{type = 'name_text', key = card.ability.extra.tarot, set = 'Tarot'}}}
 end
 
@@ -135,7 +134,7 @@ function consumInfo.calculate(self, card, context)
     if context.using_consumeable and not card.debuff and not bad_context then
         local cons = context.consumeable
         if cons.ability.name == "Hanged Man" then
-            G.FUNCS.csau_flare_stand_aura(card, 0.38)
+            G.FUNCS.flare_stand_aura(card, 0.38)
         end
     end
 end

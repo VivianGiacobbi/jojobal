@@ -1,17 +1,17 @@
 local consumInfo = {
     name = 'Dirty Deeds Done Dirt Cheap',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { 'f3b7f5DC', 'c77ecfDC' },
         stand_mask = true,
-        evolve_key = 'c_csau_steel_d4c_love',
+        evolve_key = 'c_jojo_steel_d4c_love',
         extra = {
             hands_played = {},
             evolve_num = 9,
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'steel',
@@ -29,7 +29,7 @@ end
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_lucky
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
     return {vars = {card.ability.extra.evolve_num, get_lucky()}}
 end
 
@@ -38,7 +38,7 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_csau_steel_d4c_love'] then
+    if G.GAME.used_jokers['c_jojo_steel_d4c_love'] then
         return false
     end
     
@@ -59,7 +59,7 @@ function consumInfo.calculate(self, card, context)
         if context.scoring_name == "Pair" and card.ability.extra.hands_played[context.scoring_name] == 1 then
             G.E_MANAGER:add_event(Event({
                 func = function()
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.38)
                     card:juice_up()
                     return true
                 end
@@ -83,7 +83,7 @@ function consumInfo.update(self, card)
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0, func = function()
 			check_for_unlock({ type = "evolve_d4c" })
             card.ability.d4c_evolve_queued = true
-            G.FUNCS.csau_evolve_stand(card)
+            G.FUNCS.evolve_stand(card)
         return true end}))
     end
 end

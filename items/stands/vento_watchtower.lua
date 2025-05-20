@@ -1,6 +1,6 @@
 local consumInfo = {
-    name = 'All Along Watchtower',
-    set = 'csau_Stand',
+    name = 'All Along The Watchtower',
+    set = 'Stand',
     config = {
         aura_colors = { 'd4483eDC', '374649DC' },
         stand_mask = true,
@@ -9,7 +9,7 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     in_progress = true,
@@ -17,7 +17,7 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
     return { vars = { card.ability.extra.x_mult } }
 end
 
@@ -92,7 +92,7 @@ function consumInfo.calculate(self, card, context)
     if context.joker_main and deck_is_52_2Ace(G.playing_cards) then
         return {
             func = function()
-                G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                G.FUNCS.flare_stand_aura(card, 0.38)
             end,
             xmult = card.ability.extra.x_mult,
         }

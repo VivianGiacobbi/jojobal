@@ -1,6 +1,6 @@
 local consumInfo = {
     name = 'Wonder of U',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { '280101DC', '711b1aDC' },
         stand_mask = true,
@@ -11,7 +11,7 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'lion',
@@ -20,7 +20,7 @@ local consumInfo = {
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_lucky
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.cauthen } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.cauthen } }
     return {vars = {card.ability.extra.xmult_mod, card.ability.extra.xmult}}
 end
 
@@ -40,7 +40,7 @@ local function updateSprite(card)
     if card.ability.extra.form then
         if card.config.center.atlas ~= card.ability.extra.form then
             local old_atlas = card.config.center.atlas
-            card.config.center.atlas = "csau_"..card.ability.extra.form
+            card.config.center.atlas = "jojo_"..card.ability.extra.form
             card:set_sprites(card.config.center)
             card.config.center.atlas = old_atlas
             if G.SETTINGS.highest_wonderofu ~= forms[3] then
@@ -89,7 +89,7 @@ function consumInfo.calculate(self, card, context)
         if trigger then
             return {
                 func = function()
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.38)
                 end,
                 message = localize('k_upgrade_ex'),
                 colour = G.C.RED,

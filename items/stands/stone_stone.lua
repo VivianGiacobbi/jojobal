@@ -1,6 +1,6 @@
 local consumInfo = {
     name = 'Stone Free',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { '4db8cfDC', '4d89cfDC' },
         stand_mask = true,
@@ -9,7 +9,7 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'stone',
@@ -18,7 +18,7 @@ local consumInfo = {
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_stone
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.chvsau } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.chvsau } }
     return { vars = {card.ability.extra.chips}}
 end
 
@@ -31,7 +31,7 @@ function consumInfo.calculate(self, card, context)
                 func = function()
                     G.E_MANAGER:add_event(Event({
                         func = (function()
-                            G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                            G.FUNCS.flare_stand_aura(card, 0.38)
                             card:juice_up()
                             oc:set_ability(G.P_CENTERS.c_base)
                             oc.ability.perma_bonus = oc.ability.perma_bonus or 0

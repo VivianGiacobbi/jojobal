@@ -1,7 +1,6 @@
 local consumInfo = {
-    key = 'c_csau_lands_bigmouth',
     name = 'Bigmouth Strikes Again',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { 'f3e2b5DC', 'd2caa4DC' },
         extra = {
@@ -10,7 +9,7 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'lands',
@@ -18,12 +17,12 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
     return { 
         vars = {
             card.ability.extra.hand_size,
             card.ability.extra.suit_count,
-            csau_format_display_number(card.ability.extra.hand_size, 'order')
+            format_display_number(card.ability.extra.hand_size, 'order')
         }
     }
 end
@@ -61,7 +60,7 @@ function consumInfo.calculate(self, card, context)
 
     if #change_cards < 1 then return end
 
-    G.FUNCS.csau_flare_stand_aura(card, 0.5)
+    G.FUNCS.flare_stand_aura(card, 0.5)
     card_eval_status_text(card, 'extra', nil, nil, nil, {
         message = localize(target_key, 'suits_plural'),
         colour = G.C.SUITS[target_key]

@@ -1,11 +1,11 @@
 local consumInfo = {
     name = 'The Hand',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { '1d94e0DC', '4bc6e7DC' },
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'diamond',
@@ -13,7 +13,7 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.wario } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.wario } }
 end
 
 local function is_removed(card, removed)
@@ -57,7 +57,7 @@ function consumInfo.calculate(self, card, context)
             return {
                 func = function()
                     card:juice_up()
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.38)
                 end,
                 card = card,
                 message = localize('k_thehand'),

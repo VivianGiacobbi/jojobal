@@ -1,6 +1,6 @@
 local consumInfo = {
     name = 'November Rain',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { '43b7abDC', '2e8cfaDC' },
         stand_mask = true,
@@ -10,7 +10,7 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'lands',
@@ -18,7 +18,7 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
     return { vars = {card.ability.extra.max_rank, card.ability.extra.chips}}
 end
 
@@ -37,7 +37,7 @@ function consumInfo.calculate(self, card, context)
         if to_big(chip_val) <= to_big(9) then
             return {
                 func = function()
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.38)
                 end,
                 chips = card.ability.extra.chips
             }

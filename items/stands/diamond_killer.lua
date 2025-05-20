@@ -1,9 +1,9 @@
 local consumInfo = {
     name = 'Killer Queen',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         stand_mask = true,
-        evolve_key = 'c_csau_diamond_killer_btd',
+        evolve_key = 'c_jojo_diamond_killer_btd',
         aura_colors = { 'de7cf9DC', 'e059e9DC' },
         extra = {
             evolve_cards = 0,
@@ -13,7 +13,7 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
+    rarity = 'arrow_StandRarity',
     alerted = true,
     hasSoul = true,
     part = 'diamond',
@@ -21,7 +21,7 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.guff } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.guff } }
     return { vars = { card.ability.extra.hand_mod, card.ability.extra.hands, card.ability.extra.evolve_num, card.ability.extra.evolve_cards } }
 end
 
@@ -29,7 +29,7 @@ function consumInfo.in_pool(self, args)
     if next(SMODS.find_card('j_showman')) then
         return true
     end
-    if G.GAME.used_jokers['c_csau_diamond_killer_btd'] then
+    if G.GAME.used_jokers['c_jojo_diamond_killer_btd'] then
         return false
     end
     return true
@@ -48,11 +48,11 @@ function consumInfo.calculate(self, card, context)
         card.ability.extra.evolve_cards = card.ability.extra.evolve_cards + hands
         if to_big(card.ability.extra.evolve_cards) >= to_big(card.ability.extra.evolve_num) then
             check_for_unlock({ type = "evolve_btd" })
-            G.FUNCS.csau_evolve_stand(card)
+            G.FUNCS.evolve_stand(card)
             return
         end
         
-        G.FUNCS.csau_flare_stand_aura(card, 0.38)
+        G.FUNCS.flare_stand_aura(card, 0.38)
         G.E_MANAGER:add_event(Event({func = function()
             play_sound('generic1')
             card:juice_up()
@@ -63,7 +63,7 @@ function consumInfo.calculate(self, card, context)
     if context.setting_blind and not bad_context and card.ability.extra.hands > 0 then
         return {
             func = function()
-                G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                G.FUNCS.flare_stand_aura(card, 0.38)
                 ease_hands_played(card.ability.extra.hands)
             end,
             extra = {

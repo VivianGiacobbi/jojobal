@@ -1,13 +1,13 @@
 local consumInfo = {
     name = 'Killer Queen: Bites the Dust',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         stand_mask = true,
         evolved = true,
         aura_colors = { '151590DC', '5f277dDC' },
     },
     cost = 10,
-    rarity = 'csau_EvolvedRarity',
+    rarity = 'arrow_EvolvedRarity',
     alerted = true,
     hasSoul = true,
     part = 'diamond',
@@ -15,7 +15,7 @@ local consumInfo = {
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.guff } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.guff } }
     info_queue[#info_queue+1] = {key = "codercredit", set = "Other", vars = { G.stands_mod_team.eremel } }
 end
 
@@ -24,7 +24,7 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_csau_diamond_killer'] then
+    if G.GAME.used_jokers['c_jojo_diamond_killer'] then
         return false
     end
     
@@ -34,7 +34,7 @@ end
 local get_btd = function()
     if not G.consumeables then return false end
     for i, v in ipairs(G.consumeables.cards) do
-        if v.config.center.key == 'c_csau_diamond_killer_btd' then
+        if v.config.center.key == 'c_jojo_diamond_killer_btd' then
             return true
         end
     end
@@ -75,7 +75,7 @@ function consumInfo.calculate(self, card, context)
         if card.ability.index == #context.scoring_hand then
             return {
                 func = function()
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.38)
                 end,
                 message = localize('k_bites_the_dust'),
                 colour = G.C.STAND,
@@ -84,7 +84,7 @@ function consumInfo.calculate(self, card, context)
         elseif card.ability.index > #context.scoring_hand and not bad_context then
             return {
                 func = function()
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    G.FUNCS.flare_stand_aura(card, 0.38)
                 end,
             }
         end
