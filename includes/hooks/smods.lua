@@ -3,7 +3,7 @@ SMODS.current_mod.reset_game_globals = function(run_start)
         G.GAME.modifiers.max_stands = 1
     end
 
-    reset_paper_rank()
+    jojobal_reset_paper_rank()
 end
 
 SMODS.Joker:take_ownership('j_perkeo', {

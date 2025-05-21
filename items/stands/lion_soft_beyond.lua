@@ -11,7 +11,6 @@ local consumInfo = {
     },
     cost = 10,
     rarity = 'arrow_EvolvedRarity',
-    alerted = true,
     hasSoul = true,
     part = 'lion',
     blueprint_compat = true,
@@ -20,7 +19,7 @@ local consumInfo = {
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_bonus
     info_queue[#info_queue+1] = G.P_CENTERS.m_mult
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.stup } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.stup } }
 end
 
 function consumInfo.in_pool(self, args)
@@ -28,7 +27,7 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_jojo_lion_soft'] then
+    if G.GAME.used_jokers['c_jojobal_lion_soft'] then
         return false
     end
     

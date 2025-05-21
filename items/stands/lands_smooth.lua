@@ -10,14 +10,13 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'arrow_StandRarity',
-    alerted = true,
     hasSoul = true,
     part = 'lands',
     blueprint_compat = false,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.gote } }
     return
 end
 

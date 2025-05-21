@@ -11,14 +11,13 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'arrow_StandRarity',
-    alerted = true,
     hasSoul = true,
     part = 'stone',
-    in_progress = true,
+    blueprint_compat = false
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.gote } }
     return {vars = {card.ability.extra.conv_money, card.ability.extra.conv_score * 100}}
 end
 
@@ -63,6 +62,7 @@ local debt_collection = function(card)
                 end
             end
         end
+
         if to_big((G.GAME.dollars + recoverable) - debt) < to_big(G.GAME.bankrupt_at) then
             if #G.playing_cards > 0 then
                 local pool = {}
@@ -102,8 +102,7 @@ local debt_collection = function(card)
 end
 
 function consumInfo.calculate(self, card, context)
-    local bad_context = context.repetition or context.blueprint or context.individual or context.retrigger_joker
-    if not context.blueprint_card and context.game_over and not bad_context then
+    if context.end_of_round and not context.blueprint and context.game_over and not context.retrigger_joker then
         local collect = debt_collection(card)
         if collect.saved then
             if collect.sell then

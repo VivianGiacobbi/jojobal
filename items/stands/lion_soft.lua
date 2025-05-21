@@ -4,14 +4,13 @@ local consumInfo = {
     config = {
         aura_colors = { 'cc90f6DC', '734caeDC' },
         stand_mask = true,
-        evolve_key = 'c_jojo_lion_soft_beyond',
+        evolve_key = 'c_jojobal_lion_soft_beyond',
         extra = {
             perma_mod = 0.5,
         }
     },
     cost = 4,
     rarity = 'arrow_StandRarity',
-    alerted = true,
     hasSoul = true,
     part = 'lion',
     blueprint_compat = true,
@@ -20,7 +19,7 @@ local consumInfo = {
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_bonus
     info_queue[#info_queue+1] = G.P_CENTERS.m_mult
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.stup } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.stup } }
 end
 
 function consumInfo.in_pool(self, args)
@@ -28,7 +27,7 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_jojo_lion_soft_beyond'] then
+    if G.GAME.used_jokers['c_jojobal_lion_soft_beyond'] then
         return false
     end
     

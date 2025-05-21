@@ -1,9 +1,9 @@
 {
-	"id": "jojos_arrow",
+	"id": "jojobal",
 	"name": "Jojo's Balatro Adventure",
 	"author": ["BarrierTrio", "Keku"],
-	"description": "A standalone mod that adds Jojo Stands, Jokers, and more!",
-	"prefix": "jojo",
+	"description": "A standalone content mod that adds Jojo Stands, Jokers, and more!",
+	"prefix": "jojobal",
 	"main_file": "main.lua",
 	"priority": 49090,
 	"badge_colour": "B85F8E",

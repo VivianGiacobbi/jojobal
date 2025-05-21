@@ -5,7 +5,7 @@ local consumInfo = {
         aura_colors = { 'ff7dbcDC', '3855aeDC' },
         stand_mask = true,
         evolved = true,
-        evolve_key = 'c_jojo_steel_tusk_4',
+        evolve_key = 'c_jojobal_steel_tusk_4',
         extra = {
             chips = 34,
             evolve_percent = 0.1,
@@ -14,14 +14,13 @@ local consumInfo = {
     },
     cost = 10,
     rarity = 'arrow_EvolvedRarity',
-    alerted = true,
     hasSoul = true,
     part = 'steel',
-    in_progress = true,
+    blueprint_compat = true
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.stands_mod_team.wario, G.stands_mod_team.cauthen } }
+    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.jojobal_mod_team.wario, G.jojobal_mod_team.cauthen } }
     return {vars = {card.ability.extra.chips, card.ability.extra.evolve_percent * 100}}
 end
 
@@ -30,9 +29,9 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_jojo_steel_tusk_1']
-    or G.GAME.used_jokers['c_jojo_steel_tusk_2']
-    or G.GAME.used_jokers['c_jojo_steel_tusk_4'] then
+    if G.GAME.used_jokers['c_jojobal_steel_tusk_1']
+    or G.GAME.used_jokers['c_jojobal_steel_tusk_2']
+    or G.GAME.used_jokers['c_jojobal_steel_tusk_4'] then
         return false
     end
     
@@ -44,12 +43,15 @@ function consumInfo.calculate(self, card, context)
         if context.other_card:get_id() == 14 or context.other_card:get_id() == 2 or context.other_card:get_id() == 3 or context.other_card:get_id() == 5 then
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(card, 0.50)
+                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
                 end,
-                chips = card.ability.extra.chips
+                extra = {
+                    chips = card.ability.extra.chips
+                }
             }
         end
     end
+
     local bad_context = context.repetition or context.blueprint or context.individual or context.retrigger_joker
     if context.end_of_round and not card.debuff and not bad_context then
         if to_big(G.GAME.chips) <= to_big(G.GAME.blind.chips * (1+card.ability.extra.evolve_percent)) and not card.ability.extra.evolved then

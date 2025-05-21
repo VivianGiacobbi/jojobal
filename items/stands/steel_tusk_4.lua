@@ -1,18 +1,18 @@
 SMODS.PokerHandPart {
-    key = 'jojo_fibonacci',
+    key = 'jojobal_fibonacci',
     prefix_config = false,
     func = function(hand) 
-        return arrow_get_fibonacci(hand)
+        return jojobal_get_fibonacci(hand)
     end,
 }
 
 SMODS.PokerHand {
-    key = 'jojo_Fibonacci',
+    key = 'jojobal_Fibonacci',
     prefix_config = false,
     evaluate = function(parts, hand)
         if not (next(SMODS.find_card('j_fnwk_plancks_jokestar'))
-        or next(SMODS.find_card("c_jojo_steel_tusk_4")))
-        or not next(parts.jojo_fibonacci) then
+        or next(SMODS.find_card("c_jojobal_steel_tusk_4")))
+        or not next(parts.jojobal_fibonacci) then
             return {} 
         end
         return { hand }
@@ -32,15 +32,15 @@ SMODS.PokerHand {
 }
 
 SMODS.PokerHand {
-    key = 'tusk_FlushFibonacci',
+    key = 'jojobal_FlushFibonacci',
     prefix_config = false,
     evaluate = function(parts, hand)
         if not (next(SMODS.find_card('j_fnwk_plancks_jokestar'))
-        or next(SMODS.find_card("c_jojo_steel_tusk_4")))
-        or not next(parts.jojo_fibonacci) or not next(parts._flush) then
+        or next(SMODS.find_card("c_jojobal_steel_tusk_4")))
+        or not next(parts.jojobal_fibonacci) or not next(parts._flush) then
             return {} 
         end
-        return { SMODS.merge_lists(parts.jojo_fibonacci, parts._flush) }
+        return { SMODS.merge_lists(parts.jojobal_fibonacci, parts._flush) }
     end,
     example = {
         {'H_8', true},
@@ -73,11 +73,11 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'steel',
-    in_progress = true,
+    blueprint_compat = true
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.stands_mod_team.wario, G.stands_mod_team.cauthen } }
+    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.jojobal_mod_team.wario, G.jojobal_mod_team.cauthen } }
     return {vars = {card.ability.extra.chips, card.ability.extra.hand_mod}}
 end
 
@@ -86,9 +86,9 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_jojo_steel_tusk_1']
-    or G.GAME.used_jokers['c_jojo_steel_tusk_2']
-    or G.GAME.used_jokers['c_jojo_steel_tusk_3'] then
+    if G.GAME.used_jokers['c_jojobal_steel_tusk_1']
+    or G.GAME.used_jokers['c_jojobal_steel_tusk_2']
+    or G.GAME.used_jokers['c_jojobal_steel_tusk_3'] then
         return false
     end
     
@@ -96,21 +96,20 @@ function consumInfo.in_pool(self, args)
 end
 
 function consumInfo.add_to_deck(self, card)
-    set_consumeable_usage(card)
-    G.GAME.hands['jojo_Fibonacci'].visible = true
-    if G.GAME.hands.jojo_FlushFibonacci.played > 0 then
-        G.GAME.hands['jojo_FlushFibonacci'].visible = true
+    G.GAME.hands['jojobal_Fibonacci'].visible = true
+    if G.GAME.hands.jojobal_FlushFibonacci.played > 0 then
+        G.GAME.hands['jojobal_FlushFibonacci'].visible = true
     end
 end
 
 function consumInfo.remove_from_deck(self, card, from_debuff)
     -- compatability with fanworks mod, this other card also enables fibonacci hands
-    if next(SMODS.find_card('j_fnwk_plancks_jokestar')) or next(SMODS.find_card("c_jojo_steel_tusk_4")) then
+    if next(SMODS.find_card('j_fnwk_plancks_jokestar')) or next(SMODS.find_card("c_jojobal_steel_tusk_4")) then
         return
     end
 
-    G.GAME.hands['jojo_Fibonacci'].visible = false
-    G.GAME.hands['jojo_FlushFibonacci'].visible = false
+    G.GAME.hands['jojobal_Fibonacci'].visible = false
+    G.GAME.hands['jojobal_FlushFibonacci'].visible = false
 end
 
 function consumInfo.calculate(self, card, context)
@@ -122,24 +121,27 @@ function consumInfo.calculate(self, card, context)
         context.other_card:get_id() == 14 then
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(card, 0.50)
+                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
                 end,
-                chips = card.ability.extra.chips
+                extra = {
+                    chips = card.ability.extra.chips
+                }
             }
         end
     end
-    if context.before and context.cardarea == G.play and not card.debuff then
-        if next(context.poker_hands['jojo_Fibonacci']) then
-            ease_hands_played(card.ability.extra.hand_mod)
-            return {
-                func = function()
-                    G.FUNCS.flare_stand_aura(card, 0.50)
-                end,
-                card = card,
+
+    if context.before and not card.debuff and next(context.poker_hands['jojobal_Fibonacci']) then
+        ease_hands_played(card.ability.extra.hand_mod)
+        return {
+            func = function()
+                G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
+            end,
+            extra = {
+                card = context.blueprint_card or card,
                 message = localize('k_plus_hand'),
                 colour = G.C.BLUE
             }
-        end
+        }
     end
 end
 

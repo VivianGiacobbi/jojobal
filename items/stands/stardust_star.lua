@@ -10,14 +10,13 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'arrow_StandRarity',
-    alerted = true,
     hasSoul = true,
     part = 'stardust',
     blueprint_compat = true,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.gote } }
     return { vars = { card.ability.extra.hand_mod, localize(G.GAME and G.GAME.wigsaw_suit or 'Diamonds', 'suits_plural'), colours = {G.C.SUITS[G.GAME and G.GAME.wigsaw_suit or 'Diamonds']} } }
 end
 

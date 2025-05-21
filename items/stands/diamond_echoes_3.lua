@@ -12,7 +12,6 @@ local consumInfo = {
     },
     cost = 10,
     rarity = 'arrow_EvolvedRarity',
-    alerted = true,
     hasSoul = true,
     part = 'diamond',
     blueprint_compat = true,
@@ -20,7 +19,7 @@ local consumInfo = {
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_stone
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.chvsau } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.chvsau } }
     return {vars = {card.ability.extra.mult, card.ability.extra.xmult}}
 end
 
@@ -29,8 +28,8 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_jojo_diamond_echoes_1']
-    or G.GAME.used_jokers['c_jojo_diamond_echoes_2'] then
+    if G.GAME.used_jokers['c_jojobal_diamond_echoes_1']
+    or G.GAME.used_jokers['c_jojobal_diamond_echoes_2'] then
         return false
     end
     
@@ -65,7 +64,7 @@ end
 
 local ref_is = Card.is_suit
 function Card:is_suit(suit, bypass_debuff, flush_calc)
-    if next(SMODS.find_card("c_jojo_diamond_echoes_3")) and self.ability.effect == 'Stone Card' then return true end
+    if next(SMODS.find_card("c_jojobal_diamond_echoes_3")) and self.ability.effect == 'Stone Card' then return true end
     return ref_is(self, suit, bypass_debuff, flush_calc)
 end
 

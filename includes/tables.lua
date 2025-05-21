@@ -1,5 +1,5 @@
 --- Table containing all names of people who contributed to the mod, used in crediting
-G.stands_mod_team = {
+G.jojobal_mod_team = {
 	['gote'] = "BarrierTrio/Gote",
 	['cejai'] = "SagaciousCejai",
 	['eremel'] = "Eremel",

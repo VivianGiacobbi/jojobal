@@ -1,6 +1,6 @@
 local function force_fool_card()
     if G.consumeables then
-        return next(SMODS.find_card('c_jojo_steel_civil')) and 'c_hanged_man' or nil
+        return next(SMODS.find_card('c_jojobal_steel_civil')) and 'c_hanged_man' or nil
     end
 
     return nil
@@ -116,7 +116,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'arrow_StandRarity',
-    alerted = true,
     hasSoul = true,
     part = 'steel',
     blueprint_compat = false
@@ -124,7 +123,7 @@ local consumInfo = {
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.c_hanged_man
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.gote } }
     return { vars = {localize{type = 'name_text', key = card.ability.extra.tarot, set = 'Tarot'}}}
 end
 

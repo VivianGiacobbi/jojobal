@@ -8,15 +8,14 @@ local consumInfo = {
     },
     cost = 10,
     rarity = 'arrow_EvolvedRarity',
-    alerted = true,
     hasSoul = true,
     part = 'diamond',
     blueprint_compat = false,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.guff } }
-    info_queue[#info_queue+1] = {key = "codercredit", set = "Other", vars = { G.stands_mod_team.eremel } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.guff } }
+    info_queue[#info_queue+1] = {key = "codercredit", set = "Other", vars = { G.jojobal_mod_team.eremel } }
 end
 
 function consumInfo.in_pool(self, args)
@@ -24,7 +23,7 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_jojo_diamond_killer'] then
+    if G.GAME.used_jokers['c_jojobal_diamond_killer'] then
         return false
     end
     
@@ -34,7 +33,7 @@ end
 local get_btd = function()
     if not G.consumeables then return false end
     for i, v in ipairs(G.consumeables.cards) do
-        if v.config.center.key == 'c_jojo_diamond_killer_btd' then
+        if v.config.center.key == 'c_jojobal_diamond_killer_btd' then
             return true
         end
     end

@@ -12,7 +12,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'arrow_StandRarity',
-    alerted = true,
     hasSoul = true,
     part = 'lion',
     blueprint_compat = true,
@@ -20,7 +19,7 @@ local consumInfo = {
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_lucky
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.cauthen } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.cauthen } }
     return {vars = {card.ability.extra.xmult_mod, card.ability.extra.xmult}}
 end
 
@@ -40,7 +39,7 @@ local function updateSprite(card)
     if card.ability.extra.form then
         if card.config.center.atlas ~= card.ability.extra.form then
             local old_atlas = card.config.center.atlas
-            card.config.center.atlas = "jojo_"..card.ability.extra.form
+            card.config.center.atlas = "jojobal_"..card.ability.extra.form
             card:set_sprites(card.config.center)
             card.config.center.atlas = old_atlas
             if G.SETTINGS.highest_wonderofu ~= forms[3] then

@@ -13,36 +13,42 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'stone',
-    in_progress = true,
+    blueprint_compat = true
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_stone
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.chvsau } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.chvsau } }
     return { vars = {card.ability.extra.chips}}
 end
 
 function consumInfo.calculate(self, card, context)
-    local bad_context = context.repetition or context.blueprint or context.retrigger_joker
     if context.individual and context.cardarea == G.play and not card.debuff then
-        if context.other_card.ability.effect == "Stone Card" then
-            local oc = context.other_card
+        if context.other_card.config.center.key == 'm_stone' or context.other_card.jojobal_stone_effect then
+            local stone_card = context.other_card
+            local juice_card = context.blueprint_card or card
             return {
                 func = function()
                     G.E_MANAGER:add_event(Event({
                         func = (function()
-                            G.FUNCS.flare_stand_aura(card, 0.50)
-                            card:juice_up()
-                            oc:set_ability(G.P_CENTERS.c_base)
-                            oc.ability.perma_bonus = oc.ability.perma_bonus or 0
-                            oc.ability.perma_bonus = oc.ability.perma_bonus + card.ability.extra.chips
+                            if not stone_card.jojobal_stone_effect then
+                                stone_card:set_ability(G.P_CENTERS.c_base)
+                                stone_card.jojobal_stone_effect = true
+                            end
+                            
+                            G.FUNCS.flare_stand_aura(juice_card, 0.50)
+                            juice_card:juice_up()                    
+                            stone_card.ability.perma_bonus = stone_card.ability.perma_bonus or 0
+                            stone_card.ability.perma_bonus = stone_card.ability.perma_bonus + card.ability.extra.chips
                             return true
                         end)
                     }))
                 end,
-                message = localize('k_stone_free'),
-                colour = G.C.CHIPS,
-                card = context.other_card
+                extra = {
+                    message = localize('k_stone_free'),
+                    colour = G.C.CHIPS,
+                    card = context.other_card
+                }
             }
         end
     end

@@ -3,7 +3,7 @@ local consumInfo = {
     set = 'Stand',
     config = {
         aura_colors = { 'DCFB8CDC', '5EEB2FDC' },
-        evolve_key = 'c_jojo_diamond_echoes_2',
+        evolve_key = 'c_jojobal_diamond_echoes_2',
         extra = {
             num_cards = 1,
             mult = 3,
@@ -13,14 +13,13 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'arrow_StandRarity',
-    alerted = true,
     hasSoul = true,
     part = 'diamond',
     blueprint_compat = true,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.stands_mod_team.chvsau, G.stands_mod_team.dolos } }
+    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.jojobal_mod_team.chvsau, G.jojobal_mod_team.dolos } }
     local color = G.C.IMPORTANT
     if G.GAME and G.GAME.wigsaw_suit then
         color = G.C.SUITS[G.GAME and G.GAME.wigsaw_suit]
@@ -49,8 +48,8 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_jojo_diamond_echoes_2']
-    or G.GAME.used_jokers['c_jojo_diamond_echoes_3'] then
+    if G.GAME.used_jokers['c_jojobal_diamond_echoes_2']
+    or G.GAME.used_jokers['c_jojobal_diamond_echoes_3'] then
         return false
     end
     

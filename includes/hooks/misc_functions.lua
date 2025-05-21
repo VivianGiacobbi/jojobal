@@ -27,13 +27,13 @@ function G.FUNCS.stand_restart()
 end
 
 --- Resets the rank used by the Paper Moon King stand card
-function reset_paper_rank()
-    G.GAME.current_round.paper_rank = 'Jack'
+function jojobal_reset_paper_rank()
+    G.GAME.current_round.jojobal_paper_rank = 'Jack'
 	local valid_ranks = {}
     for _, rank in pairs(SMODS.Ranks) do
         if rank.face then valid_ranks[#valid_ranks+1] = rank.key end
     end
-	G.GAME.current_round.paper_rank = pseudorandom_element(valid_ranks, pseudoseed('papermoon'..G.GAME.round_resets.ante))
+	G.GAME.current_round.jojobal_paper_rank = pseudorandom_element(valid_ranks, pseudoseed('papermoon'..G.GAME.round_resets.ante))
 end
 
 
@@ -44,25 +44,47 @@ end
 --------------------------- Stand Helper Functions
 ---------------------------
 
-
-function G.FUNCS.stand_preview_deck(amount)
+function G.FUNCS.jojobal_preview_cardarea(preview_num)
 	local preview_cards = {}
 	local count = 0
-	local i = #G.deck.cards
+	local deck_size = #G.deck.cards
 
-	while count < amount and i >= 1 do
-		local card = G.deck.cards[i]
+	while count < preview_num and deck_size >= 1 do
+		local card = G.deck.cards[deck_size]
 		if card then
 			table.insert(preview_cards, card)
 			count = count + 1
 		end
-		i = i - 1
+		deck_size = deck_size - 1
 	end
 
-	return preview_cards
+	if count < 1 then
+		return nil
+	end
+
+
+    local preview_area = CardArea(
+            0, 0,
+            (math.min(card.ability.extra.preview, #preview_cards) * G.CARD_W)*0.55,
+            G.CARD_H*0.5,
+            {card_limit = #preview_cards, type = 'title', highlight_limit = 0, card_w = G.CARD_W*0.7}
+    )
+
+    for i=1, #preview_cards do
+        local copied_card = copy_card(preview_cards[i], nil, nil, G.playing_card)
+        preview_area:emplace(copied_card)
+    end
+
+    return {{
+        n=G.UIT.R, 
+        config = {align = "cm", colour = G.C.CLEAR, r = 0.0, padding = 0.5},
+        nodes={{
+            n=G.UIT.O, config = {object = preview_area}
+        }}
+    }}
 end
 
-G.FUNCS.arrow_add_chance = function(num, extra)
+G.FUNCS.jojobal_add_chance = function(num, extra)
 	local multiply = extra and extra.multiply or false
 	local startAtOne = extra and extra.start_at_one or false
 	if multiply then
@@ -86,7 +108,7 @@ local function is_perfect_square(x)
 	return sqrt^2 == x
 end
 
-function arrow_get_fibonacci(hand)
+function jojobal_get_fibonacci(hand)
 	local ret = {}
 	if #hand < 5 then return ret end
 	local vals = {}

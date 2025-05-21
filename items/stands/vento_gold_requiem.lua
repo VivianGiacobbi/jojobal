@@ -12,15 +12,14 @@ local consumInfo = {
     },
     cost = 10,
     rarity = 'arrow_EvolvedRarity',
-    alerted = true,
     hasSoul = true,
-    in_progress = true,
     part = 'vento',
+    blueprint_compat = true,
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_gold
-    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.stands_mod_team.reda, G.stands_mod_team.wario } }
+    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.jojobal_mod_team.reda, G.jojobal_mod_team.wario } }
     return { vars = { card.ability.extra.chance, card.ability.extra.divide, G.GAME.probabilities.normal}}
 end
 
@@ -28,26 +27,28 @@ function consumInfo.in_pool(self, args)
     if next(SMODS.find_card('j_showman')) then
         return true
     end
-    return (not G.GAME.used_jokers['c_jojo_vento_gold'])
+    return (not G.GAME.used_jokers['c_jojobal_vento_gold'])
 end
 
 function consumInfo.calculate(self, card, context)
-    local bad_context = context.repetition or context.blueprint or context.individual or context.retrigger_joker
-    if context.before and not card.debuff and not bad_context then
+    if context.before and not card.debuff then
         local gold = {}
-        for k, v in ipairs(context.scoring_hand) do
-            if v.ability.effect == "Gold Card" then
+        for _, v in ipairs(context.scoring_hand) do
+            if SMODS.has_enhancement(v, 'm_gold') then
                 gold[#gold+1] = v
             end
         end
-        if pseudorandom('thisisrequiem') < G.FUNCS.arrow_add_chance(card.ability.extra.chance+#gold, {multiply = true}) / card.ability.extra.divide then
+
+        if pseudorandom('jojobal_gerequiem') < G.FUNCS.jojobal_add_chance(card.ability.extra.chance+#gold, {multiply = true}) / card.ability.extra.divide then
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(card, 0.50)
+                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
                 end,
-                card = card,
-                level_up = true,
-                message = localize('k_level_up_ex')
+                extra = {
+                    card = context.blueprint_card or card,
+                    level_up = true,
+                    message = localize('k_level_up_ex')
+                }
             }
         end
     end

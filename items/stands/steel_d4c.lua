@@ -4,7 +4,7 @@ local consumInfo = {
     config = {
         aura_colors = { 'f3b7f5DC', 'c77ecfDC' },
         stand_mask = true,
-        evolve_key = 'c_jojo_steel_d4c_love',
+        evolve_key = 'c_jojobal_steel_d4c_love',
         extra = {
             hands_played = {},
             evolve_num = 9,
@@ -12,10 +12,9 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'arrow_StandRarity',
-    alerted = true,
     hasSoul = true,
     part = 'steel',
-    in_progress = true,
+    blueprint_compat = false
 }
 
 local function get_lucky()
@@ -29,7 +28,7 @@ end
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_lucky
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.gote } }
     return {vars = {card.ability.extra.evolve_num, get_lucky()}}
 end
 
@@ -38,7 +37,7 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_jojo_steel_d4c_love'] then
+    if G.GAME.used_jokers['c_jojobal_steel_d4c_love'] then
         return false
     end
     
@@ -50,12 +49,11 @@ function consumInfo.add_to_deck(self, card)
 end
 
 function consumInfo.calculate(self, card, context)
-    local bad_context = context.repetition or context.blueprint or context.individual or context.retrigger_joker
-    if context.before and not bad_context then
-        card.ability.extra.hands_played[context.scoring_name] = card.ability.extra.hands_played[context.scoring_name] or 0
-        card.ability.extra.hands_played[context.scoring_name] = card.ability.extra.hands_played[context.scoring_name] + 1
+    if context.before and not context.retrigger_joker and not context.blueprint then
+        card.ability.extra.hands_played[context.scoring_name] = (card.ability.extra.hands_played[context.scoring_name] or 0) + 1
     end
-    if context.destroying_card and not bad_context then
+
+    if context.destroying_card and not context.retrigger_joker and not context.blueprint then
         if context.scoring_name == "Pair" and card.ability.extra.hands_played[context.scoring_name] == 1 then
             G.E_MANAGER:add_event(Event({
                 func = function()
@@ -68,7 +66,7 @@ function consumInfo.calculate(self, card, context)
         end
     end
 
-    if context.end_of_round and not bad_context then
+    if context.end_of_round and not context.retrigger_joker and not context.blueprint and not context.individual then
         card.ability.extra.hands_played = {}
     end
 end

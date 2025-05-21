@@ -3,7 +3,7 @@ local consumInfo = {
     set = 'Stand',
     config = {
         stand_mask = true,
-        evolve_key = 'c_jojo_diamond_killer_btd',
+        evolve_key = 'c_jojobal_diamond_killer_btd',
         aura_colors = { 'de7cf9DC', 'e059e9DC' },
         extra = {
             evolve_cards = 0,
@@ -14,14 +14,13 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'arrow_StandRarity',
-    alerted = true,
     hasSoul = true,
     part = 'diamond',
     blueprint_compat = true
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.stands_mod_team.guff } }
+    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.guff } }
     return { vars = { card.ability.extra.hand_mod, card.ability.extra.hands, card.ability.extra.evolve_num, card.ability.extra.evolve_cards } }
 end
 
@@ -29,7 +28,7 @@ function consumInfo.in_pool(self, args)
     if next(SMODS.find_card('j_showman')) then
         return true
     end
-    if G.GAME.used_jokers['c_jojo_diamond_killer_btd'] then
+    if G.GAME.used_jokers['c_jojobal_diamond_killer_btd'] then
         return false
     end
     return true

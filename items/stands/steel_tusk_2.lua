@@ -4,7 +4,7 @@ local consumInfo = {
     config = {
         aura_colors = { 'ff7dbcDC', '81476fDC' },
         evolved = true,
-        evolve_key = 'c_jojo_steel_tusk_3',
+        evolve_key = 'c_jojobal_steel_tusk_3',
         extra = {
             chips = 21,
             evolve_destroys = 0,
@@ -17,11 +17,11 @@ local consumInfo = {
     alerted = true,
     hasSoul = true,
     part = 'steel',
-    in_progress = true,
+    blueprint_compat = true
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.stands_mod_team.wario, G.stands_mod_team.cauthen } }
+    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.jojobal_mod_team.wario, G.jojobal_mod_team.cauthen } }
     return {vars = {card.ability.extra.chips, card.ability.extra.evolve_num - card.ability.extra.evolve_destroys}}
 end
 
@@ -30,9 +30,9 @@ function consumInfo.in_pool(self, args)
         return true
     end
 
-    if G.GAME.used_jokers['c_jojo_steel_tusk_1']
-    or G.GAME.used_jokers['c_jojo_steel_tusk_3']
-    or G.GAME.used_jokers['c_jojo_steel_tusk_4'] then
+    if G.GAME.used_jokers['c_jojobal_steel_tusk_1']
+    or G.GAME.used_jokers['c_jojobal_steel_tusk_3']
+    or G.GAME.used_jokers['c_jojobal_steel_tusk_4'] then
         return false
     end
     
@@ -44,19 +44,18 @@ function consumInfo.calculate(self, card, context)
         if context.other_card:get_id() == 14 or context.other_card:get_id() == 2 or context.other_card:get_id() == 3 then
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(card, 0.50)
+                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
                 end,
-                chips = card.ability.extra.chips
+                extra = {
+                    chips = card.ability.extra.chips
+                }
             }
         end
     end
-    local bad_context = context.repetition or context.blueprint or context.individual or context.retrigger_joker
-    if context.remove_playing_cards and not bad_context then
-        local cards = 0
-        for i, card in ipairs(context.removed) do
-            cards = cards + 1
-        end
-        card.ability.extra.evolve_destroys = card.ability.extra.evolve_destroys + cards
+
+    if context.remove_playing_cards and not context.blueprint and not context.retrigger_joker then
+        card.ability.extra.evolve_destroys = card.ability.extra.evolve_destroys + #context.removed
+
         if to_big(card.ability.extra.evolve_destroys) >= to_big(card.ability.extra.evolve_num) and not card.ability.extra.evolved then
             card.ability.extra.evolved = true
             G.FUNCS.evolve_stand(card)
