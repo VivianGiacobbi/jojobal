@@ -31,14 +31,14 @@ function consumInfo.calculate(self, card, context)
         end
 
         if all then
-            local juice_card = context.blueprint_card or card
+            local flare_card = context.blueprint_card or card
             ease_hands_played(card.ability.extra.hand_mod)
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(juice_card, 0.50)
+                    G.FUNCS.flare_stand_aura(flare_card, 0.50)
                 end,
                 extra = {
-                    card = juice_card,
+                    card = flare_card,
                     message = localize{type = 'variable', key = 'a_hands', vars = {card.ability.extra.hand_mod}},
                     colour = G.C.BLUE
                 }

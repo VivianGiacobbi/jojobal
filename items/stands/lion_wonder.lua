@@ -58,29 +58,29 @@ end
 
 function consumInfo.calculate(self, card, context)
     if context.joker_main then
+        local flare_card = context.blueprint_card or card
         return {
-            xmult = card.ability.extra.xmult,
+            func = function()
+                G.FUNCS.flare_stand_aura(flare_card, 0.50)
+            end,
+            extra = {
+                xmult = card.ability.extra.xmult,
+                card = flare_card
+            }
         }
     end
         
     if context.destroy_card and not context.blueprint and not context.retrigger_joker and not card.debuff then
         if SMODS.has_enhancement(context.destroy_card, 'm_lucky') and SMODS.in_scoring(context.destroy_card, context.scoring_hand) and not context.destroy_card.debuff then
-            context.destroy_card.jjba_removed_by_wonder = true
+            context.destroy_card.jojobal_removed_by_wonder = true
             return {
                 remove = true,
             }
         end
     end
 
-    if context.remove_playing_cards and not context.blueprint and not context.retrigger_joker then
-        local trigger = false
-        for _, v in ipairs(context.removed) do
-            if v.jjba_removed_by_wonder then
-                trigger = true
-                card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_mod
-            end
-            
-        end
+    if context.fnwk_card_destroyed and context.removed.jojobal_removed_by_wonder and not context.blueprint and not context.retrigger_joker then
+        card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_mod
 
         local update_sprite = false
         if to_big(card.ability.extra.xmult) >= to_big(1.9) and card.ability.extra.form == 'lion_wonder' then
@@ -90,22 +90,22 @@ function consumInfo.calculate(self, card, context)
             card.ability.extra.form = 'lion_wonder_3'
             update_sprite = true
         end
+
         if update_sprite then
             G.E_MANAGER:add_event(Event({trigger = 'after', func = function()
                 updateSprite(card)
                 card:juice_up()
                 return true end }))
         end
-        if trigger then
-            return {
-                func = function()
-                    G.FUNCS.flare_stand_aura(card, 0.50)
-                end,
-                message = localize('k_upgrade_ex'),
-                colour = G.C.RED,
-                card = card
-            }
-        end
+
+        return {
+            func = function()
+                G.FUNCS.flare_stand_aura(card, 0.50)
+            end,
+            message = localize('k_upgrade_ex'),
+            colour = G.C.RED,
+            card = card
+        }
     end
 end
 

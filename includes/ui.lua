@@ -24,9 +24,9 @@ SMODS.current_mod.config_tab = function()
 			local main_node = create_toggle({
 				label = localize("stand_options_"..ordered_config[i]),
 				w = 1,
-				ref_table = stand_config,
+				ref_table = jojobal_config,
 				ref_value = ordered_config[i],
-				callback = G.FUNCS.stand_restart
+				callback = G.FUNCS.jojobal_restart
 			})
 			main_node.config.align = 'tr'
 			main_node.nodes[#main_node.nodes+1] = { n = G.UIT.C, config = { minw = 0.25, align = "cm" } }
@@ -34,11 +34,11 @@ SMODS.current_mod.config_tab = function()
 			right_count = right_count + 1
 		else
 			local main_node = create_toggle({
-				label = localize("stand_options_"..ordered_config[i]),
+				label = localize("jojobal_options_"..ordered_config[i]),
 				w = 1,
-				ref_table = stand_config,
+				ref_table = jojobal_config,
 				ref_value = ordered_config[i],
-				callback = G.FUNCS.stand_restart
+				callback = G.FUNCS.jojobal_restart
 			})
 			main_node.config.align = 'tr'
 			main_node.nodes[#main_node.nodes+1] = { n = G.UIT.C, config = { minw = 0.25, align = "cm" } }
@@ -47,7 +47,7 @@ SMODS.current_mod.config_tab = function()
 		end
 	end
 
-	local stand_config_ui = { n = G.UIT.R, config = { align = "tm", padding = 0.25 }, nodes = { left_settings, right_settings } }
+	local jojobal_config_ui = { n = G.UIT.R, config = { align = "tm", padding = 0.25 }, nodes = { left_settings, right_settings } }
 	return {
 		n = G.UIT.ROOT,
 		config = {
@@ -60,7 +60,7 @@ SMODS.current_mod.config_tab = function()
 			colour = G.C.BLACK,
 		},
 		nodes = {
-			stand_config_ui
+			jojobal_config_ui
 		}
 	}
 end
@@ -89,7 +89,7 @@ SMODS.current_mod.credits_tab = function()
 					{n=G.UIT.C, config={align = "cm", padding = 0}, nodes={
 						{n=G.UIT.R, config={align = "cm", padding = 0.1, minh = 6.2, outline_colour = G.C.JOKER_GREY, r = 0.1, outline = 1}, nodes={
 							{n=G.UIT.R, config={align = "cm", padding = 0.1}, nodes={
-								{n=G.UIT.T, config={text = localize('stand_credits_direct'), scale = header_scale * 0.6, colour = G.C.GOLD, shadow = true}},
+								{n=G.UIT.T, config={text = localize('jojobal_credits_direct'), scale = header_scale * 0.6, colour = G.C.GOLD, shadow = true}},
 							}},
 							{n=G.UIT.R, config={align = "cm", padding = 0}, nodes= {
 								{n=G.UIT.R, config={align = "tm", padding = 0.1}, nodes={
@@ -105,7 +105,7 @@ SMODS.current_mod.credits_tab = function()
 				{n=G.UIT.C, config={align = "tm", padding = 0.1, r = 0.1}, nodes= {
 					{ n = G.UIT.C, config = { align = "cm", padding = 0.1 * bonus_padding, minh = 6.140, outline_colour = G.C.JOKER_GREY, r = 0.1, outline = 1 }, nodes = {
 						{ n = G.UIT.R, config = { align = "cm", padding = 0 }, nodes = {
-							{ n = G.UIT.T, config = { text = localize('stand_credits_artists'), scale = header_scale * 0.6, colour = HEX('f75294'), shadow = true } },
+							{ n = G.UIT.T, config = { text = localize('jojobal_credits_artists'), scale = header_scale * 0.6, colour = HEX('f75294'), shadow = true } },
 						}},
 						{n=G.UIT.R, config={align = "tm", padding = 0}, nodes={
 							{n=G.UIT.C, config={align = "tl", padding = 0}, nodes={
@@ -148,7 +148,7 @@ SMODS.current_mod.credits_tab = function()
 						{n=G.UIT.R, config={align = "tm", padding = 0}, nodes={
 							{n=G.UIT.C, config={align = "cm", padding = 0.1*bonus_padding,outline_colour = G.C.JOKER_GREY, r = 0.1, outline = 1}, nodes={
 								{n=G.UIT.R, config={align = "cm", padding = 0}, nodes={
-									{n=G.UIT.T, config={text = localize('stand_credits_coding'), scale = header_scale*0.6, colour = G.C.ORANGE, shadow = true}},
+									{n=G.UIT.T, config={text = localize('jojobal_credits_coding'), scale = header_scale*0.6, colour = G.C.ORANGE, shadow = true}},
 								}},
 								{n=G.UIT.R, config={align = "cm", padding = 0}, nodes= {
 									{n=G.UIT.R, config={align = "tm", padding = 0.05}, nodes={
@@ -173,7 +173,7 @@ SMODS.current_mod.credits_tab = function()
 							{n=G.UIT.C, config={align = "tl", padding = 0}, nodes={
 								{n=G.UIT.R, config={align = "cm", padding = 0.1, minh = 3.9, outline_colour = G.C.JOKER_GREY, r = 0.1, outline = 1}, nodes={
 									{n=G.UIT.R, config={align = "cm", padding = 0}, nodes={
-										{n=G.UIT.T, config={text = localize('stand_credits_shaders'), scale = header_scale * 0.515, colour = G.C.DARK_EDITION, shadow = true}},
+										{n=G.UIT.T, config={text = localize('jojobal_credits_shaders'), scale = header_scale * 0.515, colour = G.C.DARK_EDITION, shadow = true}},
 									}},
 									{n=G.UIT.R, config={align = "cm", padding = support_padding}, nodes= {
 										{n=G.UIT.R, config={align = "tm", padding = 0.05}, nodes={
@@ -193,7 +193,7 @@ SMODS.current_mod.credits_tab = function()
 						}},
 						{n=G.UIT.R, config={align = "tm", padding = 0.1,outline_colour = G.C.JOKER_GREY, r = 0.1, outline = 1, minh=2}, nodes={
 							{n=G.UIT.R, config={align = "cm", padding = 0.1}, nodes={
-								{n=G.UIT.T, config={text = localize('stand_credits_thanks'), scale = header_scale*0.55, colour = G.C.GREEN, shadow = true}},
+								{n=G.UIT.T, config={text = localize('jojobal_credits_thanks'), scale = header_scale*0.55, colour = G.C.GREEN, shadow = true}},
 							}},
 							{n=G.UIT.R, config={align = "cm", padding = 0}, nodes={
 								{n=G.UIT.C, config={align = "cm", padding = 0}, nodes={

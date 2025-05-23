@@ -20,27 +20,27 @@ local consumInfo = {
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.jojobal_mod_team.chvsau, G.jojobal_mod_team.dolos } }
-    local color = G.C.IMPORTANT
+
+    local suit = ''
+    local color = nil
     if G.GAME and G.GAME.wigsaw_suit then
-        color = G.C.SUITS[G.GAME and G.GAME.wigsaw_suit]
+        suit = localize(G.GAME and G.GAME.wigsaw_suit, 'suits_singular')
+        color = G.C.DARK_EDITION
     elseif card.ability.extra.ref_suit then
-        if card.ability.extra.ref_suit == 'wild' then
-            color = G.C.DARK_EDITION
-        else
-            color = G.C.SUITS[card.ability.extra.ref_suit]
-        end
+        suit = card.ability.extra.ref_suit == 'wild' and 'any' or localize(card.ability.extra.ref_suit, 'suits_singular')
+        color = G.C.SUITS[card.ability.extra.ref_suit]
     end
-    local suit = localize('k_none')
-    if G.GAME and G.GAME.wigsaw_suit then
-        suit = localize(G.GAME and G.GAME.wigsaw_suit, 'suits_plural')
-    elseif card.ability.extra.ref_suit then
-        if card.ability.extra.ref_suit == 'wild' then
-            suit = G.localization.descriptions.Enhanced.m_wild.name
-        else
-            suit = localize(card.ability.extra.ref_suit, 'suits_plural')
-        end
-    end
-    return {vars = {card.ability.extra.num_cards, card.ability.extra.mult, card.ability.extra.evolve_num - card.ability.extra.evolve_rounds, suit, colours = { color } } }
+    
+    return {
+        vars = {
+            card.ability.extra.num_cards,
+            card.ability.extra.mult,
+            card.ability.extra.evolve_num - card.ability.extra.evolve_rounds,
+            suit,
+            suit == '' and 'matching' or '',
+            colours = { color }
+        }
+    }
 end
 
 function consumInfo.in_pool(self, args)
@@ -57,26 +57,31 @@ function consumInfo.in_pool(self, args)
 end
 
 function consumInfo.calculate(self, card, context)
-    
     if context.before and not card.debuff and not context.blueprint and not context.retrigger_joker then
         if to_big(G.GAME.current_round.hands_played) == to_big(0) then
             if #context.full_hand == card.ability.extra.num_cards then
                 local ref_card = context.full_hand[1]
                 if SMODS.has_any_suit(ref_card) then
                     card.ability.extra.ref_suit = "wild"
-                    G.FUNCS.flare_stand_aura(card, 0.50)
                     return {
-                        message = localize('k_echoes_recorded'),
-                        card = card
+                        func = function()
+                            G.FUNCS.flare_stand_aura(card, 0.50)
+                        end,
+                        extra = {
+                            message = localize('k_echoes_recorded'),
+                            card = card
+                        }
+                        
                     }
                 elseif not SMODS.has_no_suit(ref_card) then
                     card.ability.extra.ref_suit = ref_card.base.suit
-                    G.FUNCS.flare_stand_aura(card, 0.50)
                     return {
-                        message = localize('k_echoes_recorded'),
-                        card = card,
+                        func = function()
+                            G.FUNCS.flare_stand_aura(card, 0.50)
+                        end,
                         extra = {
-                            delay = 0.5
+                            message = localize('k_echoes_recorded'),
+                            card = card,
                         }
                     }
                 end
@@ -87,20 +92,21 @@ function consumInfo.calculate(self, card, context)
     if context.individual and context.cardarea == G.play and not card.debuff then
         if to_big(G.GAME.current_round.hands_played) > to_big(0) and card.ability.extra.ref_suit then
             if card.ability.extra.ref_suit == "wild" or context.other_card:is_suit(G.GAME and G.GAME.wigsaw_suit or card.ability.extra.ref_suit) then
+                local flare_card = context.blueprint_card or card
                 return {
                     func = function()
-                        G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
+                        G.FUNCS.flare_stand_aura(flare_card, 0.50)
                     end,
                     extra = {
                         mult = card.ability.extra.mult,
-                        card = context.blueprint_card or card,
+                        card = flare_card,
                     }
                 }
             end
         end
     end
 
-    if context.end_of_round and not bad_context then
+    if context.end_of_round and context.cardarea == G.consumeables and not context.blueprint and not context.retrigger_joker then
         card.ability.extra.ref_suit = nil
         card.ability.extra.nm = false
         card.ability.extra.evolve_rounds = card.ability.extra.evolve_rounds + 1

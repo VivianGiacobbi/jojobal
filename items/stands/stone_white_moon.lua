@@ -64,10 +64,11 @@ function consumInfo.calculate(self, card, context)
         local reps = next(context.poker_hands["Straight"]) and 1 or 0
         if context.other_card:get_id() == 6 then reps = reps + 1 end
         
-        if reps > 0 then           
+        if reps > 0 then
+            local flare_card = context.blueprint_card or card       
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.5)
+                    G.FUNCS.flare_stand_aura(flare_card, 0.5)
                 end,
                 message = localize('k_again_ex'),
                 repetitions = card.ability.extra.repetitions * reps,

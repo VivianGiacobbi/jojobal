@@ -34,11 +34,15 @@ function consumInfo.calculate(self, card, context)
     if context.individual and context.cardarea == G.play and not card.debuff then
         local chip_val = context.other_card.base.nominal
         if to_big(chip_val) <= to_big(9) then
+            local flare_card = context.blueprint_card or card
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
+                    G.FUNCS.flare_stand_aura(flare_card, 0.50)
                 end,
-                chips = card.ability.extra.chips
+                extra = {
+                    card = flare_card,
+                    chips = card.ability.extra.chips
+                }
             }
         end
     end

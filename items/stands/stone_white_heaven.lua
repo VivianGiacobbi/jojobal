@@ -37,12 +37,13 @@ end
 function consumInfo.calculate(self, card, context)
     if context.before and not card.debuff then
         ease_hands_played(card.ability.extra.hand_mod)
+        local flare_card = context.blueprint_card or card
         return {
             func = function()
-                G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
+                G.FUNCS.flare_stand_aura(flare_card, 0.50)
             end,
             extra = {
-                card = context.blueprint_card or card,
+                card = flare_card,
                 message = localize{type = 'variable', key = 'a_plus_hand', vars = {card.ability.extra.hand_mod}},
                 colour = G.C.BLUE
             }
@@ -51,12 +52,13 @@ function consumInfo.calculate(self, card, context)
 
     if context.pre_discard and not card.debuff then
         ease_discard(card.ability.extra.discard_mod)
+        local flare_card = context.blueprint_card or card
         return {
             func = function()
-                G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
+                G.FUNCS.flare_stand_aura(flare_card, 0.50)
             end,
             extra = {
-                card = context.blueprint_card or card,
+                card = flare_card,
                 message = localize{type = 'variable', key = 'a_plus_discard', vars = {card.ability.extra.discard_mod}},
                 colour = G.C.RED
             }

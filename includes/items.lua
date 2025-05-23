@@ -64,7 +64,7 @@ local items_to_load = {
 }
 
 for k, v in pairs(items_to_load) do
-	if next(items_to_load[k]) and stand_enabled['enable'..k..'s'] then
+	if next(items_to_load[k]) and jojobal_enabled['enable'..k..'s'] then
 		for i = 1, #v do
 			StandLoadStandItem(v[i], k)
 		end

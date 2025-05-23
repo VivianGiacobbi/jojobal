@@ -26,11 +26,22 @@ function consumInfo.in_pool(self, args)
 end
 
 function consumInfo.calculate(self, card, context)
-    if context.end_of_round and not G.GAME.blind.boss and not context.individual then
-        local juice_card = context.blueprint_card or card
-        add_tag(Tag(G.GAME.round_resets.blind_tags[G.GAME.blind_on_deck]))
-        juice_card:juice_up()
-        G.FUNCS.flare_stand_aura(juice_card, 0.50)
+    if context.end_of_round and context.cardarea == G.consumeables and G.GAME.blind:get_type() ~= 'Boss' then
+        local flare_card = context.blueprint_card or card
+        G.FUNCS.flare_stand_aura(flare_card, 0.50)
+        G.E_MANAGER:add_event(Event({
+            trigger = 'immediate',
+            func = (function()
+                add_tag(Tag(G.GAME.round_resets.blind_tags[G.GAME.blind_on_deck]))
+                
+                flare_card:juice_up()
+
+                play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+                play_sound('holo1', 1.2 + math.random()*0.1, 0.4)
+                return true
+            end)
+        }))
+        delay(0.35)
     end
 end
 

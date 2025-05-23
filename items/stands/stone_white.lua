@@ -6,7 +6,7 @@ local consumInfo = {
         stand_mask = true,
         evolve_key = 'c_jojobal_stone_white_moon',
         extra = {
-            evolve_cards = 0,
+            evolve_scores = 0,
             evolve_num = 36,
             evolve_val = '6'
         }
@@ -20,7 +20,7 @@ local consumInfo = {
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.wario } }
-    return { vars = {card.ability.extra.evolve_num - card.ability.extra.evolve_cards, SMODS.Ranks[card.ability.extra.evolve_val].key}}
+    return { vars = {card.ability.extra.evolve_num - card.ability.extra.evolve_scores, SMODS.Ranks[card.ability.extra.evolve_val].key}}
 end
 
 function consumInfo.in_pool(self, args)
@@ -39,30 +39,29 @@ end
 function consumInfo.calculate(self, card, context)
     if context.cardarea == G.play and context.repetition and not context.repetition_only then
         if context.other_card:get_id() == 6 then
+            if not context.blueprint and not context.retrigger_joker then
+                card.ability.extra.evolve_scores = card.ability.extra.evolve_scores + 1
+            end
+
+            local flare_card = context.blueprint_card or card
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
+                    G.FUNCS.flare_stand_aura(flare_card, 0.50)
                 end,
                 message = localize('k_again_ex'),
                 repetitions = 1,
-                card = card
+                card = flare_card
             }
         end
     end
 
-    if context.before and not card.debuff and not context.blueprint and not context.retrigger_joker then
-        local six = 0
-        for _, v in ipairs(context.scoring_hand) do
-            if v:get_id() == 6 then
-                six = six + 1
-            end
-        end
-        card.ability.extra.evolve_cards = card.ability.extra.evolve_cards + six
-        if to_big(card.ability.extra.evolve_cards) >= to_big(card.ability.extra.evolve_num) then
+    if context.after and not card.debuff and not context.blueprint and not context.retrigger_joker and not card.ability.extra.evolved then
+        if to_big(card.ability.extra.evolve_scores) >= to_big(card.ability.extra.evolve_num) then
+            card.ability.extra.evolved = true
             G.FUNCS.evolve_stand(card)
-        elseif #six > 0 then
+        else
             return {
-                message = card.ability.extra.evolve_cards..'/'..card.ability.extra.evolve_num,
+                message = localize{type='variable',key='a_remaining',vars={card.ability.extra.evolve_num - card.ability.extra.evolve_scores}},
                 colour = G.C.STAND
             }
         end

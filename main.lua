@@ -1,5 +1,5 @@
-stand_config = SMODS.current_mod.config
-stand_enabled = copy_table(stand_config)
+jojobal_config = SMODS.current_mod.config
+jojobal_enabled = copy_table(jojobal_config)
 
 SMODS.current_mod.optional_features = {
 	retrigger_joker = true,
@@ -16,7 +16,6 @@ local includes = {
 
 	-- object hooks
 	'hooks/card',
-	'hooks/cardarea',
 	'hooks/misc_functions',
 	'hooks/smods',
 

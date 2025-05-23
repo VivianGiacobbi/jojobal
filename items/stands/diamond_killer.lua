@@ -58,13 +58,15 @@ function consumInfo.calculate(self, card, context)
     end
 
     if context.setting_blind and card.ability.extra.hands > 0 then
+        local flare_card = context.blueprint_card or card
         return {
             func = function()
-                G.FUNCS.flare_stand_aura(card, 0.50)
+                G.FUNCS.flare_stand_aura(flare_card, 0.50)
                 ease_hands_played(card.ability.extra.hands)
             end,
             extra = {
-                message = localize{type = 'variable', key = 'a_hands', vars = {card.ability.extra.hands}}
+                message = localize{type = 'variable', key = 'a_hands', vars = {card.ability.extra.hands}},
+                card = flare_card
             }
         }
     end

@@ -70,12 +70,14 @@ end
 
 function consumInfo.calculate(self, card, context)
     if context.joker_main and has_standard_deck() then
+        local flare_card = context.blueprint_card or card
         return {
             func = function()
-                G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
+                G.FUNCS.flare_stand_aura(flare_card, 0.50)
             end,
             extra = {
                 xmult = card.ability.extra.x_mult,
+                card = flare_card
             }
         }
     end

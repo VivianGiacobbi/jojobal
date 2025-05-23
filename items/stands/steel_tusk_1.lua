@@ -44,12 +44,14 @@ function consumInfo.calculate(self, card, context)
                 card.ability.extra.evolve_scores = card.ability.extra.evolve_scores + 1
             end
 
+            local flare_card = context.blueprint_card or card
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
+                    G.FUNCS.flare_stand_aura(flare_card, 0.50)
                 end,
                 extra = {
-                    chips = card.ability.extra.chips
+                    chips = card.ability.extra.chips,
+                    card = flare_card
                 }
             }
         end
@@ -59,6 +61,11 @@ function consumInfo.calculate(self, card, context)
         if to_big(card.ability.extra.evolve_scores) >= to_big(card.ability.extra.evolve_num) then
             card.ability.extra.evolved = true
             G.FUNCS.evolve_stand(card)
+        else
+            return {
+                message = localize{type='variable',key='a_remaining',vars={card.ability.extra.evolve_num - card.ability.extra.evolve_scores}},
+                colour = G.C.STAND
+            }
         end
     end
 end

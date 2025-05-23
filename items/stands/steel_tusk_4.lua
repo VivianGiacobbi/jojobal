@@ -119,12 +119,14 @@ function consumInfo.calculate(self, card, context)
         context.other_card:get_id() == 5 or
         context.other_card:get_id() == 8 or
         context.other_card:get_id() == 14 then
+            local flare_card = context.blueprint_card or card
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
+                    G.FUNCS.flare_stand_aura(flare_card, 0.50)
                 end,
                 extra = {
-                    chips = card.ability.extra.chips
+                    chips = card.ability.extra.chips,
+                    card = flare_card
                 }
             }
         end
@@ -132,12 +134,13 @@ function consumInfo.calculate(self, card, context)
 
     if context.before and not card.debuff and next(context.poker_hands['jojobal_Fibonacci']) then
         ease_hands_played(card.ability.extra.hand_mod)
+        local flare_card = context.blueprint_card or card
         return {
             func = function()
-                G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
+                G.FUNCS.flare_stand_aura(flare_card, 0.50)
             end,
             extra = {
-                card = context.blueprint_card or card,
+                card = flare_card,
                 message = localize('k_plus_hand'),
                 colour = G.C.BLUE
             }

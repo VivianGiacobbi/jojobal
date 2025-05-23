@@ -23,31 +23,52 @@ function consumInfo.loc_vars(self, info_queue, card)
 end
 
 function consumInfo.calculate(self, card, context)
-    if context.individual and context.cardarea == G.play and not card.debuff then
-        if context.other_card.config.center.key == 'm_stone' or context.other_card.jojobal_stone_effect then
-            local stone_card = context.other_card
-            local juice_card = context.blueprint_card or card
+    if context.before and not card.debuff then
+        local stones = 0
+        for _, v in ipairs(context.scoring_hand) do
+            if v.config.center.key == 'm_stone' or v.jojobal_stone_effect then
+                stones = stones + 1            
+   
+                if not v.jojobal_stone_effect then
+                    v.jojobal_stone_effect = true
+                end
+
+                v.ability.perma_bonus = v.ability.perma_bonus or 0
+                v.ability.perma_bonus = v.ability.perma_bonus + card.ability.extra.chips
+
+                G.E_MANAGER:add_event(Event({
+                    func = (function()
+                        if v.config.center.key == 'm_stone' then
+                            v:set_ability(G.P_CENTERS.c_base)
+                        end
+                        v:juice_up()
+                        play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+                        attention_text({
+                            text = localize('k_upgrade_ex'),
+                            scale = 0.7, 
+                            hold = 0.55,
+                            backdrop_colour = G.C.CHIPS,
+                            align = 'tm',
+                            major = v,
+                            offset = {x = 0, y = -0.05*G.CARD_H}
+                        })
+                        return true
+                    end)
+                }))
+                delay(0.3)
+            end         
+        end
+
+        if stones > 0 then
+            local flare_card = context.blueprint_card or card
             return {
                 func = function()
-                    G.E_MANAGER:add_event(Event({
-                        func = (function()
-                            if not stone_card.jojobal_stone_effect then
-                                stone_card:set_ability(G.P_CENTERS.c_base)
-                                stone_card.jojobal_stone_effect = true
-                            end
-                            
-                            G.FUNCS.flare_stand_aura(juice_card, 0.50)
-                            juice_card:juice_up()                    
-                            stone_card.ability.perma_bonus = stone_card.ability.perma_bonus or 0
-                            stone_card.ability.perma_bonus = stone_card.ability.perma_bonus + card.ability.extra.chips
-                            return true
-                        end)
-                    }))
+                    G.FUNCS.flare_stand_aura(flare_card, 0.50)
                 end,
                 extra = {
                     message = localize('k_stone_free'),
-                    colour = G.C.CHIPS,
-                    card = context.other_card
+                    colour = G.C.STAND,
+                    card = flare_card
                 }
             }
         end

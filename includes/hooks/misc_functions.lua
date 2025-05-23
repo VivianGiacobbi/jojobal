@@ -9,10 +9,10 @@ function loc_colour(_c, _default)
 	return G.ARGS.LOC_COLOURS[_c] or _default or G.C.UI.TEXT_DARK
 end
 
-function G.FUNCS.stand_restart()
+function G.FUNCS.jojobal_restart()
 	local settingsMatch = true
-	for k, v in pairs(stand_enabled) do
-		if v ~= stand_config[k] then
+	for k, v in pairs(jojobal_enabled) do
+		if v ~= jojobal_config[k] then
 			settingsMatch = false
 		end
 	end
@@ -44,7 +44,7 @@ end
 --------------------------- Stand Helper Functions
 ---------------------------
 
-function G.FUNCS.jojobal_preview_cardarea(preview_num)
+function G.FUNCS.jojobal_preview_cardarea(preview_num, scale)
 	local preview_cards = {}
 	local count = 0
 	local deck_size = #G.deck.cards
@@ -62,16 +62,17 @@ function G.FUNCS.jojobal_preview_cardarea(preview_num)
 		return nil
 	end
 
-
+	local scale = scale or 0.7
     local preview_area = CardArea(
             0, 0,
-            (math.min(card.ability.extra.preview, #preview_cards) * G.CARD_W)*0.55,
-            G.CARD_H*0.5,
-            {card_limit = #preview_cards, type = 'title', highlight_limit = 0, card_w = G.CARD_W*0.7}
+            (math.min(preview_num, #preview_cards) * G.CARD_W)*scale,
+            G.CARD_H*scale,
+            {card_limit = #preview_cards, type = 'title', highlight_limit = 0, card_w = G.CARD_W*scale}
     )
 
     for i=1, #preview_cards do
         local copied_card = copy_card(preview_cards[i], nil, nil, G.playing_card)
+		copied_card:hard_set_T(copied_card.T.x, copied_card.T.y, G.CARD_W*scale, G.CARD_H*scale)
         preview_area:emplace(copied_card)
     end
 

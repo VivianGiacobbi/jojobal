@@ -42,12 +42,14 @@ end
 function consumInfo.calculate(self, card, context)
     if context.individual and context.cardarea == G.play and not card.debuff then
         if context.other_card:get_id() == 14 or context.other_card:get_id() == 2 or context.other_card:get_id() == 3 then
+            local flare_card = context.blueprint_card or card
             return {
                 func = function()
-                    G.FUNCS.flare_stand_aura(context.blueprint_card or card, 0.50)
+                    G.FUNCS.flare_stand_aura(flare_card, 0.50)
                 end,
                 extra = {
-                    chips = card.ability.extra.chips
+                    chips = card.ability.extra.chips,
+                    card = flare_card
                 }
             }
         end

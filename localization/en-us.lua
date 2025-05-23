@@ -18,32 +18,42 @@ return {
 			}
 		},
 		dictionary = {
-			stand_credits_direct = "Direction",
-			stand_credits_artists = "Art",
-			stand_credits_coding = "Programming",
-			stand_credits_thanks = "Special Thanks",
-			stand_credits_shaders = "Graphics",
+			jojobal_credits_direct = "Direction",
+			jojobal_credits_artists = "Art",
+			jojobal_credits_coding = "Programming",
+			jojobal_credits_thanks = "Special Thanks",
+			jojobal_credits_shaders = "Graphics",
 
 			k_galaxy = "Galaxy",
 			k_galaxy_q = "Galaxy?",
 
-			stand_options_enableStands = 'Stands',
-			stand_options_enableWipItems = "WIP Items",
-			stand_options_enableConsumables = "Consumables",
-			stand_options_enableDecks = "Decks",
-			stand_options_enableVouchers = "Vouchers",
-			stand_options_enableTags = "Tags",
-			stand_options_sub = "(Restart required to apply)",
+			jojobal_options_enableStands = 'Stands',
+			jojobal_options_enableWipItems = "WIP Items",
+			jojobal_options_enableConsumables = "Consumables",
+			jojobal_options_enableDecks = "Decks",
+			jojobal_options_enableVouchers = "Vouchers",
+			jojobal_options_enableTags = "Tags",
+			jojobal_options_sub = "(Restart required to apply)",
 
 			-- stand related loc strings
-			k_stand_devolved = 'Devolved!',
+			k_stand_evolved = 'Evolved!',
 			k_echoes_recorded = 'Recorded!',
+			k_iamarock = "Rock!",
 			k_boing = "Boing!",
 			k_metal = "Metal!",
 			k_gold_exp = "Gold Experience!",
 			k_stone_free = "Stone Free!",
 			k_bsa = "Bigmouth Strikes Again!",
-			k_smooth_operators = "Modified!",
+			k_smooth_operators = "Dragged!",
+			k_soft_and_wet = "Stolen!",
+			k_bites_the_dust = "Bites the Dust!",
+			k_thehand = "Swipe!",
+			k_stand_stickers="Stand Stickers",
+		},
+		v_dictionary = {
+			a_multilevel = "Level Up X#1#!",
+			a_plus_discard = "+#1# Discard",
+			a_plus_hand = "+#1# Hand",
 		},
 	},
 	descriptions = {
@@ -88,7 +98,8 @@ return {
 			c_jojobal_stardust_tohth = {
 				name = "Tohth",
 				text = {
-					"{C:attention}Preview{} the top {C:attention}#1#{} cards in your deck{}",
+					"{C:attention}Preview{} the top {C:attention}#1#{}",
+					" cards in your deck{}",
 				},
 			},
 			c_jojobal_stardust_world = {
@@ -117,9 +128,8 @@ return {
 				text = {
 					"If {C:attention}first hand{} of round",
 					"has only {C:attention}#1#{} card, cards",
-					"with matching {C:attention}suit{} give",
+					"of {V:1}#4#{}#5# {C:attention}suit{} give",
 					"{C:mult}+#2#{} Mult when scored",
-					"{C:inactive}(Current suit:{} {V:1}#4#{}{C:inactive})",
 					"{s:0.1} {}",
 					"{C:stand}Evolves{} after {C:attention}#3#{} rounds",
 				},
@@ -127,13 +137,10 @@ return {
 			c_jojobal_diamond_echoes_2 = {
 				name = "Echoes ACT2",
 				text = {
-					"If {C:attention}first hand{} of round",
-					"has only {C:attention}#1#{} card, cards",
-					"with matching {C:attention}suit{} give",
-					"{C:mult}+#2#{} Mult when scored",
-					"The first {C:attention}non-matching{}",
-					"card turns into that suit",
-					"{C:inactive}(Current suit:{} {V:1}#4#{}{C:inactive})",
+					"If {C:attention}first hand{} of round has only",
+					"{C:attention}#1#{} card, the first {C:attention}scoring{} card",
+					"each hand becomes {V:1}#4#{}{C:attention}#5#{}",
+					"{V:1}#4#{}{C:attention}#6#{} give#7# {C:mult}+#2#{} Mult when scored",
 					"{s:0.1} {}",
 					"{C:stand}Evolves{} after {C:attention}#3#{} rounds",
 				},
@@ -153,21 +160,22 @@ return {
 					"Whenever you {C:attention}destroy{} a card,",
 					"gain {C:chips}+#1#{} hand this Ante {C:inactive}({C:chips}+#2#{C:inactive})",
 					"{s:0.1} {}",
-					"{C:stand}Evolves{} after destroying {C:attention}#3#{} cards {C:inactive}({C:attention}#4#{C:inactive}/#3#)"
+					"{C:stand}Evolves{} after destroying",
+					"{C:attention}#3#{} cards {C:inactive}({C:attention}#4#{C:inactive}/#3#)"
 				},
 			},
 			c_jojobal_diamond_killer_btd = {
 				name = "Killer Queen: Bites the Dust",
 				text = {
 					"After your {C:attention}last card{} is scored,",
-					"retrigger the others in {C:attention}reverse order{}"
+					"retrigger hand in {C:attention}reverse order{}"
 				},
 			},
 			c_jojobal_vento_gold = {
 				name = "Gold Experience",
 				text = {
-					"{C:green}#1# in #2#{} chance for scored {V:1}#3#{}",
-					"to become {C:attention}Gold Cards{}",
+					"{C:green}#1# in #2#{} chance for scored",
+					"{V:1}#3#{} to become {C:attention}Gold Cards{}",
 					"{s:0.1} {}",
 					"{C:stand}Evolves{} after using {C:tarot}The Arrow{}",
 				},
@@ -175,9 +183,8 @@ return {
 			c_jojobal_vento_gold_requiem = {
 				name = "Gold Experience Requiem",
 				text = {
-					"{C:green}#1# in #2#{} chance to {C:planet}level up{} played {C:attention}poker hand{}",
-					"{s:0.1} {}",
-					"Each scoring {C:attention}Gold Card{} increases odds by {C:green}#3#{}",
+					"{C:green}#1# in #2#{} chance per scoring {C:attention}Gold Card{}",
+					"to {C:planet}level up{} played {C:attention}poker hand{}",
 				},
 			},
 			c_jojobal_vento_moody = {
@@ -192,7 +199,8 @@ return {
 				text = {
 					"Played {C:attention}Jacks{} become {C:attention}Steel Cards{}",
 					"{s:0.1} {}",
-					"{C:attention}Steel Jacks{} act as {C:attention}Glass Cards{} when played",
+					"{C:attention}Steel Jacks{} act as",
+					"{C:attention}Glass Cards{} when scored",
 				},
 			},
 			c_jojobal_vento_epitaph = {
