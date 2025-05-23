@@ -79,5 +79,4 @@ function consumInfo.calculate(self, card, context)
     end
 end
 
-
 return consumInfo
