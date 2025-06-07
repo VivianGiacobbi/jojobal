@@ -50,7 +50,8 @@ function consumInfo.calculate(self, card, context)
             end
 
             if in_range then 
-                change_cards[#change_cards+1] = { card = unscored, mod = in_range}
+                SMODS.modify_rank(unscored, in_range, true)
+                change_cards[#change_cards+1] = unscored
                 G.E_MANAGER:add_event(Event({
                     trigger = 'after',
                     delay = 0.15,
@@ -72,7 +73,7 @@ function consumInfo.calculate(self, card, context)
             trigger = 'after',
             delay = 0.1,
             func = function()
-                SMODS.modify_rank(v.card, v.mod)
+                v:set_sprites(nil, G.P_CARDS[v.config.card_key])
                 return true 
             end
         }))
@@ -84,9 +85,9 @@ function consumInfo.calculate(self, card, context)
             trigger = 'after',
             delay = 0.25,
             func = function() 
-                v.card:flip()
+                v:flip()
                 play_sound('tarot2', 1, 0.6)
-                v.card:juice_up(0.3, 0.3)
+                v:juice_up(0.3, 0.3)
                 return true 
             end 
         }))

@@ -27,7 +27,7 @@ function consumInfo.calculate(self, card, context)
     if context.before and not card.debuff then
         local transformed = 0
         for _, v in ipairs(context.full_hand) do
-            if v:get_id() == 11 and v.ability.effect == "Base" then
+            if v.base.value == 'Jack' and v.ability.effect == 'Base' then
                 transformed = transformed + 1
                 v:set_ability(G.P_CENTERS.m_steel, nil, true)
                 G.E_MANAGER:add_event(Event({
@@ -52,7 +52,7 @@ function consumInfo.calculate(self, card, context)
     end
 
     if context.check_enhancement and not (context.other_card.area == G.deck or context.other_card.area == G.discard) then
-		if context.other_card:get_id() == 11 and context.other_card.config.center.key == 'm_steel' then
+		if context.other_card.config.center.key == 'm_steel' and context.other_card.base.value == 'Jack' then
             return {
                 ['m_glass'] = true,
             }
@@ -60,7 +60,7 @@ function consumInfo.calculate(self, card, context)
 	end
 
     if context.individual and context.cardarea == G.play and not card.debuff and not context.repetition then
-        if context.other_card:get_id() == 11 and context.other_card.config.center.key == 'm_steel' then
+        if context.other_card.config.center.key == 'm_steel'and context.other_card.base.value == 'Jack' then
             G.FUNCS.flare_stand_aura(card, 0.50)
         end
     end
