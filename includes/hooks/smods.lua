@@ -13,13 +13,17 @@ SMODS.Joker:take_ownership('j_perkeo', {
 	end,
 
 	calculate = function(self, card, context)
-		if not (context.ending_shop and context.cardarea == G.jokers) or #G.consumeables.cards < 1 then
-			return	
+		if not context.ending_shop or #G.consumeables.cards < 1 then
+			if not context.repetition then
+				return nil, true
+			end
+
+			return
 		end
 
 		local valid_consumeables = {}
 		for _, v in ipairs(G.consumeables.cards) do
-			if v.ability.consumeable and v.ability.set ~= 'Stand' then
+			if v.ability.set ~= 'Stand' then
 				valid_consumeables[#valid_consumeables+1] = v
 			end
 		end
@@ -35,5 +39,6 @@ SMODS.Joker:take_ownership('j_perkeo', {
 				end}))
 			card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {message = localize('k_duplicated_ex')})
 		end
+		return nil, true
 	end
 }, true)
