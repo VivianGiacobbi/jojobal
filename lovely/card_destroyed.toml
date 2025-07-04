@@ -3,7 +3,7 @@ version = "1.0.0"
 priority = 0
 
 #
-# Adds a central "fnwk_card_destroyed" context
+# Adds a central "jojobal_card_destroyed" context
 #
 
 # G.FUNCS.evaluate_play()

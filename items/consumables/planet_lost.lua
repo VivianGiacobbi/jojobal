@@ -12,7 +12,7 @@ end
 
 consumInfo.in_pool = function(self, args)
     if next(SMODS.find_card("c_jojobal_steel_tusk_4")) or next(SMODS.find_card('j_fnwk_plancks_jokestar')) then
-        return (G.GAME and G.GAME.hands and G.GAME.jojobal_FlushFibonacci.played > 0)
+        return (G.GAME and G.GAME.hands and G.GAME.hands.jojobal_FlushFibonacci.played > 0)
     end
 end
 

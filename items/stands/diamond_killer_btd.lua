@@ -19,15 +19,7 @@ function consumInfo.loc_vars(self, info_queue, card)
 end
 
 function consumInfo.in_pool(self, args)
-    if next(SMODS.find_card('j_showman')) then
-        return true
-    end
-
-    if G.GAME.used_jokers['c_jojobal_diamond_killer'] then
-        return false
-    end
-    
-    return true
+    return (not G.GAME.used_jokers['c_jojobal_diamond_killer'])
 end
 
 local get_btd = function()
@@ -65,14 +57,17 @@ function SMODS.calculate_main_scoring(context, scoring_hand)
 end
 
 function consumInfo.calculate(self, card, context)
-    if not context.blueprint and context.before then
+    if card.debuff then return end
+
+    if not context.blueprint and not context.retrigger_joker and context.before then
         card.ability.index = 0
     end
 
-    if not context.blueprint and context.individual and context.cardarea == G.play and not card.debuff then
+    if not context.retrigger_joker and not context.blueprint and context.individual and context.cardarea == G.play then
         card.ability.index = card.ability.index + 1
         if card.ability.index == #context.scoring_hand then
             return {
+                no_retrigger = true,
                 func = function()
                     G.FUNCS.flare_stand_aura(card, 0.50)
                 end,
@@ -82,6 +77,7 @@ function consumInfo.calculate(self, card, context)
             }
         elseif card.ability.index > #context.scoring_hand then
             return {
+                no_retrigger = true,
                 func = function()
                     G.FUNCS.flare_stand_aura(card, 0.50)
                 end,
@@ -89,7 +85,7 @@ function consumInfo.calculate(self, card, context)
         end
     end
 
-    if not context.blueprint and context.end_of_round and not context.individual then
+    if not context.retrigger_joker and not context.blueprint and context.end_of_round and context.main_eval then
         card.ability.index = 0
     end
 end

@@ -28,7 +28,7 @@ return {
 			k_galaxy_q = "Galaxy?",
 
 			jojobal_options_enableStands = 'Stands',
-			jojobal_options_enableWipItems = "WIP Items",
+			jojobal_options_enableJokers = 'Jokers',
 			jojobal_options_enableConsumables = "Consumables",
 			jojobal_options_enableDecks = "Decks",
 			jojobal_options_enableVouchers = "Vouchers",
@@ -48,15 +48,61 @@ return {
 			k_soft_and_wet = "Stolen!",
 			k_bites_the_dust = "Bites the Dust!",
 			k_thehand = "Swipe!",
-			k_stand_stickers="Stand Stickers",
+			k_stand_stickers = "Stand Stickers",
+			k_plus_hand = "+1 Hand",
 		},
 		v_dictionary = {
 			a_multilevel = "Level Up X#1#!",
 			a_plus_discard = "+#1# Discard",
-			a_plus_hand = "+#1# Hand",
 		},
 	},
 	descriptions = {
+		Joker = {
+			j_jojobal_jojo_gravity = {
+				name = "Gravity",
+				text = {
+					"This Joker gains {C:mult}+#1#{} Mult if",
+					"you own a {C:stand}Stand{} at start",
+					"of round and resets when a",
+					"a Stand is {C:attention}sold{} or {C:attention}destroyed{}",
+					"{C:inactive}(Currently {}{C:mult}+#2#{}{C:inactive} Mult{}{C:inactive}){}",
+				},
+			},
+			j_jojobal_jojo_jokerdrive = {
+				name = "Jokerdrive",
+				text = {
+					"{C:mult}+#1#{} Mult if you",
+					"do not have a {C:stand}Stand{}",
+				},
+			},
+			j_jojobal_jojo_photodad = {
+				name = "Photodad",
+				text = {
+					"When {C:attention}final hand{} of round",
+					"is played, create {C:tarot}The Arrow{}",
+					"{C:inactive}(Must have room)",
+				},
+			},
+			j_jojobal_jojo_no2 = {
+				name = "No. 2 Joker",
+				text = {
+					"All {C:stand}Stands{} retrigger",
+					"{C:inactive}(if applicable){}"
+				},
+			},
+			j_jojobal_jojo_sotw = {
+				name = "Stand of the Week",
+				text = {
+					"Gains {X:mult,C:white}X#1#{} Mult for every",
+					"{C:attention}unique{} {C:stand}Stand{} obtained this run",
+					"{C:inactive}(Currently {X:mult,C:white} X#2# {C:inactive} Mult)",
+				},
+				unlock = {
+					"Discover {E:1,C:attention}#1#{} {E:1,C:stand}Stands",
+					"{C:inactive}[#2#/#1#]",
+				},
+			},
+		},
 		Planet = {
 			c_jojobal_planet_whirlpool = {
 				name = "Whirlpool",
@@ -406,7 +452,7 @@ return {
 			},
 		},
 		Back = {
-			b_jojobal_disc = {
+			b_jojobal_stone_disc = {
 				name = "DISC Deck",
 				text = {
 					"Start with the",

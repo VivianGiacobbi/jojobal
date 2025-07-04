@@ -1,6 +1,14 @@
 local items_to_load = {	
+	Joker = {
+		'jojo_gravity',
+        'jojo_jokerdrive',
+        'jojo_photodad',
+        'jojo_no2',
+        'jojo_sotw',
+	},
+
 	Deck = {
-		'disc',
+		'stone_disc',
 	},
 
 	Consumable = {

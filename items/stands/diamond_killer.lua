@@ -25,13 +25,7 @@ function consumInfo.loc_vars(self, info_queue, card)
 end
 
 function consumInfo.in_pool(self, args)
-    if next(SMODS.find_card('j_showman')) then
-        return true
-    end
-    if G.GAME.used_jokers['c_jojobal_diamond_killer_btd'] then
-        return false
-    end
-    return true
+    return (not G.GAME.used_jokers['c_jojobal_diamond_killer_btd'])
 end
 
 function consumInfo.calculate(self, card, context)  
@@ -55,6 +49,7 @@ function consumInfo.calculate(self, card, context)
             card:juice_up()
             return true
         end }))
+        delay(0.65)
     end
 
     if context.setting_blind and card.ability.extra.hands > 0 then
@@ -71,9 +66,11 @@ function consumInfo.calculate(self, card, context)
         }
     end
 
-    if not context.blueprint and context.end_of_round and not context.individual and G.GAME.blind:get_type() == 'Boss' and card.ability.extra.hands > 0 then
+    if not context.blueprint and not context.retrigger_joker and context.end_of_round
+    and context.main_eval and G.GAME.blind:get_type() == 'Boss' and card.ability.extra.hands > 0 then
         card.ability.extra.hands = 0
         return {
+            no_retrigger = true,
             message = localize('k_reset'),
         }
     end

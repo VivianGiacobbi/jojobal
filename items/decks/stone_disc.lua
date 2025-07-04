@@ -24,7 +24,7 @@ function deckInfo.loc_vars(self, info_queue, card)
 end
 
 function deckInfo.apply(self, back)
-    G.GAME.unlimited_stands = true
+    G.GAME.modifiers.unlimited_stands = true
 end
 
 return deckInfo

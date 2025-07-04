@@ -24,10 +24,10 @@ local function dynamic_badges(info)
 
 		local strings = {
 			localize('ba_jojo'),
-			localize('ba_'..info.part)
+			info.part ~= 'jojo' and localize('ba_'..info.part) or nil
 		}
-		local badge_colour = SMODS.Gradients['stand_'..info.part] or HEX(G.arrow_badge_colours['co_'..info.part]) or G.C.STAND
-		local text_colour = HEX(G.arrow_badge_colours['te_'..info.part]) or G.C.WHITE
+		local badge_colour = info.part ~= 'jojo' and (SMODS.Gradients['jojobal_'..info.part] or HEX(G.arrow_badge_colours['co_'..info.part])) or G.C.STAND
+		local text_colour = info.part ~= 'jojo' and HEX(G.arrow_badge_colours['te_'..info.part]) or G.C.WHITE
 
 		for i = 1, #strings do
 			scale_fac[i] = calc_scale_fac(strings[i])

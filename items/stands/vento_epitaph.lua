@@ -33,10 +33,6 @@ function consumInfo.loc_vars(self, info_queue, card)
 end
 
 function consumInfo.in_pool(self, args)
-    if next(SMODS.find_card('j_showman')) then
-        return true
-    end
-    
     return (not G.GAME.used_jokers['c_jojobal_vento_epitaph_king'])
 end
 
@@ -48,6 +44,7 @@ function consumInfo.calculate(self, card, context)
             G.FUNCS.evolve_stand(card)
         else
             return {
+                no_retrigger = true,
                 message = card.ability.extra.evolve_skips..'/'..card.ability.extra.evolve_num,
                 colour = G.C.STAND
             }

@@ -1,6 +1,6 @@
 return {
 	['enableStands'] = true,
-	['enableWipStands'] = false,
+	['enableJokers'] = true,
 	['enableConsumables'] = true,
 	['enableDecks'] = true,
 	['enableVouchers'] = true,

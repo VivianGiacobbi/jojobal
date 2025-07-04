@@ -24,10 +24,6 @@ function consumInfo.loc_vars(self, info_queue, card)
 end
 
 function consumInfo.in_pool(self, args)
-    if next(SMODS.find_card('j_showman')) then
-        return true
-    end
-
     if G.GAME.used_jokers['c_jojobal_stone_white_moon']
     or G.GAME.used_jokers['c_jojobal_stone_white_heaven'] then
         return false
@@ -37,7 +33,7 @@ function consumInfo.in_pool(self, args)
 end
 
 function consumInfo.calculate(self, card, context)
-    if context.cardarea == G.play and context.repetition and not context.repetition_only then
+    if context.cardarea == G.play and context.repetition then
         if context.other_card:get_id() == 6 then
             if not context.blueprint and not context.retrigger_joker then
                 card.ability.extra.evolve_scores = card.ability.extra.evolve_scores + 1
@@ -61,6 +57,7 @@ function consumInfo.calculate(self, card, context)
             G.FUNCS.evolve_stand(card)
         else
             return {
+                no_retrigger = true,
                 message = localize{type='variable',key='a_remaining',vars={card.ability.extra.evolve_num - card.ability.extra.evolve_scores}},
                 colour = G.C.STAND
             }

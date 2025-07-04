@@ -85,17 +85,6 @@ function G.FUNCS.jojobal_preview_cardarea(preview_num, scale)
     }}
 end
 
-G.FUNCS.jojobal_add_chance = function(num, extra)
-	local multiply = extra and extra.multiply or false
-	local startAtOne = extra and extra.start_at_one or false
-	if multiply then
-		if G.GAME.probabilities and G.GAME.probabilities.normal then
-			return ((startAtOne and 1 or 0) + num) * G.GAME.probabilities.normal
-		end
-	end
-	return (startAtOne and 1 or 0) + num
-end
-
 
 
 
