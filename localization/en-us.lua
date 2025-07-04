@@ -377,7 +377,7 @@ return {
 				name = "D4C -Love Train-",
 				text = {
 					"All played {C:attention}Lucky Cards{}",
-					"always payout at least {C:attention}once{}",
+					"always trigger at least {C:attention}once{}",
 				},
 			},
 			c_jojobal_lion_soft = {
