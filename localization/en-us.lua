@@ -158,7 +158,8 @@ return {
 			c_jojobal_diamond_crazy = {
 				name = "Crazy Diamond",
 				text = {
-					"Played {C:attention}debuffed{} cards are {C:attention}healed{}",
+					"Played {C:attention}debuffed{} cards",
+					"are {C:attention}healed{}",
 				},
 			},
 			c_jojobal_diamond_hand = {
@@ -211,7 +212,10 @@ return {
 				},
 			},
 			c_jojobal_diamond_killer_btd = {
-				name = "Killer Queen: Bites the Dust",
+				name = {
+					"Killer Queen:",
+					"Bites the Dust",
+				},
 				text = {
 					"After your {C:attention}last card{} is scored,",
 					"retrigger hand in {C:attention}reverse order{}"
@@ -227,10 +231,14 @@ return {
 				},
 			},
 			c_jojobal_vento_gold_requiem = {
-				name = "Gold Experience Requiem",
+				name = {
+					"Gold Experience",
+					"Requiem",
+				},
 				text = {
-					"{C:green}#1# in #2#{} chance per scoring {C:attention}Gold Card{}",
-					"to {C:planet}level up{} played {C:attention}poker hand{}",
+					"{C:green}#1# in #2#{} chance per scoring",
+					"{C:attention}Gold Card{} to {C:planet}level up{}",
+					"played {C:attention}poker hand{}",
 				},
 			},
 			c_jojobal_vento_moody = {
@@ -265,10 +273,13 @@ return {
 				},
 			},
 			c_jojobal_vento_watchtower = {
-				name = "All Along The Watchtower",
+				name = {
+					"All Along The",
+					"Watchtower",
+				},
 				text = {
-					"{X:mult,C:white}X#1#{} Mult if deck is {C:attention}52{} cards,",
-					"{C:attention}2-A{} for each suit"
+					"{X:mult,C:white}X#1#{} Mult if deck is",
+					"{C:attention}52{} cards, {C:attention}2-A{} for each suit"
 				},
 			},
 			c_jojobal_stone_stone = {
@@ -303,7 +314,17 @@ return {
 					"{C:attention}Retrigger{} each played {C:attention}6{}",
 					"{C:attention}Retrigger{} each played {C:attention}Straight{}",
 					"{s:0.1} {}",
-					"{C:stand}Evolves{} after using {C:attention}#1#{} {C:tarot}The Moon{} cards",
+					"{C:dark_edition,s:0.8}The time for Heaven has almost come...",
+				},
+			},
+			c_jojobal_stone_white_moon_detailed = {
+				name = "C-MOON",
+				text = {
+					"{C:attention}Retrigger{} each played {C:attention}6{}",
+					"{C:attention}Retrigger{} each played {C:attention}Straight{}",
+					"{s:0.1} {}",
+					"{C:stand}Evolves{} after using",
+					"{C:attention}#1#{} {C:tarot}The Moon{} cards",
 				},
 			},
 			c_jojobal_stone_white_heaven = {
@@ -364,7 +385,10 @@ return {
 				},
 			},
 			c_jojobal_steel_d4c = {
-				name = "Dirty Deeds Done Dirt Cheap",
+				name = {
+					"Dirty Deeds Done",
+					"Dirt Cheap",
+				},
 				text = {
 					"Your first scored {C:attention}Pair{}",
 					"each round is {C:attention}destroyed{}",
@@ -377,27 +401,30 @@ return {
 				name = "D4C -Love Train-",
 				text = {
 					"All played {C:attention}Lucky Cards{}",
-					"always trigger at least {C:attention}once{}",
+					"always payout at least {C:attention}once{}",
 				},
 			},
 			c_jojobal_lion_soft = {
 				name = "Soft & Wet",
 				text = {
-					"Scoring {C:attention}Bonus{}/{C:attention}Mult Cards{}",
-					"lose their enhancements but",
+					"Scoring {C:attention}Bonus{} and {C:attention}Mult Cards{}",
+					"lose their {C:attention}Enhancements{} but",
 					"permanently gain {C:attention}half{} their",
-					"enhancements' bonuses",
+					"Chip and Mult bonuses",
 					"{s:0.1} {}",
 					"{C:stand}Evolves{} after playing a {C:attention}Secret Hand{}",
 				},
 			},
 			c_jojobal_lion_soft_beyond = {
-				name = "Soft & Wet: Go Beyond",
+				name = {
+					"Soft & Wet:",
+					"Go Beyond",
+				},
 				text = {
-					"Scoring {C:attention}Bonus{}/{C:attention}Mult Cards{}",
-					"lose their enhancements but",
-					"permanently gain {C:attention}all{} of",
-					"their enhancements' bonuses"
+					"Scoring {C:attention}Bonus{} and {C:attention}Mult Cards{}",
+					"lose their {C:attention}Enhancements{} but",
+					"permanently gain {C:attention}all{} their",
+					"Chip and Mult bonuses"
 				},
 			},
 			c_jojobal_lion_paper = {
@@ -446,8 +473,8 @@ return {
 				name = "Bigmouth Strikes Again",
 				text = {
 					"{C:attention}Flushes{} may be made with {C:attention}4{} cards",
-					"If a fifth is played with a different suit,",
-					"{C:attention}transform{} it into the {C:attention}Flush's suit{}",
+					"All additional cards or {C:attention}Wild Cards{} will",
+					"{C:attention}transform{} into the {C:attention}Flush's suit{}",
 				},
 			},
 		},
