@@ -100,6 +100,9 @@ current_mod.credits_tab = function()
 								{n=G.UIT.R, config={align = "tm", padding = 0.1}, nodes={
 									{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].keku, scale = text_scale*0.55, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
 								}},
+								{n=G.UIT.R, config={align = "tm", padding = 0.1}, nodes={
+									{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].vivi, scale = text_scale*0.55, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
+								}},
 							}},
 						}},
 					}},
