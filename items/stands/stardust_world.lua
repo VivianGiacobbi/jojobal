@@ -1,6 +1,6 @@
 local consumInfo = {
     name = "DIO's World",
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         stand_mask = true,
         aura_colors = { 'ce9c36DC' , 'ffd575DC' },
@@ -9,15 +9,20 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
-    alerted = true,
+    rarity = 'StandRarity',
     hasSoul = true,
-    part = 'stardust',
-    in_progress = true,
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'stardust',
+        },
+        custom_color = 'stardust'
+    },
+    blueprint_compat = true,
+    artist = 'gote',
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
     return { vars = { card.ability.extra.hand_mod, localize(G.GAME and G.GAME.wigsaw_suit or 'Spades', 'suits_plural'), colours = {G.C.SUITS[G.GAME and G.GAME.wigsaw_suit or 'Spades']} } }
 end
 
@@ -30,15 +35,19 @@ function consumInfo.calculate(self, card, context)
                 break
             end
         end
+
         if all then
+            local flare_card = context.blueprint_card or card
             ease_hands_played(card.ability.extra.hand_mod)
             return {
                 func = function()
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    ArrowAPI.stands.flare_aura(flare_card, 0.50)
                 end,
-                card = card,
-                message = localize{type = 'variable', key = 'a_hands', vars = {card.ability.extra.hand_mod}},
-                colour = G.C.BLUE
+                extra = {
+                    card = flare_card,
+                    message = localize{type = 'variable', key = 'a_hands', vars = {card.ability.extra.hand_mod}},
+                    colour = G.C.BLUE
+                }
             }
         end
     end

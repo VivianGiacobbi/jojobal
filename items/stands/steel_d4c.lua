@@ -1,48 +1,35 @@
 local consumInfo = {
     name = 'Dirty Deeds Done Dirt Cheap',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { 'f3b7f5DC', 'c77ecfDC' },
         stand_mask = true,
-        evolve_key = 'c_csau_steel_d4c_love',
+        evolve_key = 'c_jojobal_steel_d4c_love',
         extra = {
-            hands_played = {},
             evolve_num = 9,
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
-    alerted = true,
+    rarity = 'StandRarity',
     hasSoul = true,
-    part = 'steel',
-    in_progress = true,
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'steel',
+        },
+        custom_color = 'steel'
+    },
+    blueprint_compat = false,
+    artist = 'gote',
 }
-
-local function get_lucky()
-    if not G.playing_cards then return 0 end
-    local lucky = 0
-    for k, v in pairs(G.playing_cards) do
-        if v.ability.effect == "Lucky Card" then lucky = lucky+1 end
-    end
-    return lucky
-end
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_lucky
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
-    return {vars = {card.ability.extra.evolve_num, get_lucky()}}
+    return {vars = {card.ability.extra.evolve_num, ArrowAPI.game.get_enhanced_tally('m_lucky')}}
 end
 
 function consumInfo.in_pool(self, args)
-    if next(SMODS.find_card('j_showman')) then
-        return true
-    end
-
-    if G.GAME.used_jokers['c_csau_steel_d4c_love'] then
-        return false
-    end
-    
-    return true
+    return (not G.GAME.used_jokers['c_jojobal_steel_d4c_love'])
 end
 
 function consumInfo.add_to_deck(self, card)
@@ -50,42 +37,64 @@ function consumInfo.add_to_deck(self, card)
 end
 
 function consumInfo.calculate(self, card, context)
-    local bad_context = context.repetition or context.blueprint or context.individual or context.retrigger_joker
-    if context.before and not bad_context then
-        card.ability.extra.hands_played[context.scoring_name] = card.ability.extra.hands_played[context.scoring_name] or 0
-        card.ability.extra.hands_played[context.scoring_name] = card.ability.extra.hands_played[context.scoring_name] + 1
-    end
-    if context.destroying_card and not bad_context then
-        if context.scoring_name == "Pair" and card.ability.extra.hands_played[context.scoring_name] == 1 then
-            G.E_MANAGER:add_event(Event({
-                func = function()
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
-                    card:juice_up()
-                    return true
-                end
-            }))
-            return true
-        end
+    if context.end_of_round and context.main_eval and not context.retrigger_joker and not context.blueprint then
+        card.ability.extra.d4c_pair_this_round = nil
     end
 
-    if context.end_of_round and not bad_context then
-        card.ability.extra.hands_played = {}
+    if card.debuff then return end
+
+    if context.destroy_card and not context.retrigger_joker and not context.blueprint
+    and context.scoring_name == "Pair" and not card.ability.extra.d4c_pair_this_round then
+        card.ability.extra.d4c_pair_this_round = true
+        context.destroy_card.jojobal_removed_by_d4c = true
+        return {
+            no_retrigger = true,
+            remove = true
+        }
+    end
+
+    if context.remove_playing_cards and not context.retrigger_joker and not context.blueprint then
+        local valid_removes = 0
+        for _, v in ipairs(context.removed) do
+            if v.jojobal_removed_by_d4c then
+                valid_removes = valid_removes + 1
+            end
+        end
+
+        if valid_removes > 0 then
+            ArrowAPI.stands.flare_aura(card, 0.50)
+            G.E_MANAGER:add_event(Event({
+                func = (function()
+                    card:juice_up()
+                    play_sound('generic1')
+                    return true
+                end)
+            }))
+        end
     end
 end
 
+local ref_check_unlock = check_for_unlock
+function check_for_unlock(args)
+    local ret = ref_check_unlock(args)
 
-function consumInfo.update(self, card)
-    if card.area == nil or card.area.config.collection or card.area ~= G.consumeables then return end
-
-    if card.ability.d4c_evolve_queued then return end
-
-    if to_big(get_lucky()) >= to_big(card.ability.extra.evolve_num) then
-        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0, func = function()
-			check_for_unlock({ type = "evolve_d4c" })
-            card.ability.d4c_evolve_queued = true
-            G.FUNCS.csau_evolve_stand(card)
-        return true end}))
+    if args.type == 'modify_deck' then
+        local d4cs = SMODS.find_card('c_jojobal_steel_d4c')
+        local num_luckies = ArrowAPI.game.get_enhanced_tally('m_lucky')
+        for _, v in ipairs(d4cs) do
+            if to_big(num_luckies) >= to_big(v.ability.extra.evolve_num) then
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        check_for_unlock({ type = "evolve_d4c" })
+                        ArrowAPI.stands.evolve_stand(v)
+                        return true
+                    end
+                }))
+            end
+        end
     end
+
+    return ret
 end
 
 return consumInfo

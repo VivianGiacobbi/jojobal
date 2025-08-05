@@ -1,20 +1,18 @@
 local consumInfo = {
-    key = 'c_csau_planet_whirlpool',
-    prefix_config = false,
     name = 'Whirlpool',
     set = "Planet",
-    config = { hand_type = 'csau_Fibonacci' },
+    config = { hand_type = 'jojobal_Fibonacci' },
+    artist = 'gote',
 }
 
 consumInfo.loc_vars = function(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
     local hand = self.config.hand_type
     return { vars = {G.GAME.hands[hand].level,localize(hand, 'poker_hands'), G.GAME.hands[hand].l_mult, G.GAME.hands[hand].l_chips, colours = {(G.GAME.hands[hand].level==1 and G.C.UI.TEXT_DARK or G.C.HAND_LEVELS[math.min(7, G.GAME.hands[hand].level)])}} }
 end
 
 consumInfo.in_pool = function(self, args)
-    if next(SMODS.find_card("c_csau_steel_tusk_4")) or next(SMODS.find_card('j_fnwk_plancks_jokestar')) then
-        return (G.GAME and G.GAME.hands and G.GAME.csau_Fibonacci.played > 0)
+    if next(SMODS.find_card("c_jojobal_steel_tusk_4")) or next(SMODS.find_card('j_fnwk_plancks_jokestar')) then
+        return (G.GAME and G.GAME.hands and G.GAME.hands.jojobal_Fibonacci.played > 0)
     end
 end
 

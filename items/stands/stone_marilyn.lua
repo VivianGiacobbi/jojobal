@@ -1,6 +1,6 @@
 local consumInfo = {
     name = 'Marilyn Manson',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         stand_mask = true,
         aura_colors = { 'efac55DC', 'df7f32DC' },
@@ -10,15 +10,20 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
-    alerted = true,
+    rarity = 'StandRarity',
     hasSoul = true,
-    part = 'stone',
-    in_progress = true,
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'stone',
+        },
+        custom_color = 'stone'
+    },
+    blueprint_compat = false,
+    artist = 'gote',
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
     return {vars = {card.ability.extra.conv_money, card.ability.extra.conv_score * 100}}
 end
 
@@ -63,6 +68,7 @@ local debt_collection = function(card)
                 end
             end
         end
+
         if to_big((G.GAME.dollars + recoverable) - debt) < to_big(G.GAME.bankrupt_at) then
             if #G.playing_cards > 0 then
                 local pool = {}
@@ -102,8 +108,9 @@ local debt_collection = function(card)
 end
 
 function consumInfo.calculate(self, card, context)
-    local bad_context = context.repetition or context.blueprint or context.individual or context.retrigger_joker
-    if not context.blueprint_card and context.game_over and not bad_context then
+    if card.debuff then return end
+
+    if context.end_of_round and not context.blueprint and context.game_over and not context.retrigger_joker then
         local collect = debt_collection(card)
         if collect.saved then
             if collect.sell then
@@ -113,10 +120,12 @@ function consumInfo.calculate(self, card, context)
                     v:start_dissolve({G.C.GOLD})
                 end
             end
+            
             ease_dollars(collect.ease)
             return {
+                no_retrigger = true,
                 func = function()
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    ArrowAPI.stands.flare_aura(card, 0.50)
                     card:juice_up()
                     play_sound('tarot1')
                 end,

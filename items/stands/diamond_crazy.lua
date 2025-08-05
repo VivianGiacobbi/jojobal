@@ -1,21 +1,23 @@
 local consumInfo = {
     name = 'Crazy Diamond',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         stand_mask = true,
         aura_colors = { 'e099e8DC' , 'f5ccf4DC' },
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
-    alerted = true,
+    rarity = 'StandRarity',
     hasSoul = true,
-    part = 'diamond',
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'diamond',
+        },
+        custom_color = 'diamond'
+    },
     blueprint_compat = false,
+    artist = 'cejai',
 }
-
-function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.cejai } }
-end
 
 function consumInfo.calculate(self, card, context)
     if context.before and not card.debuff and not context.blueprint and not context.retrigger_joker then
@@ -35,12 +37,13 @@ function consumInfo.calculate(self, card, context)
          if activated then
              return {
                  func = function()
-                     card:juice_up()
-                     G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    ArrowAPI.stands.flare_aura(card, 0.50)
                  end,
-                 card = card,
-                 message = localize('k_cd_healed'),
-                 colour = G.C.STAND
+                 extra = {
+                    card = card,
+                    message = localize('k_cd_healed'),
+                    colour = G.C.STAND
+                 }
              }
          end
     end

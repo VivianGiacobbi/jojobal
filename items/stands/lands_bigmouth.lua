@@ -1,7 +1,6 @@
 local consumInfo = {
-    key = 'c_csau_lands_bigmouth',
     name = 'Bigmouth Strikes Again',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         aura_colors = { 'f3e2b5DC', 'd2caa4DC' },
         extra = {
@@ -10,33 +9,49 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'csau_StandRarity',
-    alerted = true,
+    rarity = 'StandRarity',
     hasSoul = true,
-    part = 'lands',
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'lands',
+        },
+        custom_color = 'lands'
+    },
     blueprint_compat = false,
+    artist = 'gote',
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.gote } }
     return { 
         vars = {
             card.ability.extra.hand_size,
             card.ability.extra.suit_count,
-            csau_format_display_number(card.ability.extra.hand_size, 'order')
+            ArrowAPI.string.format_number(card.ability.extra.hand_size, 'order')
         }
     }
 end
 
 function consumInfo.calculate(self, card, context)
-	if not context.before or #context.full_hand ~= card.ability.extra.hand_size or context.blueprint then return end
+	if not context.before or #context.full_hand ~= card.ability.extra.hand_size or context.blueprint or context.retrigger_joker then return end
 
     -- record flip cards and do initial flip
     if not next(context.poker_hands['Flush']) then return end
 
-    local target_key = context.poker_hands['Flush'][1][1].base.suit
+    local target_key = nil
+    for i, v in ipairs(context.poker_hands['Flush'][1]) do
+        if not SMODS.has_any_suit(v) then
+            target_key = v.base.suit
+            break
+        end
+    end
+
+    if not target_key then
+        target_key = pseudorandom_element(SMODS.Suits, pseudoseed('jojobal_bigmouth_randomsuit')).key
+    end
+
     local change_cards = {}
-    for k, v in pairs(context.full_hand) do
+    for i, v in ipairs(context.full_hand) do
         -- find any cards not of the target transform key to transform
         if v.base.suit ~= target_key then
             local change = v
@@ -60,7 +75,7 @@ function consumInfo.calculate(self, card, context)
 
     if #change_cards < 1 then return end
 
-    G.FUNCS.csau_flare_stand_aura(card, 0.5)
+    ArrowAPI.stands.flare_aura(card, 0.5)
     card_eval_status_text(card, 'extra', nil, nil, nil, {
         message = localize(target_key, 'suits_plural'),
         colour = G.C.SUITS[target_key]

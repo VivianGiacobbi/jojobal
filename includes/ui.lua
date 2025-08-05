@@ -7,40 +7,13 @@ SMODS.Atlas({
 })
 
 SMODS.current_mod.config_tab = function()
-	if G.has_csau then
-		return {
-			n = G.UIT.ROOT,
-			config = {
-				emboss = 0.05,
-				minh = 6,
-				r = 0.1,
-				minw = 10,
-				align = "cm",
-				padding = 0.05,
-				colour = G.C.BLACK,
-			},
-			nodes = {
-				{ n = G.UIT.R, config = { align = "cm", padding = 0.3 }, nodes = {
-					{n=G.UIT.T, config={text = "This Mod inherits from Cardsauce", scale = 0.5, shadow = true}},
-				}},
-				--{ n = G.UIT.B, config = { h = 0.2, w = 1 } },
-				{ n = G.UIT.R, config = { align = "cm" }, nodes = {
-					{n=G.UIT.T, config={text = "Disable Cardsauce to use Stand", scale = 0.5, shadow = true}},
-				}},
-				{ n = G.UIT.R, config = { align = "cm" }, nodes = {
-					{n=G.UIT.T, config={text = "content independently", scale = 0.5, shadow = true}},
-				}},s
-			}
-		}
-	end
-
-
 	local ordered_config = {
-		'enableStands',
-		'enableDecks',
-		'enableConsumables',
-		'enableVouchers',
-		'enableTags',
+		'enable_Stands',
+		'enable_Jokers',
+		'enable_Decks',
+		'enable_Consumables',
+		'enable_Vouchers',
+		'enable_Tags',
 	}
 	local left_settings = { n = G.UIT.C, config = { align = "tm" }, nodes = {} }
 	local right_settings = { n = G.UIT.C, config = { align = "tm" }, nodes = {} }
@@ -50,11 +23,11 @@ SMODS.current_mod.config_tab = function()
 	for i, k in ipairs(ordered_config) do
 		if right_count < left_count then
 			local main_node = create_toggle({
-				label = localize("stand_options_"..ordered_config[i]),
+				label = localize("jojobal_options_"..ordered_config[i]),
 				w = 1,
-				ref_table = stand_config,
+				ref_table = jojobal_config,
 				ref_value = ordered_config[i],
-				callback = G.FUNCS.stand_restart
+				callback = G.FUNCS.jojobal_restart
 			})
 			main_node.config.align = 'tr'
 			main_node.nodes[#main_node.nodes+1] = { n = G.UIT.C, config = { minw = 0.25, align = "cm" } }
@@ -62,11 +35,11 @@ SMODS.current_mod.config_tab = function()
 			right_count = right_count + 1
 		else
 			local main_node = create_toggle({
-				label = localize("stand_options_"..ordered_config[i]),
+				label = localize("jojobal_options_"..ordered_config[i]),
 				w = 1,
-				ref_table = stand_config,
+				ref_table = jojobal_config,
 				ref_value = ordered_config[i],
-				callback = G.FUNCS.stand_restart
+				callback = G.FUNCS.jojobal_restart
 			})
 			main_node.config.align = 'tr'
 			main_node.nodes[#main_node.nodes+1] = { n = G.UIT.C, config = { minw = 0.25, align = "cm" } }
@@ -75,7 +48,7 @@ SMODS.current_mod.config_tab = function()
 		end
 	end
 
-	local stand_config_ui = { n = G.UIT.R, config = { align = "tm", padding = 0.25 }, nodes = { left_settings, right_settings } }
+	local jojobal_config_ui = { n = G.UIT.R, config = { align = "tm", padding = 0.25 }, nodes = { left_settings, right_settings } }
 	return {
 		n = G.UIT.ROOT,
 		config = {
@@ -88,7 +61,7 @@ SMODS.current_mod.config_tab = function()
 			colour = G.C.BLACK,
 		},
 		nodes = {
-			stand_config_ui
+			jojobal_config_ui
 		}
 	}
 end
@@ -105,7 +78,8 @@ local coding_scale = 0.90
 local shader_scale = 0.9
 local text_scale = 0.98
 
-SMODS.current_mod.credits_tab = function()
+local current_mod = SMODS.current_mod
+current_mod.credits_tab = function()
 	chosen = true
 	return {n=G.UIT.ROOT, config={align = "cm", padding = 0.2, colour = G.C.BLACK, r = 0.1, emboss = 0.05, minh = 6, minw = 10}, nodes={
 		{n = G.UIT.C, config = { align = "tm", padding = 0.2 }, nodes = {
@@ -117,14 +91,14 @@ SMODS.current_mod.credits_tab = function()
 					{n=G.UIT.C, config={align = "cm", padding = 0}, nodes={
 						{n=G.UIT.R, config={align = "cm", padding = 0.1, minh = 6.2, outline_colour = G.C.JOKER_GREY, r = 0.1, outline = 1}, nodes={
 							{n=G.UIT.R, config={align = "cm", padding = 0.1}, nodes={
-								{n=G.UIT.T, config={text = localize('stand_credits_direct'), scale = header_scale * 0.6, colour = G.C.GOLD, shadow = true}},
+								{n=G.UIT.T, config={text = localize('jojobal_credits_direct'), scale = header_scale * 0.6, colour = G.C.GOLD, shadow = true}},
 							}},
 							{n=G.UIT.R, config={align = "cm", padding = 0}, nodes= {
 								{n=G.UIT.R, config={align = "tm", padding = 0.1}, nodes={
-									{n=G.UIT.T, config={text = G.stands_mod_team.gote, scale = text_scale*0.55, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
+									{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].gote, scale = text_scale*0.55, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
 								}},
 								{n=G.UIT.R, config={align = "tm", padding = 0.1}, nodes={
-									{n=G.UIT.T, config={text = G.stands_mod_team.keku, scale = text_scale*0.55, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
+									{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].keku, scale = text_scale*0.55, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
 								}},
 							}},
 						}},
@@ -133,39 +107,39 @@ SMODS.current_mod.credits_tab = function()
 				{n=G.UIT.C, config={align = "tm", padding = 0.1, r = 0.1}, nodes= {
 					{ n = G.UIT.C, config = { align = "cm", padding = 0.1 * bonus_padding, minh = 6.140, outline_colour = G.C.JOKER_GREY, r = 0.1, outline = 1 }, nodes = {
 						{ n = G.UIT.R, config = { align = "cm", padding = 0 }, nodes = {
-							{ n = G.UIT.T, config = { text = localize('stand_credits_artists'), scale = header_scale * 0.6, colour = HEX('f75294'), shadow = true } },
+							{ n = G.UIT.T, config = { text = localize('jojobal_credits_artists'), scale = header_scale * 0.6, colour = HEX('f75294'), shadow = true } },
 						}},
 						{n=G.UIT.R, config={align = "tm", padding = 0}, nodes={
 							{n=G.UIT.C, config={align = "tl", padding = 0}, nodes={
 								{ n = G.UIT.R, config = { align = "tm", padding = artist_padding }, nodes = {
-									{ n = G.UIT.T, config = { text = G.stands_mod_team.gote, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
+									{ n = G.UIT.T, config = { text = ArrowAPI.credits[current_mod.id].gote, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
 								} },
 								{ n = G.UIT.R, config = { align = "tm", padding = artist_padding }, nodes = {
-									{ n = G.UIT.T, config = { text = G.stands_mod_team.cejai, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
+									{ n = G.UIT.T, config = { text = ArrowAPI.credits[current_mod.id].cejai, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
 								} },
 								{ n = G.UIT.R, config = { align = "tm", padding = artist_padding }, nodes = {
-									{ n = G.UIT.T, config = { text = G.stands_mod_team.keku, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
+									{ n = G.UIT.T, config = { text = ArrowAPI.credits[current_mod.id].keku, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
 								} },
 								{ n = G.UIT.R, config = { align = "tm", padding = artist_padding }, nodes = {
-									{ n = G.UIT.T, config = { text = G.stands_mod_team.guff, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
+									{ n = G.UIT.T, config = { text = ArrowAPI.credits[current_mod.id].guff, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
 								} },
 								{ n = G.UIT.R, config = { align = "tm", padding = artist_padding }, nodes = {
-									{ n = G.UIT.T, config = { text = G.stands_mod_team.wario, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
+									{ n = G.UIT.T, config = { text = ArrowAPI.credits[current_mod.id].wario, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
 								} },
 								{ n = G.UIT.R, config = { align = "tm", padding = artist_padding }, nodes = {
-									{ n = G.UIT.T, config = { text = G.stands_mod_team.cauthen, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
+									{ n = G.UIT.T, config = { text = ArrowAPI.credits[current_mod.id].cauthen, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
 								} },
 								{ n = G.UIT.R, config = { align = "tm", padding = artist_padding }, nodes = {
-									{ n = G.UIT.T, config = { text = G.stands_mod_team.chvsau, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
+									{ n = G.UIT.T, config = { text = ArrowAPI.credits[current_mod.id].chvsau, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
 								} },
 								{ n = G.UIT.R, config = { align = "tm", padding = artist_padding }, nodes = {
-									{ n = G.UIT.T, config = { text = G.stands_mod_team.dolos, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
+									{ n = G.UIT.T, config = { text = ArrowAPI.credits[current_mod.id].dolos, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
 								} },
 								{ n = G.UIT.R, config = { align = "tm", padding = artist_padding }, nodes = {
-									{ n = G.UIT.T, config = { text = G.stands_mod_team.stup, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
+									{ n = G.UIT.T, config = { text = ArrowAPI.credits[current_mod.id].stup, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
 								} },
 								{ n = G.UIT.R, config = { align = "tm", padding = artist_padding }, nodes = {
-									{ n = G.UIT.T, config = { text = G.stands_mod_team.reda, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
+									{ n = G.UIT.T, config = { text = ArrowAPI.credits[current_mod.id].reda, scale = text_scale * artist_size, colour = G.C.UI.TEXT_LIGHT, shadow = true } },
 								} },
 							}},
 						}},
@@ -176,20 +150,20 @@ SMODS.current_mod.credits_tab = function()
 						{n=G.UIT.R, config={align = "tm", padding = 0}, nodes={
 							{n=G.UIT.C, config={align = "cm", padding = 0.1*bonus_padding,outline_colour = G.C.JOKER_GREY, r = 0.1, outline = 1}, nodes={
 								{n=G.UIT.R, config={align = "cm", padding = 0}, nodes={
-									{n=G.UIT.T, config={text = localize('stand_credits_coding'), scale = header_scale*0.6, colour = G.C.ORANGE, shadow = true}},
+									{n=G.UIT.T, config={text = localize('jojobal_credits_coding'), scale = header_scale*0.6, colour = G.C.ORANGE, shadow = true}},
 								}},
 								{n=G.UIT.R, config={align = "cm", padding = 0}, nodes= {
 									{n=G.UIT.R, config={align = "tm", padding = 0.05}, nodes={
-										{n=G.UIT.T, config={text = G.stands_mod_team.gote, scale = text_scale*0.44*coding_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
+										{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].gote, scale = text_scale*0.44*coding_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
 									}},
 									{n=G.UIT.R, config={align = "tm", padding = 0.05}, nodes={
-										{n=G.UIT.T, config={text = G.stands_mod_team.keku, scale = text_scale*0.45*coding_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
+										{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].keku, scale = text_scale*0.45*coding_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
 									}},
 									{n=G.UIT.R, config={align = "tm", padding = 0.05}, nodes={
-										{n=G.UIT.T, config={text = G.stands_mod_team.winter, scale = text_scale*0.45*coding_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
+										{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].winter, scale = text_scale*0.45*coding_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
 									}},
 									{n=G.UIT.R, config={align = "tm", padding = 0.05}, nodes={
-										{n=G.UIT.T, config={text = G.stands_mod_team.eremel, scale = text_scale*0.45*coding_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
+										{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].eremel, scale = text_scale*0.45*coding_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
 									}},
 								}},
 							}},
@@ -201,14 +175,14 @@ SMODS.current_mod.credits_tab = function()
 							{n=G.UIT.C, config={align = "tl", padding = 0}, nodes={
 								{n=G.UIT.R, config={align = "cm", padding = 0.1, minh = 3.9, outline_colour = G.C.JOKER_GREY, r = 0.1, outline = 1}, nodes={
 									{n=G.UIT.R, config={align = "cm", padding = 0}, nodes={
-										{n=G.UIT.T, config={text = localize('stand_credits_shaders'), scale = header_scale * 0.515, colour = G.C.DARK_EDITION, shadow = true}},
+										{n=G.UIT.T, config={text = localize('jojobal_credits_shaders'), scale = header_scale * 0.515, colour = G.C.DARK_EDITION, shadow = true}},
 									}},
 									{n=G.UIT.R, config={align = "cm", padding = support_padding}, nodes= {
 										{n=G.UIT.R, config={align = "tm", padding = 0.05}, nodes={
-											{n=G.UIT.T, config={text = G.stands_mod_team.gameboy, scale = text_scale*0.55*shader_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
+											{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].gameboy, scale = text_scale*0.55*shader_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
 										}},
 										{n=G.UIT.R, config={align = "tm", padding = 0.05}, nodes={
-											{n=G.UIT.T, config={text = G.stands_mod_team.winter, scale = text_scale*0.55*shader_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
+											{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].winter, scale = text_scale*0.55*shader_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
 										}},
 									}},
 								}},
@@ -221,15 +195,15 @@ SMODS.current_mod.credits_tab = function()
 						}},
 						{n=G.UIT.R, config={align = "tm", padding = 0.1,outline_colour = G.C.JOKER_GREY, r = 0.1, outline = 1, minh=2}, nodes={
 							{n=G.UIT.R, config={align = "cm", padding = 0.1}, nodes={
-								{n=G.UIT.T, config={text = localize('stand_credits_thanks'), scale = header_scale*0.55, colour = G.C.GREEN, shadow = true}},
+								{n=G.UIT.T, config={text = localize('jojobal_credits_thanks'), scale = header_scale*0.55, colour = G.C.GREEN, shadow = true}},
 							}},
 							{n=G.UIT.R, config={align = "cm", padding = 0}, nodes={
 								{n=G.UIT.C, config={align = "cm", padding = 0}, nodes={
 									{n=G.UIT.R, config={align = "cm", padding = special_thanks_padding}, nodes={
-										{n=G.UIT.T, config={text = G.stands_mod_team.araki, scale = text_scale*0.45*special_thanks_mod, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
+										{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].araki, scale = text_scale*0.45*special_thanks_mod, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
 									}},
 									{n=G.UIT.R, config={align = "cm", padding = special_thanks_padding}, nodes={
-										{n=G.UIT.T, config={text = G.stands_mod_team.luckyland, scale = text_scale*0.45*special_thanks_mod, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
+										{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].luckyland, scale = text_scale*0.45*special_thanks_mod, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
 									}},
 								}},
 							}},

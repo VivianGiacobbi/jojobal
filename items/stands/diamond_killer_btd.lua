@@ -1,40 +1,34 @@
 local consumInfo = {
     name = 'Killer Queen: Bites the Dust',
-    set = 'csau_Stand',
+    set = 'Stand',
     config = {
         stand_mask = true,
         evolved = true,
         aura_colors = { '151590DC', '5f277dDC' },
     },
     cost = 10,
-    rarity = 'csau_EvolvedRarity',
-    alerted = true,
+    rarity = 'EvolvedRarity',
     hasSoul = true,
-    part = 'diamond',
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'diamond',
+        },
+        custom_color = 'diamond'
+    },
     blueprint_compat = false,
+    artist = 'guff',
+    coder = 'eremel'
 }
 
-function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "csau_artistcredit", set = "Other", vars = { G.stands_mod_team.guff } }
-    info_queue[#info_queue+1] = {key = "codercredit", set = "Other", vars = { G.stands_mod_team.eremel } }
-end
-
 function consumInfo.in_pool(self, args)
-    if next(SMODS.find_card('j_showman')) then
-        return true
-    end
-
-    if G.GAME.used_jokers['c_csau_diamond_killer'] then
-        return false
-    end
-    
-    return true
+    return (not G.GAME.used_jokers['c_jojobal_diamond_killer'])
 end
 
 local get_btd = function()
     if not G.consumeables then return false end
     for i, v in ipairs(G.consumeables.cards) do
-        if v.config.center.key == 'c_csau_diamond_killer_btd' then
+        if v.config.center.key == 'c_jojobal_diamond_killer_btd' then
             return true
         end
     end
@@ -66,16 +60,19 @@ function SMODS.calculate_main_scoring(context, scoring_hand)
 end
 
 function consumInfo.calculate(self, card, context)
-    if not context.blueprint and context.before then
+    if card.debuff then return end
+
+    if not context.blueprint and not context.retrigger_joker and context.before then
         card.ability.index = 0
     end
 
-    if not context.blueprint and context.individual and context.cardarea == G.play and not card.debuff then
+    if not context.retrigger_joker and not context.blueprint and context.individual and context.cardarea == G.play then
         card.ability.index = card.ability.index + 1
         if card.ability.index == #context.scoring_hand then
             return {
+                no_retrigger = true,
                 func = function()
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    ArrowAPI.stands.flare_aura(card, 0.50)
                 end,
                 message = localize('k_bites_the_dust'),
                 colour = G.C.STAND,
@@ -83,14 +80,15 @@ function consumInfo.calculate(self, card, context)
             }
         elseif card.ability.index > #context.scoring_hand then
             return {
+                no_retrigger = true,
                 func = function()
-                    G.FUNCS.csau_flare_stand_aura(card, 0.38)
+                    ArrowAPI.stands.flare_aura(card, 0.50)
                 end,
             }
         end
     end
 
-    if not context.blueprint and context.end_of_round and not context.individual then
+    if not context.retrigger_joker and not context.blueprint and context.end_of_round and context.main_eval then
         card.ability.index = 0
     end
 end

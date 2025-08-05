@@ -1,179 +1,110 @@
 return {
 	misc = {
 		poker_hands = {
-			csau_Fibonacci = 'Fibonacci',
-			csau_FlushFibonacci = 'Flush Fib',
+			jojobal_Fibonacci = 'Fibonacci',
+			jojobal_FlushFibonacci = 'Flush Fibonacci',
 		},
 		poker_hand_descriptions = {
-			csau_Fibonacci = {
-				'5 cards that follow the Fibonacci sequence',
+			jojobal_Fibonacci = {
+				"5 cards that make a Fibonacci sequence",
+				"(each card's rank is the sum of the",
+				"two ranks that precede it)"
 			},
-			csau_FlushFibonacci = {
-				"5 cards that follow the Fibonacci sequence",
-				"with all cards sharing the same suit",
+			jojobal_FlushFibonacci = {
+				"5 cards making a Fibonacci sequence",
+				"(each card's rank is the sum of the",
+				"two ranks that precede it), with",
+				"all cards sharing the same suit",
 			}
 		},
-		labels = {
-			csau_stand = "Stands",
-		},
 		dictionary = {
-			stand_credits_direct = "Direction",
-			stand_credits_artists = "Art",
-			stand_credits_coding = "Programming",
-			stand_credits_thanks = "Special Thanks",
-			stand_credits_shaders = "Graphics",
+			jojobal_credits_direct = "Direction",
+			jojobal_credits_artists = "Art",
+			jojobal_credits_coding = "Programming",
+			jojobal_credits_thanks = "Special Thanks",
+			jojobal_credits_shaders = "Graphics",
 
 			k_galaxy = "Galaxy",
 			k_galaxy_q = "Galaxy?",
 
-			k_csau_stand = "Stand",
-			b_csau_stand_cards = "Stands",
-			k_csau_evolved = "Evolved Stand",
-			b_csau_evolved_cards = "Evolved Stands",
-			k_stand_stickers = "Stand Stickers",
-
-			stand_options_enableStands = 'Stands',
-			stand_options_enableWipItems = "WIP Items",
-			stand_options_enableConsumables = "Consumables",
-			stand_options_enableDecks = "Decks",
-			stand_options_enableVouchers = "Vouchers",
-			stand_options_enableTags = "Tags",
-			stand_options_sub = "(Restart required to apply)",
-
-			-- badges
-			ba_jojo = "JoJo's Bizarre Adventure",
-			ba_phantom = 'Phantom Blood',
-			ba_battle = 'Battle Tendency',
-			ba_stardust = 'Stardust Crusaders',
-			ba_diamond = 'Diamond is Unbreakable',
-			ba_vento = 'Golden Wind',
-			ba_feedback = 'Purple Haze Feedback',
-			ba_stone = 'Stone Ocean',
-			ba_steel = 'Steel Ball Run',
-			ba_lion = 'JoJolion',
-			ba_lands = 'The JOJOLands',
-			
+			jojobal_options_enable_Stands = 'Stands',
+			jojobal_options_enable_Jokers = 'Jokers',
+			jojobal_options_enable_Consumables = "Consumables",
+			jojobal_options_enable_Decks = "Decks",
+			jojobal_options_enable_Vouchers = "Vouchers",
+			jojobal_options_enable_Tags = "Tags",
+			jojobal_options_sub = "(Restart required to apply)",
 
 			-- stand related loc strings
 			k_stand_evolved = 'Evolved!',
-			k_stand_devolved = 'Devolved!',
 			k_echoes_recorded = 'Recorded!',
+			k_iamarock = "Rock!",
 			k_boing = "Boing!",
 			k_metal = "Metal!",
 			k_gold_exp = "Gold Experience!",
 			k_stone_free = "Stone Free!",
 			k_bsa = "Bigmouth Strikes Again!",
-			k_smooth_operators = "Modified!",
+			k_smooth_operators = "Dragged!",
+			k_soft_and_wet = "Stolen!",
+			k_bites_the_dust = "Bites the Dust!",
+			k_thehand = "Swipe!",
+			k_stand_stickers = "Stand Stickers",
+			k_plus_hand = "+1 Hand",
+		},
+		v_dictionary = {
+			a_multilevel = "Level Up X#1#!",
+			a_plus_discard = "+#1# Discard",
 		},
 	},
 	descriptions = {
-		Other = {
-			white_sticker={
-				name="White Sticker",
-				text={
-					"Used this #1#",
-					"to win on {C:attention}White",
-					"{C:attention}Stake{} difficulty",
-				},
-			},
-			red_sticker={
-				name="Red Sticker",
-				text={
-					"Used this #1#",
-					"to win on {C:attention}Red",
-					"{C:attention}Stake{} difficulty",
-				},
-			},
-			green_sticker={
-				name="Green Sticker",
-				text={
-					"Used this #1#",
-					"to win on {C:attention}Green",
-					"{C:attention}Stake{} difficulty",
-				},
-			},
-			black_sticker={
-				name="Black Sticker",
-				text={
-					"Used this #1#",
-					"to win on {C:attention}Black",
-					"{C:attention}Stake{} difficulty",
-				},
-			},
-			blue_sticker={
-				name="Blue Sticker",
-				text={
-					"Used this #1#",
-					"to win on {C:attention}Blue",
-					"{C:attention}Stake{} difficulty",
-				},
-			},
-			purple_sticker={
-				name="Purple Sticker",
-				text={
-					"Used this #1#",
-					"to win on {C:attention}Purple",
-					"{C:attention}Stake{} difficulty",
-				},
-			},
-			orange_sticker={
-				name="Orange Sticker",
-				text={
-					"Used this #1#",
-					"to win on {C:attention}Orange",
-					"{C:attention}Stake{} difficulty",
-				},
-			},
-			gold_sticker={
-				name="Gold Sticker",
-				text={
-					"Used this #1#",
-					"to win on {C:attention}Gold",
-					"{C:attention}Stake{} difficulty",
-				},
-			},
-			undiscovered_csau_stand = {
-				name = "Not Discovered",
+		Joker = {
+			j_jojobal_jojo_gravity = {
+				name = "Gravity",
 				text = {
-					"Purchase this card in",
-					"an unseeded run to",
-					"learn what it does",
+					"This Joker gains {C:mult}+#1#{} Mult if",
+					"you own a {C:stand}Stand{} at start",
+					"of round and resets when a",
+					"a Stand is {C:attention}sold{} or {C:attention}destroyed{}",
+					"{C:inactive}(Currently {}{C:mult}+#2#{}{C:inactive} Mult{}{C:inactive}){}",
 				},
 			},
-			csau_stand_info = {
-				name = "Stand Limit",
+			j_jojobal_jojo_jokerdrive = {
+				name = "Jokerdrive",
 				text = {
-					"You can only",
-					"have {C:attention}#1#{} {C:stand}#2#{}",
-					"at a time",
+					"{C:mult}+#1#{} Mult if you",
+					"do not have a {C:stand}Stand{}",
 				},
 			},
-			csau_stand_info_unlimited = {
-				name = "Stand Limit",
+			j_jojobal_jojo_photodad = {
+				name = "Photodad",
 				text = {
-					"You can have",
-					"as many {C:stand}Stands{}",
-					"as you have",
-					"consumable slots"
+					"When {C:attention}final hand{} of round",
+					"is played, create {C:tarot}The Arrow{}",
+					"{C:inactive}(Must have room)",
 				},
 			},
-
-			csau_artistcredit = {
-				name = "Artist",
+			j_jojobal_jojo_no2 = {
+				name = "No. 2 Joker",
 				text = {
-					"{E:1}#1#{}"
+					"All {C:stand}Stands{} retrigger",
+					"{C:inactive}(if applicable){}"
 				},
 			},
-			csau_artistcredit_2 = {
-				name = "Artists",
+			j_jojobal_jojo_sotw = {
+				name = "Stand of the Week",
 				text = {
-					"{E:1}#1#{}",
-					"{E:1}#2#{}"
+					"Gains {X:mult,C:white}X#1#{} Mult for every",
+					"{C:attention}unique{} {C:stand}Stand{} obtained this run",
+					"{C:inactive}(Currently {X:mult,C:white} X#2# {C:inactive} Mult)",
+				},
+				unlock = {
+					"Discover {E:1,C:attention}#1#{} {E:1,C:stand}Stands",
+					"{C:inactive}[#2#/#1#]",
 				},
 			},
 		},
 		Planet = {
-			c_csau_planet_whirlpool = {
+			c_jojobal_planet_whirlpool = {
 				name = "Whirlpool",
 				text = {
 					"{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Level up",
@@ -182,7 +113,7 @@ return {
 					"{C:chips}+#4#{} chips",
 				}
 			},
-			c_csau_planet_lost = {
+			c_jojobal_planet_lost = {
 				name = "Lost Galaxy",
 				text = {
 					"{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Level up",
@@ -192,17 +123,8 @@ return {
 				}
 			},
 		},
-		Tarot = {
-			c_csau_tarot_arrow = {
-				name = "The Arrow",
-				text = {
-					"Create a random {C:stand}Stand{}",
-					"{C:inactive}(Must have room){}",
-				}
-			},
-		},
 		Spectral = {
-			c_csau_spec_stone = {
+			c_jojobal_spec_mask = {
 				name = "Stone Mask",
 				text = {
 					"Add {C:dark_edition}Holographic{} and {C:attention}Eternal{}",
@@ -210,43 +132,37 @@ return {
 					"existing {C:dark_edition}editions{} and {C:attention}stickers{}"
 				}
 			},
-			c_csau_spec_diary = {
-				name = "The Diary",
-				text = {
-					"Create a random",
-					"{C:stand}Evolved Stand{}",
-					"{C:inactive}(Must have room){}",
-				}
-			},
 		},
-		csau_Stand = {
-			c_csau_stardust_star = {
+		Stand = {
+			c_jojobal_stardust_star = {
 				name = "Star Platinum",
 				text = {
 					"If {C:attention}first hand{} of round",
 					"is all {V:1}#2#{}, gain {C:blue}+1{} Hand",
 				},
 			},
-			c_csau_stardust_tohth = {
+			c_jojobal_stardust_tohth = {
 				name = "Tohth",
 				text = {
-					"{C:attention}Preview{} the top {C:attention}#1#{} cards in your deck{}",
+					"{C:attention}Preview{} the top {C:attention}#1#{}",
+					" cards in your deck{}",
 				},
 			},
-			c_csau_stardust_world = {
+			c_jojobal_stardust_world = {
 				name = "DIO's World",
 				text = {
 					"If {C:attention}first hand{} of round",
 					"is all {V:1}#2#{}, gain {C:blue}+1{} Hand",
 				},
 			},
-			c_csau_diamond_crazy = {
+			c_jojobal_diamond_crazy = {
 				name = "Crazy Diamond",
 				text = {
-					"Played {C:attention}debuffed{} cards are {C:attention}healed{}",
+					"Played {C:attention}debuffed{} cards",
+					"are {C:attention}healed{}",
 				},
 			},
-			c_csau_diamond_hand = {
+			c_jojobal_diamond_hand = {
 				name = "The Hand",
 				text = {
 					"Whenever a card is {C:attention}destroyed{},",
@@ -254,33 +170,29 @@ return {
 					"{C:attention}rank{}, {C:attention}suit{}, and {C:attention}enhancement{}",
 				},
 			},
-			c_csau_diamond_echoes_1 = {
+			c_jojobal_diamond_echoes_1 = {
 				name = "Echoes ACT1",
 				text = {
 					"If {C:attention}first hand{} of round",
 					"has only {C:attention}#1#{} card, cards",
-					"with matching {C:attention}suit{} give",
+					"of {V:1}#4#{}#5# {C:attention}suit{} give",
 					"{C:mult}+#2#{} Mult when scored",
-					"{C:inactive}(Current suit:{} {V:1}#4#{}{C:inactive})",
 					"{s:0.1} {}",
 					"{C:stand}Evolves{} after {C:attention}#3#{} rounds",
 				},
 			},
-			c_csau_diamond_echoes_2 = {
+			c_jojobal_diamond_echoes_2 = {
 				name = "Echoes ACT2",
 				text = {
-					"If {C:attention}first hand{} of round",
-					"has only {C:attention}#1#{} card, cards",
-					"with matching {C:attention}suit{} give",
-					"{C:mult}+#2#{} Mult when scored",
-					"The first {C:attention}non-matching{}",
-					"card turns into that suit",
-					"{C:inactive}(Current suit:{} {V:1}#4#{}{C:inactive})",
+					"If {C:attention}first hand{} of round has only",
+					"{C:attention}#1#{} card, the first {C:attention}scoring{} card",
+					"each hand becomes {V:1}#4#{}{C:attention}#5#{}",
+					"{V:1}#4#{}{C:attention}#6#{} give#7# {C:mult}+#2#{} Mult when scored",
 					"{s:0.1} {}",
 					"{C:stand}Evolves{} after {C:attention}#3#{} rounds",
 				},
 			},
-			c_csau_diamond_echoes_3 = {
+			c_jojobal_diamond_echoes_3 = {
 				name = "Echoes ACT3",
 				text = {
 					"If played hand contains a {C:attention}Flush{}",
@@ -289,55 +201,63 @@ return {
 					"and give {X:mult,C:white}X#2#{} Mult when scored",
 				},
 			},
-			c_csau_diamond_killer = {
+			c_jojobal_diamond_killer = {
 				name = "Killer Queen",
 				text = {
 					"Whenever you {C:attention}destroy{} a card,",
 					"gain {C:chips}+#1#{} hand this Ante {C:inactive}({C:chips}+#2#{C:inactive})",
 					"{s:0.1} {}",
-					"{C:stand}Evolves{} after destroying {C:attention}#3#{} cards {C:inactive}({C:attention}#4#{C:inactive}/#3#)"
+					"{C:stand}Evolves{} after destroying",
+					"{C:attention}#3#{} cards {C:inactive}({C:attention}#4#{C:inactive}/#3#)"
 				},
 			},
-			c_csau_diamond_killer_btd = {
-				name = "Killer Queen: Bites the Dust",
+			c_jojobal_diamond_killer_btd = {
+				name = {
+					"Killer Queen:",
+					"Bites the Dust",
+				},
 				text = {
 					"After your {C:attention}last card{} is scored,",
-					"retrigger the others in {C:attention}reverse order{}"
+					"retrigger hand in {C:attention}reverse order{}"
 				},
 			},
-			c_csau_vento_gold = {
+			c_jojobal_vento_gold = {
 				name = "Gold Experience",
 				text = {
-					"{C:green}#1# in #2#{} chance for scored {V:1}#3#{}",
-					"to become {C:attention}Gold Cards{}",
+					"{C:green}#1# in #2#{} chance for scored",
+					"{V:1}#3#{} to become {C:attention}Gold Cards{}",
 					"{s:0.1} {}",
 					"{C:stand}Evolves{} after using {C:tarot}The Arrow{}",
 				},
 			},
-			c_csau_vento_gold_requiem = {
-				name = "Gold Experience Requiem",
+			c_jojobal_vento_gold_requiem = {
+				name = {
+					"Gold Experience",
+					"Requiem",
+				},
 				text = {
-					"{C:green}#1# in #2#{} chance to {C:planet}level up{} played {C:attention}poker hand{}",
-					"{s:0.1} {}",
-					"Each scoring {C:attention}Gold Card{} increases odds by {C:green}#3#{}",
+					"{C:green}#1# in #2#{} chance per scoring",
+					"{C:attention}Gold Card{} to {C:planet}level up{}",
+					"played {C:attention}poker hand{}",
 				},
 			},
-			c_csau_vento_moody = {
+			c_jojobal_vento_moody = {
 				name = "Moody Blues",
 				text = {
 					"{C:vhs}VHS Tapes{} have {C:attention}double{}",
 					"the Running Time",
 				},
 			},
-			c_csau_vento_metallica = {
+			c_jojobal_vento_metallica = {
 				name = "Metallica",
 				text = {
 					"Played {C:attention}Jacks{} become {C:attention}Steel Cards{}",
 					"{s:0.1} {}",
-					"{C:attention}Steel Jacks{} act as {C:attention}Glass Cards{} when played",
+					"{C:attention}Steel Jacks{} act as",
+					"{C:attention}Glass Cards{} when scored",
 				},
 			},
-			c_csau_vento_epitaph = {
+			c_jojobal_vento_epitaph = {
 				name = "Epitaph",
 				text = {
 					"{C:attention}Preview{} the top card of your deck",
@@ -345,21 +265,24 @@ return {
 					"{C:stand}Evolves{} after skipping {C:attention}#1#{} Blinds",
 				},
 			},
-			c_csau_vento_epitaph_king = {
+			c_jojobal_vento_epitaph_king = {
 				name = "King Crimson",
 				text = {
 					"Each selected {C:attention}Blind{} awards",
 					"its {C:attention}skip tag{} when defeated"
 				},
 			},
-			c_csau_vento_watchtower = {
-				name = "All Along Watchtower",
+			c_jojobal_vento_watchtower = {
+				name = {
+					"All Along The",
+					"Watchtower",
+				},
 				text = {
-					"{X:mult,C:white}X#1#{} Mult if deck is {C:attention}52{} cards,",
-					"{C:attention}2-A{} for each suit"
+					"{X:mult,C:white}X#1#{} Mult if deck is",
+					"{C:attention}52{} cards, {C:attention}2-A{} for each suit"
 				},
 			},
-			c_csau_stone_stone = {
+			c_jojobal_stone_stone = {
 				name = "Stone Free",
 				text = {
 					"Scoring {C:attention}Stone Cards{} lose",
@@ -367,7 +290,7 @@ return {
 					"permanently gain {C:chips}+#1#{} Chips"
 				},
 			},
-			c_csau_stone_marilyn = {
+			c_jojobal_stone_marilyn = {
 				name = "Marilyn Manson",
 				text = {
 					"Prevents {C:red}death{} by exchanging",
@@ -376,7 +299,7 @@ return {
 					"If no {C:attention}Jokers{}, sells random {C:attention}Playing Cards{}"
 				},
 			},
-			c_csau_stone_white = {
+			c_jojobal_stone_white = {
 				name = "Whitesnake",
 				text = {
 					"{C:attention}Retrigger{} each played {C:attention}6{}",
@@ -385,23 +308,33 @@ return {
 					"{C:attention}#1#{} scoring {C:attention}#2#s{}"
 				},
 			},
-			c_csau_stone_white_moon = {
+			c_jojobal_stone_white_moon = {
 				name = "C-MOON",
 				text = {
 					"{C:attention}Retrigger{} each played {C:attention}6{}",
 					"{C:attention}Retrigger{} each played {C:attention}Straight{}",
 					"{s:0.1} {}",
-					"{C:stand}Evolves{} after using {C:attention}#1#{} {C:tarot}The Moon{} cards",
+					"{C:dark_edition,s:0.8}The time for Heaven has almost come...",
 				},
 			},
-			c_csau_stone_white_heaven = {
+			c_jojobal_stone_white_moon_detailed = {
+				name = "C-MOON",
+				text = {
+					"{C:attention}Retrigger{} each played {C:attention}6{}",
+					"{C:attention}Retrigger{} each played {C:attention}Straight{}",
+					"{s:0.1} {}",
+					"{C:stand}Evolves{} after using",
+					"{C:attention}#1#{} {C:tarot}The Moon{} cards",
+				},
+			},
+			c_jojobal_stone_white_heaven = {
 				name = "Made in Heaven",
 				text = {
 					"After {C:attention}playing{} or {C:attention}discarding{}",
 					"a hand, gain a {C:blue}Hand{} or {C:red}Discard{}",
 				},
 			},
-			c_csau_steel_tusk_1 = {
+			c_jojobal_steel_tusk_1 = {
 				name = "Tusk ACT1",
 				text = {
 					"Each played {C:attention}Ace{} or {C:attention}2{} gives",
@@ -411,7 +344,7 @@ return {
 					"{C:attention}Aces{} or {C:attention}2s{} are scored",
 				},
 			},
-			c_csau_steel_tusk_2 = {
+			c_jojobal_steel_tusk_2 = {
 				name = "Tusk ACT2",
 				text = {
 					"Each played {C:attention}Ace{}, {C:attention}2{}, or {C:attention}3{} gives",
@@ -421,7 +354,7 @@ return {
 					"are {C:attention}destroyed{}",
 				},
 			},
-			c_csau_steel_tusk_3 = {
+			c_jojobal_steel_tusk_3 = {
 				name = "Tusk ACT3",
 				text = {
 					"Each played {C:attention}Ace{}, {C:attention}2{}, {C:attention}3{}, or {C:attention}5{}",
@@ -431,7 +364,7 @@ return {
 					"within {C:attention}#2#%{} of required chips",
 				},
 			},
-			c_csau_steel_tusk_4 = {
+			c_jojobal_steel_tusk_4 = {
 				name = "Tusk ACT4",
 				text = {
 					"{C:dark_edition}Unlocks Fibonacci poker hands{}",
@@ -444,15 +377,18 @@ return {
 					"{C:attention}Fibonacci{}, gain {C:blue}+#2#{} Hand",
 				},
 			},
-			c_csau_steel_civil = {
+			c_jojobal_steel_civil = {
 				name = "Civil War",
 				text = {
 					"{C:tarot}The Fool{} and {C:tarot}The Emperor{}",
 					"always create {C:tarot,T:c_hanged_man}#1#{}",
 				},
 			},
-			c_csau_steel_d4c = {
-				name = "Dirty Deeds Done Dirt Cheap",
+			c_jojobal_steel_d4c = {
+				name = {
+					"Dirty Deeds Done",
+					"Dirt Cheap",
+				},
 				text = {
 					"Your first scored {C:attention}Pair{}",
 					"each round is {C:attention}destroyed{}",
@@ -461,34 +397,37 @@ return {
 					"contains {C:attention}#1# Lucky Cards {C:inactive}({}{C:attention}#2#{}{C:inactive}/#1#)",
 				},
 			},
-			c_csau_steel_d4c_love = {
+			c_jojobal_steel_d4c_love = {
 				name = "D4C -Love Train-",
 				text = {
 					"All played {C:attention}Lucky Cards{}",
 					"always payout at least {C:attention}once{}",
 				},
 			},
-			c_csau_lion_soft = {
+			c_jojobal_lion_soft = {
 				name = "Soft & Wet",
 				text = {
-					"Scoring {C:attention}Bonus{}/{C:attention}Mult Cards{}",
-					"lose their enhancements but",
+					"Scoring {C:attention}Bonus{} and {C:attention}Mult Cards{}",
+					"lose their {C:attention}Enhancements{} but",
 					"permanently gain {C:attention}half{} their",
-					"enhancements' bonuses",
+					"Chip and Mult bonuses",
 					"{s:0.1} {}",
 					"{C:stand}Evolves{} after playing a {C:attention}Secret Hand{}",
 				},
 			},
-			c_csau_lion_soft_beyond = {
-				name = "Soft & Wet: Go Beyond",
+			c_jojobal_lion_soft_beyond = {
+				name = {
+					"Soft & Wet:",
+					"Go Beyond",
+				},
 				text = {
-					"Scoring {C:attention}Bonus{}/{C:attention}Mult Cards{}",
-					"lose their enhancements but",
-					"permanently gain {C:attention}all{} of",
-					"their enhancements' bonuses"
+					"Scoring {C:attention}Bonus{} and {C:attention}Mult Cards{}",
+					"lose their {C:attention}Enhancements{} but",
+					"permanently gain {C:attention}all{} their",
+					"Chip and Mult bonuses"
 				},
 			},
-			c_csau_lion_paper = {
+			c_jojobal_lion_paper = {
 				name = "Paper Moon King",
 				text = {
 					"All {C:attention}face{} cards are",
@@ -497,7 +436,7 @@ return {
 					
 				},
 			},
-			c_csau_lion_rock = {
+			c_jojobal_lion_rock = {
 				name = "I Am a Rock",
 				text = {
 					"Add one {C:attention}Stone Card{} to deck",
@@ -505,7 +444,7 @@ return {
 					"is added to your deck",
 				},
 			},
-			c_csau_lion_wonder= {
+			c_jojobal_lion_wonder= {
 				name = "Wonder of U",
 				text = {
 					"When a {C:attention}Lucky Card{} is scored,",
@@ -514,7 +453,7 @@ return {
 					
 				},
 			},
-			c_csau_lands_november = {
+			c_jojobal_lands_november = {
 				name = "November Rain",
 				text = {
 					"All playing cards ranked",
@@ -522,7 +461,7 @@ return {
 					"scored and give {C:chips}+#2#{} Chips",
 				},
 			},
-			c_csau_lands_smooth = {
+			c_jojobal_lands_smooth = {
 				name = "Smooth Operators",
 				text = {
 					"Before scoring, if an unscored card",
@@ -530,17 +469,17 @@ return {
 					"{C:attention}upgrade or downgrade{} it one rank",
 				},
 			},
-			c_csau_lands_bigmouth = {
+			c_jojobal_lands_bigmouth = {
 				name = "Bigmouth Strikes Again",
 				text = {
 					"{C:attention}Flushes{} may be made with {C:attention}4{} cards",
-					"If a fifth is played with a different suit,",
-					"{C:attention}transform{} it into the {C:attention}Flush's suit{}",
+					"All additional cards or {C:attention}Wild Cards{} will",
+					"{C:attention}transform{} into the {C:attention}Flush's suit{}",
 				},
 			},
 		},
 		Back = {
-			b_csau_disc = {
+			b_jojobal_stone_disc = {
 				name = "DISC Deck",
 				text = {
 					"Start with the",
@@ -552,36 +491,5 @@ return {
 				},
 			},
 		},
-		Voucher = {
-			v_csau_foo = {
-				name = 'Foo Fighter',
-				text = {
-					"{C:stand}Stands{} can be purchased",
-					"from the {C:attention}shop{}"
-				}
-			},
-			v_csau_plant = {
-				name = 'Plant Appraiser',
-				text = {
-					"{C:stand}Evolved Stands{} can be purchased",
-					"from the {C:attention}shop{}"
-				},
-				unlock = {
-					"Buy a total of",
-					"{C:attention}#1#{} {C:stand}Stands",
-					"from the shop",
-					"{C:inactive}(#2#)",
-				},
-			},
-		},
-		Tag = {
-			tag_csau_spirit = {
-				name = "Spirit Tag",
-				text = {
-					"Create a random {C:stand}Stand",
-					"{C:inactive}(Must have room)",
-				},
-			},
-		}
 	}
 }
