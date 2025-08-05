@@ -51,9 +51,6 @@ ArrowAPI.credits.add_credits(SMODS.current_mod, {
 })
 
 local includes = {
-	-- includes utility functions required for following files
-	'compat',
-
 	-- object hooks
 	'hooks/card',
 	'hooks/misc_functions',
