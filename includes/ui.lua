@@ -100,6 +100,9 @@ current_mod.credits_tab = function()
 								{n=G.UIT.R, config={align = "tm", padding = 0.1}, nodes={
 									{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].keku, scale = text_scale*0.55, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
 								}},
+								{n=G.UIT.R, config={align = "tm", padding = 0.1}, nodes={
+									{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].vivi, scale = text_scale*0.55, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
+								}},
 							}},
 						}},
 					}},
@@ -160,7 +163,7 @@ current_mod.credits_tab = function()
 										{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].keku, scale = text_scale*0.45*coding_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
 									}},
 									{n=G.UIT.R, config={align = "tm", padding = 0.05}, nodes={
-										{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].winter, scale = text_scale*0.45*coding_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
+										{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].vivi, scale = text_scale*0.45*coding_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
 									}},
 									{n=G.UIT.R, config={align = "tm", padding = 0.05}, nodes={
 										{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].eremel, scale = text_scale*0.45*coding_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
@@ -182,7 +185,7 @@ current_mod.credits_tab = function()
 											{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].gameboy, scale = text_scale*0.55*shader_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
 										}},
 										{n=G.UIT.R, config={align = "tm", padding = 0.05}, nodes={
-											{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].winter, scale = text_scale*0.55*shader_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
+											{n=G.UIT.T, config={text = ArrowAPI.credits[current_mod.id].vivi, scale = text_scale*0.55*shader_scale, colour = G.C.UI.TEXT_LIGHT, shadow = true}},
 										}},
 									}},
 								}},

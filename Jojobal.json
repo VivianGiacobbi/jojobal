@@ -1,7 +1,7 @@
 {
 	"id": "jojobal",
 	"name": "Jojo's Balatro Adventure",
-	"author": ["BarrierTrio", "Keku"],
+	"author": ["BarrierTrio", "Keku", "Vivian Giacobbi"],
 	"description": "A standalone content mod that adds Jojo Stands, Jokers, and more!",
 	"prefix": "jojobal",
 	"main_file": "main.lua",
