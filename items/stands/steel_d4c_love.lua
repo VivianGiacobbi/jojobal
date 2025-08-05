@@ -7,15 +7,21 @@ local consumInfo = {
         evolved = true,
     },
     cost = 10,
-    rarity = 'arrow_EvolvedRarity',
+    rarity = 'EvolvedRarity',
     hasSoul = true,
-    part = 'steel',
-    blueprint_compat = false
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'steel',
+        },
+        custom_color = 'steel'
+    },
+    blueprint_compat = false,
+    artist = 'gote',
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_lucky
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.gote } }
 end
 
 function consumInfo.in_pool(self, args)

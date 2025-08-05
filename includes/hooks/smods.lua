@@ -1,8 +1,4 @@
 SMODS.current_mod.reset_game_globals = function(run_start)
-    if run_start then
-        G.GAME.modifiers.max_stands = 1
-    end
-
     jojobal_reset_paper_rank()
 end
 

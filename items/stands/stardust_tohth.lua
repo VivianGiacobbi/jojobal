@@ -9,18 +9,23 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'arrow_StandRarity',
+    rarity = 'StandRarity',
     hasSoul = true,
-    part = 'stardust',
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'stardust',
+        },
+        custom_color = 'stardust'
+    },
     blueprint_compat = false,
+    artist = 'gote',
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.gote } }
-
     local main_end = nil
     if G.deck and not card.area.config.collection then
-        main_end = G.FUNCS.jojobal_preview_cardarea(card.ability.extra.preview)
+        main_end = G.UIDEF.preview_cardarea(card.ability.extra.preview)
     end
 
     return { 

@@ -8,12 +8,9 @@ local jokerInfo = {
     blueprint_compat = true,
     eternal_compat = true,
     perishable_compat = true,
-    part = 'jojo',
+    origin = 'jojo',
+    artist = 'cejai',
 }
-
-function jokerInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.cejai } }
-end
 
 function jokerInfo.calculate(self, card, context)
     if context.retrigger_joker_check and not context.retrigger_joker 

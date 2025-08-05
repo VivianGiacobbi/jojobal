@@ -9,17 +9,19 @@ local deckInfo = {
         return {vars = {localize{type = 'name_text', key = 'v_crystal_ball', set = 'Voucher'}}}
     end,
     unlocked = false,
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'stone',
+        },
+        custom_color = 'stone'
+    },
+    artist = 'gote',
 }
 
 function deckInfo.check_for_unlock(self, args)
     if args.type == 'evolve_stand' then
         return true
-    end
-end
-
-function deckInfo.loc_vars(self, info_queue, card)
-    if info_queue then
-        info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.gote } }
     end
 end
 

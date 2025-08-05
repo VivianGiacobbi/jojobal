@@ -11,15 +11,18 @@ local consumInfo = {
         }
     },
     cost = 10,
-    rarity = 'arrow_EvolvedRarity',
+    rarity = 'EvolvedRarity',
     hasSoul = true,
-    part = 'stone',
-    blueprint_compat = true
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'stone',
+        },
+        custom_color = 'stone'
+    },
+    blueprint_compat = true,
+    artist = 'wario',
 }
-
-function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.wario } }
-end
 
 function consumInfo.in_pool(self, args)
     if G.GAME.used_jokers['c_jojobal_stone_white_moon']
@@ -38,7 +41,7 @@ function consumInfo.calculate(self, card, context)
         local flare_card = context.blueprint_card or card
         return {
             func = function()
-                G.FUNCS.flare_stand_aura(flare_card, 0.50)
+                ArrowAPI.stands.flare_aura(flare_card, 0.50)
             end,
             extra = {
                 card = flare_card,
@@ -53,7 +56,7 @@ function consumInfo.calculate(self, card, context)
         local flare_card = context.blueprint_card or card
         return {
             func = function()
-                G.FUNCS.flare_stand_aura(flare_card, 0.50)
+                ArrowAPI.stands.flare_aura(flare_card, 0.50)
             end,
             extra = {
                 card = flare_card,

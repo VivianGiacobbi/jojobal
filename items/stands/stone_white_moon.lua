@@ -14,14 +14,20 @@ local consumInfo = {
         }
     },
     cost = 10,
-    rarity = 'arrow_EvolvedRarity',
+    rarity = 'EvolvedRarity',
     hasSoul = true,
-    part = 'stone',
-    blueprint_compat = true
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'stone',
+        },
+        custom_color = 'stone'
+    },
+    blueprint_compat = true,
+    artist = {'wario', 'gote'}
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.jojobal_mod_team.wario, G.jojobal_mod_team.gote } }
     return { vars = {card.ability.extra.evolve_num - card.ability.extra.evolve_moons}}
 end
 
@@ -40,12 +46,12 @@ function consumInfo.calculate(self, card, context)
     if context.using_consumeable and not context.blueprint and not context.retrigger_joker and context.consumeable.config.center.key == 'c_moon' then
         card.ability.extra.evolve_moons = card.ability.extra.evolve_moons + 1
         if card.ability.extra.evolve_moons >= card.ability.extra.evolve_num then
-            G.FUNCS.evolve_stand(card)
+            ArrowAPI.stands.evolve_stand(card)
         else 
             return {
                 no_retrigger = true,
                 func = function()
-                    G.FUNCS.flare_stand_aura(card, 0.5)
+                    ArrowAPI.stands.flare_aura(card, 0.5)
                 end,
                 extra = {
                     message = localize{type='variable',key='a_remaining',vars={card.ability.extra.evolve_num - card.ability.extra.evolve_moons}},
@@ -64,7 +70,7 @@ function consumInfo.calculate(self, card, context)
             local flare_card = context.blueprint_card or card
             return {
                 pre_func = function()
-                    G.FUNCS.flare_stand_aura(flare_card, 0.5)
+                    ArrowAPI.stands.flare_aura(flare_card, 0.5)
                 end,
                 message = localize('k_again_ex'),
                 repetitions = card.ability.extra.repetitions * reps,

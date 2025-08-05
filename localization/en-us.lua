@@ -27,12 +27,12 @@ return {
 			k_galaxy = "Galaxy",
 			k_galaxy_q = "Galaxy?",
 
-			jojobal_options_enableStands = 'Stands',
-			jojobal_options_enableJokers = 'Jokers',
-			jojobal_options_enableConsumables = "Consumables",
-			jojobal_options_enableDecks = "Decks",
-			jojobal_options_enableVouchers = "Vouchers",
-			jojobal_options_enableTags = "Tags",
+			jojobal_options_enable_Stands = 'Stands',
+			jojobal_options_enable_Jokers = 'Jokers',
+			jojobal_options_enable_Consumables = "Consumables",
+			jojobal_options_enable_Decks = "Decks",
+			jojobal_options_enable_Vouchers = "Vouchers",
+			jojobal_options_enable_Tags = "Tags",
 			jojobal_options_sub = "(Restart required to apply)",
 
 			-- stand related loc strings
@@ -124,7 +124,7 @@ return {
 			},
 		},
 		Spectral = {
-			c_jojobal_spec_stone = {
+			c_jojobal_spec_mask = {
 				name = "Stone Mask",
 				text = {
 					"Add {C:dark_edition}Holographic{} and {C:attention}Eternal{}",

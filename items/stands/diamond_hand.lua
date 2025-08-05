@@ -5,15 +5,17 @@ local consumInfo = {
         aura_colors = { '1d94e0DC', '4bc6e7DC' },
     },
     cost = 4,
-    rarity = 'arrow_StandRarity',
+    rarity = 'StandRarity',
     hasSoul = true,
-    part = 'diamond',
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'diamond',
+        },
+        custom_color = 'diamond'
+    },
     blueprint_compat = false,
 }
-
-function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.wario } }
-end
 
 local function is_removed(card, removed)
     for i, v in ipairs(removed) do
@@ -55,7 +57,7 @@ function consumInfo.calculate(self, card, context)
                 no_retrigger = true,
                 func = function()
                     card:juice_up()
-                    G.FUNCS.flare_stand_aura(card, 0.50)
+                    ArrowAPI.stands.flare_aura(card, 0.50)
                 end,
                 card = card,
                 message = localize('k_thehand'),

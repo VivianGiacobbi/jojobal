@@ -6,15 +6,21 @@ local consumInfo = {
         stand_mask = true,
     },
     cost = 4,
-    rarity = 'arrow_StandRarity',
+    rarity = 'StandRarity',
     hasSoul = true,
-    part = 'lion',
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'lion',
+        },
+        custom_color = 'lion'
+    },
     blueprint_compat = true,
+    artist = 'gote',
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_stone
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.gote } }
 end
 
 function consumInfo.calculate(self, card, context)

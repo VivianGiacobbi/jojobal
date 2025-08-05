@@ -10,16 +10,22 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'arrow_StandRarity',
+    rarity = 'StandRarity',
     hasSoul = true,
-    part = 'lion',
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'lion',
+        },
+        custom_color = 'lion'
+    },
     blueprint_compat = true,
+    artist = 'stup',
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_bonus
     info_queue[#info_queue+1] = G.P_CENTERS.m_mult
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.stup } }
 end
 
 function consumInfo.in_pool(self, args)
@@ -70,7 +76,7 @@ function consumInfo.calculate(self, card, context)
                             delay = 0.25
                         })
                     end
-                    G.FUNCS.flare_stand_aura(flare_card, 0.50)
+                    ArrowAPI.stands.flare_aura(flare_card, 0.50)
                 end,
                 extra = {
                     message = localize('k_soft_and_wet'),
@@ -90,7 +96,7 @@ function consumInfo.calculate(self, card, context)
 
                 if not SMODS.PokerHands[context.scoring_name].visible then
                     check_for_unlock({ type = "evolve_soft" })
-                    G.FUNCS.evolve_stand(card)
+                    ArrowAPI.stands.evolve_stand(card)
                 end
                 return true
             end

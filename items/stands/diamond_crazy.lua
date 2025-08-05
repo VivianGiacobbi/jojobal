@@ -6,15 +6,18 @@ local consumInfo = {
         aura_colors = { 'e099e8DC' , 'f5ccf4DC' },
     },
     cost = 4,
-    rarity = 'arrow_StandRarity',
+    rarity = 'StandRarity',
     hasSoul = true,
-    part = 'diamond',
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'diamond',
+        },
+        custom_color = 'diamond'
+    },
     blueprint_compat = false,
+    artist = 'cejai',
 }
-
-function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.cejai } }
-end
 
 function consumInfo.calculate(self, card, context)
     if context.before and not card.debuff and not context.blueprint and not context.retrigger_joker then
@@ -34,7 +37,7 @@ function consumInfo.calculate(self, card, context)
          if activated then
              return {
                  func = function()
-                    G.FUNCS.flare_stand_aura(card, 0.50)
+                    ArrowAPI.stands.flare_aura(card, 0.50)
                  end,
                  extra = {
                     card = card,

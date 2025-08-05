@@ -3,13 +3,19 @@ local consumInfo = {
     set = "Spectral",
     cost = 4,
     alerted = true,
-    part = 'phantom',
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'phantom',
+        },
+        custom_color = 'phantom'
+    },
+    artist = 'cauthen'
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.e_holo
     info_queue[#info_queue+1] = {key = 'eternal', set = 'Other'}
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.cauthen } }
 end
 
 function consumInfo.use(self, card, area, copier)

@@ -14,15 +14,20 @@ local consumInfo = {
 
     },
     cost = 4,
-    rarity = 'arrow_StandRarity',
+    rarity = 'StandRarity',
     hasSoul = true,
-    part = 'diamond',
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'diamond',
+        },
+        custom_color = 'diamond'
+    },
     blueprint_compat = true,
+    artist = {'chvsau', 'dolos'}
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.jojobal_mod_team.chvsau, G.jojobal_mod_team.dolos } }
-
     local suit = ''
     local color = nil
     if G.GAME and G.GAME.wigsaw_suit then
@@ -58,13 +63,13 @@ function consumInfo.calculate(self, card, context)
     if card.debuff then return end
 
     if context.before and not context.blueprint and not context.retrigger_joker and to_big(G.GAME.current_round.hands_played) == to_big(0)
-    and #context.full_hand == card.ability.extra.num_cards and not SMODS.has_no_suit(ref_card) then
+    and #context.full_hand == card.ability.extra.num_cards and not SMODS.has_no_suit(context.full_hand[1]) then
         local ref_card = context.full_hand[1]
-        card.ability.extra.ref_suit = SMODS.has_any_suit(ref_card) and "wild" or ref_card.base.suit
+        card.ability.extra.ref_suit = SMODS.has_any_suit(ref_card) and "Wild" or ref_card.base.suit
         return {
             no_retrigger = true,
             func = function()
-                G.FUNCS.flare_stand_aura(card, 0.50)
+                ArrowAPI.stands.flare_aura(card, 0.50)
             end,
             extra = {
                 message = localize('k_echoes_recorded'),
@@ -73,12 +78,13 @@ function consumInfo.calculate(self, card, context)
         }
     end
 
-    if context.individual and context.cardarea == G.play and card.ability.extra.ref_suit ~= "none" 
-    and context.other_card:is_suit(G.GAME.wigsaw_suit or card.ability.extra.ref_suit) then
+    if context.individual and context.cardarea == G.play and ((card.ability.extra.ref_suit == 'Wild' and
+    SMODS.has_any_suit(context.other_card)) or (card.ability.extra.ref_suit ~= "none" 
+    and context.other_card:is_suit(G.GAME.wigsaw_suit or card.ability.extra.ref_suit))) then
         local flare_card = context.blueprint_card or card
         return {
             func = function()
-                G.FUNCS.flare_stand_aura(flare_card, 0.50)
+                ArrowAPI.stands.flare_aura(flare_card, 0.50)
             end,
             extra = {
                 mult = card.ability.extra.mult,
@@ -91,7 +97,7 @@ function consumInfo.calculate(self, card, context)
         card.ability.extra.ref_suit = 'none'
         card.ability.extra.evolve_rounds = card.ability.extra.evolve_rounds + 1
         if card.ability.extra.evolve_rounds >= card.ability.extra.evolve_num then
-            G.FUNCS.evolve_stand(card)
+            ArrowAPI.stands.evolve_stand(card)
         else
             return {
                 no_retrigger = true,

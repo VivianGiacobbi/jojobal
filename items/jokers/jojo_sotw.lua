@@ -12,7 +12,8 @@ local jokerInfo = {
     blueprint_compat = true,
     eternal_compat = true,
     perishable_compat = true,
-    part = 'jojo',
+    origin = 'jojo',
+    artist = 'gote',
 }
 
 local function num_unique_stands()
@@ -30,7 +31,6 @@ local function num_unique_stands()
 end
 
 function jokerInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.gote } }
     return { vars = {card.ability.extra.x_mult_mod, 1 + (card.ability.extra.x_mult_mod * num_unique_stands())} }
 end
 

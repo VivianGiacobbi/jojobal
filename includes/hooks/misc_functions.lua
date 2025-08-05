@@ -2,13 +2,6 @@
 --------------------------- Basic Mod Functions
 ---------------------------
 
-local ref_loc_colour = loc_colour
-function loc_colour(_c, _default)
-	ref_loc_colour(_c, _default)
-	G.ARGS.LOC_COLOURS.stand = G.C.STAND
-	return G.ARGS.LOC_COLOURS[_c] or _default or G.C.UI.TEXT_DARK
-end
-
 function G.FUNCS.jojobal_restart()
 	local settingsMatch = true
 	for k, v in pairs(jojobal_enabled) do
@@ -34,55 +27,6 @@ function jojobal_reset_paper_rank()
         if rank.face then valid_ranks[#valid_ranks+1] = rank.key end
     end
 	G.GAME.current_round.jojobal_paper_rank = pseudorandom_element(valid_ranks, pseudoseed('papermoon'..G.GAME.round_resets.ante))
-end
-
-
-
-
-
----------------------------
---------------------------- Stand Helper Functions
----------------------------
-
-function G.FUNCS.jojobal_preview_cardarea(preview_num, scale)
-	local preview_cards = {}
-	local count = 0
-	local deck_size = #G.deck.cards
-
-	while count < preview_num and deck_size >= 1 do
-		local card = G.deck.cards[deck_size]
-		if card then
-			table.insert(preview_cards, card)
-			count = count + 1
-		end
-		deck_size = deck_size - 1
-	end
-
-	if count < 1 then
-		return nil
-	end
-
-	local scale = scale or 0.7
-    local preview_area = CardArea(
-            0, 0,
-            (math.min(preview_num, #preview_cards) * G.CARD_W)*scale,
-            G.CARD_H*scale,
-            {card_limit = #preview_cards, type = 'title', highlight_limit = 0, card_w = G.CARD_W*scale}
-    )
-
-    for i=1, #preview_cards do
-        local copied_card = copy_card(preview_cards[i], nil, nil, G.playing_card)
-		copied_card:hard_set_T(copied_card.T.x, copied_card.T.y, G.CARD_W*scale, G.CARD_H*scale)
-        preview_area:emplace(copied_card)
-    end
-
-    return {{
-        n=G.UIT.R, 
-        config = {align = "cm", colour = G.C.CLEAR, r = 0.0, padding = 0.5},
-        nodes={{
-            n=G.UIT.O, config = {object = preview_area}
-        }}
-    }}
 end
 
 

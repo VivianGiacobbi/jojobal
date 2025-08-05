@@ -9,15 +9,21 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'arrow_StandRarity',
+    rarity = 'StandRarity',
     alerted = true,
     hasSoul = true,
-    part = 'feedback',
-    blueprint_compat = true
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'feedback',
+        },
+        custom_color = 'feedback'
+    },
+    blueprint_compat = true,
+    artist = 'gote',
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.gote } }
     return { vars = { card.ability.extra.x_mult } }
 end
 
@@ -56,7 +62,7 @@ local function has_standard_deck()
 
     local deck_table = {}
     for k, v in pairs(G.playing_cards) do
-        if not references.ranks[v.base.value] or not references.suits[v.base.suit] then
+        if SMODS.has_no_rank(v) or not references.ranks[v.base.value] or SMODS.has_no_suit(v) or not references.suits[v.base.suit] then
             return false
         end
 
@@ -73,7 +79,7 @@ function consumInfo.calculate(self, card, context)
         local flare_card = context.blueprint_card or card
         return {
             func = function()
-                G.FUNCS.flare_stand_aura(flare_card, 0.50)
+                ArrowAPI.stands.flare_aura(flare_card, 0.50)
             end,
             extra = {
                 xmult = card.ability.extra.x_mult,

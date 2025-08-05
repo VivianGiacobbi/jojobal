@@ -16,14 +16,27 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'arrow_StandRarity',
+    rarity = 'StandRarity',
     hasSoul = true,
-    part = 'steel',
-    blueprint_compat = true
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'steel',
+        },
+        custom_color = 'steel'
+    },
+    blueprint_compat = true,
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'steel',
+        },
+        custom_color = 'steel'
+    },
+    artist = {'wario', 'cauthen'}
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit_2", set = "Other", vars = { G.jojobal_mod_team.wario, G.jojobal_mod_team.cauthen } }
     return {vars = {card.ability.extra.chips, card.ability.extra.evolve_num - card.ability.extra.evolve_scores}}
 end
 
@@ -48,7 +61,7 @@ function consumInfo.calculate(self, card, context)
         local flare_card = context.blueprint_card or card
         return {
             func = function()
-                G.FUNCS.flare_stand_aura(flare_card, 0.50)
+                ArrowAPI.stands.flare_aura(flare_card, 0.50)
             end,
             extra = {
                 chips = card.ability.extra.chips,
@@ -62,7 +75,7 @@ function consumInfo.calculate(self, card, context)
             card.ability.extra.evolved = true
             G.E_MANAGER:add_event(Event({
                 func = (function()
-                    G.FUNCS.evolve_stand(card)
+                    ArrowAPI.stands.evolve_stand(card)
                     return true
                 end)
             }))

@@ -10,14 +10,20 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'arrow_StandRarity',
+    rarity = 'StandRarity',
     hasSoul = true,
-    part = 'lands',
-    blueprint_compat = true
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'lands',
+        },
+        custom_color = 'lands'
+    },
+    blueprint_compat = true,
+    artist = 'gote',
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.gote } }
     return { vars = {card.ability.extra.max_rank, card.ability.extra.chips}}
 end
 
@@ -37,7 +43,7 @@ function consumInfo.calculate(self, card, context)
         local flare_card = context.blueprint_card or card
         return {
             func = function()
-                G.FUNCS.flare_stand_aura(flare_card, 0.50)
+                ArrowAPI.stands.flare_aura(flare_card, 0.50)
             end,
             extra = {
                 card = flare_card,

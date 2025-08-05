@@ -11,18 +11,18 @@ local jokerInfo = {
     blueprint_compat = true,
     eternal_compat = true,
     perishable_compat = false,
-    part = 'jojo',
+    origin = 'jojo',
+    artist = 'gote',
 }
 
 function jokerInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.gote } }
     return { vars = { card.ability.extra.mult_mod, card.ability.extra.mult } }
 end
 
 function jokerInfo.calculate(self, card, context)
     if card.debuff then return end
 
-    if context.setting_blind and not card.getting_sliced and not context.blueprint and G.FUNCS.get_num_stands() > 0 then
+    if context.setting_blind and not card.getting_sliced and not context.blueprint and ArrowAPI.stands.get_num_stands() > 0 then
         card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_mod
         return {
             card = card,
@@ -36,7 +36,7 @@ function jokerInfo.calculate(self, card, context)
         }
     end
 
-    if context.jojobal_card_removed and context.card.ability.set == 'Stand' then
+    if context.removed_card and context.card.ability.set == 'Stand' then
         card.ability.extra.mult = 0
         return {
             card = card,

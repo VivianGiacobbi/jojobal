@@ -7,12 +7,9 @@ local jokerInfo = {
     eternal_compat = true,
     perishable_compat = true,
     hasSoul = true,
-    part = 'jojo',
+    origin = 'jojo',
+    artist = 'gote',
 }
-
-function jokerInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.gote } }
-end
 
 function jokerInfo.calculate(self, card, context)
     if card.debuff then return end

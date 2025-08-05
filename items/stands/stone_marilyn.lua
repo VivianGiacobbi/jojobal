@@ -10,14 +10,20 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'arrow_StandRarity',
+    rarity = 'StandRarity',
     hasSoul = true,
-    part = 'stone',
-    blueprint_compat = false
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'stone',
+        },
+        custom_color = 'stone'
+    },
+    blueprint_compat = false,
+    artist = 'gote',
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.gote } }
     return {vars = {card.ability.extra.conv_money, card.ability.extra.conv_score * 100}}
 end
 
@@ -119,7 +125,7 @@ function consumInfo.calculate(self, card, context)
             return {
                 no_retrigger = true,
                 func = function()
-                    G.FUNCS.flare_stand_aura(card, 0.50)
+                    ArrowAPI.stands.flare_aura(card, 0.50)
                     card:juice_up()
                     play_sound('tarot1')
                 end,

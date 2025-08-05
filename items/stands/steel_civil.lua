@@ -115,15 +115,21 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'arrow_StandRarity',
+    rarity = 'StandRarity',
     hasSoul = true,
-    part = 'steel',
-    blueprint_compat = false
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'steel',
+        },
+        custom_color = 'steel'
+    },
+    blueprint_compat = false,
+    artist = 'gote',
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.c_hanged_man
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.gote } }
     return { vars = {localize{type = 'name_text', key = card.ability.extra.tarot, set = 'Tarot'}}}
 end
 
@@ -131,8 +137,8 @@ end
 function consumInfo.calculate(self, card, context)
     if card.debuff and not context.blueprint and not context.retrigger_joker then return end
     
-    if context.using_consumeable and context.consumable.config.center.key == 'c_hanged_man' then
-        G.FUNCS.flare_stand_aura(card, 0.50)
+    if context.using_consumeable and context.consumeable.config.center.key == 'c_hanged_man' then
+        ArrowAPI.stands.flare_aura(card, 0.50)
     end
 end
 

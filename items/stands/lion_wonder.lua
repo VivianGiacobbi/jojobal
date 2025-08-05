@@ -11,15 +11,21 @@ local consumInfo = {
         }
     },
     cost = 4,
-    rarity = 'arrow_StandRarity',
+    rarity = 'StandRarity',
     hasSoul = true,
-    part = 'lion',
+    origin = {
+        category = 'jojo',
+        sub_origins = {
+            'lion',
+        },
+        custom_color = 'lion'
+    },
     blueprint_compat = true,
+    artist = 'cauthen',
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_lucky
-    info_queue[#info_queue+1] = {key = "artistcredit", set = "Other", vars = { G.jojobal_mod_team.cauthen } }
     return {vars = {card.ability.extra.xmult_mod, card.ability.extra.xmult}}
 end
 
@@ -53,7 +59,7 @@ function consumInfo.calculate(self, card, context)
         local flare_card = context.blueprint_card or card
         return {
             func = function()
-                G.FUNCS.flare_stand_aura(flare_card, 0.50)
+                ArrowAPI.stands.flare_aura(flare_card, 0.50)
             end,
             extra = {
                 x_mult = card.ability.extra.xmult,
@@ -64,7 +70,6 @@ function consumInfo.calculate(self, card, context)
         
     if context.destroy_card and not context.blueprint and not context.retrigger_joker then
         if SMODS.has_enhancement(context.destroy_card, 'm_lucky') and SMODS.in_scoring(context.destroy_card, context.scoring_hand) and not context.destroy_card.debuff then
-            sendDebugMessage('marking destruction')
             context.destroy_card.jojobal_removed_by_wonder = true
             return {
                 no_retrigger = true,
@@ -76,7 +81,6 @@ function consumInfo.calculate(self, card, context)
     if context.jojobal_card_destroyed and context.removed.jojobal_removed_by_wonder and not context.blueprint then
         card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_mod
 
-        sendDebugMessage('upgrading wonder')
         local update_sprite = false
         if to_big(card.ability.extra.xmult) >= to_big(1.9) and card.ability.extra.form == 'lion_wonder' then
             card.ability.extra.form = 'lion_wonder_2'
@@ -88,7 +92,7 @@ function consumInfo.calculate(self, card, context)
 
         return {
             func = function()
-                G.FUNCS.flare_stand_aura(card, 0.50)
+                ArrowAPI.stands.flare_aura(card, 0.50)
                 G.E_MANAGER:add_event(Event({
                     func = function()
                         if update_sprite then
