@@ -36,7 +36,7 @@ function jokerInfo.calculate(self, card, context)
         }
     end
 
-    if context.removed_card and context.card.ability.set == 'Stand' then
+    if context.removed_card and context.removed_card.ability.set == 'Stand' then
         card.ability.extra.mult = 0
         return {
             card = card,
