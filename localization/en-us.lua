@@ -35,6 +35,19 @@ return {
 			jojobal_options_enable_Tags = "Tags",
 			jojobal_options_sub = "(Restart required to apply)",
 
+			-- badge names for jojo parts
+			ba_jojo = "Jojo's Bizarre Adventure",
+			ba_phantom = 'Phantom Blood',
+			ba_battle = 'Battle Tendency',
+			ba_stardust = 'Stardust Crusaders',
+			ba_diamond = 'Diamond is Unbreakable',
+			ba_vento = 'Golden Wind',
+			ba_stone = 'Stone Ocean',
+			ba_steel = 'Steel Ball Run',
+			ba_lion = 'JoJolion',
+			ba_lands = 'The JOJOLands',
+			ba_feedback = 'Purple Haze Feedback',
+
 			-- stand related loc strings
 			k_stand_evolved = 'Evolved!',
 			k_echoes_recorded = 'Recorded!',
