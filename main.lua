@@ -7,6 +7,8 @@ SMODS.current_mod.optional_features = {
 }
 
 ArrowAPI.ui.add_badge_colors(SMODS.current_mod, {
+	co_jojo = G.C.STAND,
+    te_jojo = HEX('FFFFFF'),
 	co_uzumaki = HEX('374244'),
     te_uzumaki = HEX('bfc7d5'),
 	co_phantom = HEX('245482'),
