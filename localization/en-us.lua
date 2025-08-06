@@ -61,10 +61,10 @@ return {
 			j_jojobal_jojo_gravity = {
 				name = "Gravity",
 				text = {
-					"This Joker gains {C:mult}+#1#{} Mult if",
-					"you own a {C:stand}Stand{} at start",
-					"of round and resets when a",
-					"a Stand is {C:attention}sold{} or {C:attention}destroyed{}",
+					"This Joker gains {C:mult}+#1#{} Mult every",
+					"round you have a {C:stand}Stand{},",
+					"resets when a {C:stand}Stand{} is",
+					"{C:attention}sold{} or {C:attention}destroyed{}",
 					"{C:inactive}(Currently {}{C:mult}+#2#{}{C:inactive} Mult{}{C:inactive}){}",
 				},
 			},
@@ -173,42 +173,58 @@ return {
 			c_jojobal_diamond_echoes_1 = {
 				name = "Echoes ACT1",
 				text = {
-					"If {C:attention}first hand{} of round",
-					"has only {C:attention}#1#{} card, cards",
-					"of {V:1}#4#{}#5# {C:attention}suit{} give",
-					"{C:mult}+#2#{} Mult when scored",
-					"{s:0.1} {}",
-					"{C:stand}Evolves{} after {C:attention}#3#{} rounds",
+					{
+						"If {C:attention}first hand{} of round",
+						"has only {C:attention}#1#{} card, cards",
+						"of {V:1}#4#{}#5# {C:attention}suit{} give",
+						"{C:mult}+#2#{} Mult when scored",
+					},
+					{
+						"{C:stand}Evolves{} after {C:attention}#3#{} rounds",
+					}
 				},
 			},
 			c_jojobal_diamond_echoes_2 = {
 				name = "Echoes ACT2",
 				text = {
-					"If {C:attention}first hand{} of round has only",
-					"{C:attention}#1#{} card, the first {C:attention}scoring{} card",
-					"each hand becomes {V:1}#4#{}{C:attention}#5#{}",
-					"{V:1}#4#{}{C:attention}#6#{} give#7# {C:mult}+#2#{} Mult when scored",
-					"{s:0.1} {}",
-					"{C:stand}Evolves{} after {C:attention}#3#{} rounds",
+					{
+						"If {C:attention}first hand{} of round has only",
+						"{C:attention}#1#{} card, the first {C:attention}scoring{} card",
+						"each hand becomes {V:1}#4#{}{C:attention}#5#{}",
+					},
+					{
+						"{V:1}#6#{}{C:attention}#7#{} give#8# {C:mult}+#2#{} Mult",
+						"when scored",
+					},
+					{
+						"{C:stand}Evolves{} after {C:attention}#3#{} rounds",
+					}					
 				},
 			},
 			c_jojobal_diamond_echoes_3 = {
 				name = "Echoes ACT3",
 				text = {
-					"If played hand contains a {C:attention}Flush{}",
-					"each card scored gives {C:mult}+#1#{} Mult",
-					"{C:attention}Stone Cards{} count as {C:attention}all suits{}",
-					"and give {X:mult,C:white}X#2#{} Mult when scored",
+					{
+						"If played hand contains a {C:attention}Flush{}",
+						"each card scored gives {C:mult}+#1#{} Mult",
+					},
+					{
+						"{C:attention}Stone Cards{} count as {C:attention}all suits{}",
+						"and give {X:mult,C:white}X#2#{} Mult when scored",
+					}
 				},
 			},
 			c_jojobal_diamond_killer = {
 				name = "Killer Queen",
 				text = {
-					"Whenever you {C:attention}destroy{} a card,",
-					"gain {C:chips}+#1#{} hand this Ante {C:inactive}({C:chips}+#2#{C:inactive})",
-					"{s:0.1} {}",
-					"{C:stand}Evolves{} after destroying",
-					"{C:attention}#3#{} cards {C:inactive}({C:attention}#4#{C:inactive}/#3#)"
+					{
+						"Whenever you {C:attention}destroy{} a card,",
+						"gain {C:chips}+#1#{} hand this Ante {C:inactive}({C:chips}+#2#{C:inactive})",
+					},
+					{
+						"{C:stand}Evolves{} after destroying",
+						"{C:attention}#3#{} cards {C:inactive}({C:attention}#4#{C:inactive}/#3#)"
+					}
 				},
 			},
 			c_jojobal_diamond_killer_btd = {
@@ -224,10 +240,13 @@ return {
 			c_jojobal_vento_gold = {
 				name = "Gold Experience",
 				text = {
-					"{C:green}#1# in #2#{} chance for scored",
-					"{V:1}#3#{} to become {C:attention}Gold Cards{}",
-					"{s:0.1} {}",
-					"{C:stand}Evolves{} after using {C:tarot}The Arrow{}",
+					{
+						"{C:green}#1# in #2#{} chance for scored",
+						"{V:1}#3#{} to become {C:attention}Gold Cards{}",
+					},
+					{
+						"{C:stand}Evolves{} after using {C:tarot}The Arrow{}",
+					}
 				},
 			},
 			c_jojobal_vento_gold_requiem = {
@@ -251,18 +270,24 @@ return {
 			c_jojobal_vento_metallica = {
 				name = "Metallica",
 				text = {
-					"Played {C:attention}Jacks{} become {C:attention}Steel Cards{}",
-					"{s:0.1} {}",
-					"{C:attention}Steel Jacks{} act as",
-					"{C:attention}Glass Cards{} when scored",
+					{
+						"Played {C:attention}Jacks{} become {C:attention}Steel Cards{}",
+					},
+					{
+						"{C:attention}Steel Jacks{} act as",
+						"{C:attention}Glass Cards{} when scored",
+					}
 				},
 			},
 			c_jojobal_vento_epitaph = {
 				name = "Epitaph",
 				text = {
-					"{C:attention}Preview{} the top card of your deck",
-					"{s:0.1} {}",
-					"{C:stand}Evolves{} after skipping {C:attention}#1#{} Blinds",
+					{
+						"{C:attention}Preview{} the top card of your deck",
+					},
+					{
+						"{C:stand}Evolves{} after skipping {C:attention}#1#{} Blinds",
+					}
 				},
 			},
 			c_jojobal_vento_epitaph_king = {
@@ -293,38 +318,51 @@ return {
 			c_jojobal_stone_marilyn = {
 				name = "Marilyn Manson",
 				text = {
-					"Prevents {C:red}death{} by exchanging",
-					"{C:money}$#1#{} for {C:attention}#2#%{} of Blind score",
-					"If no {C:money}Money{}, sells random {C:attention}Jokers{}",
-					"If no {C:attention}Jokers{}, sells random {C:attention}Playing Cards{}"
+					{
+						"Prevents {C:red}death{} by exchanging",
+						"{C:money}$#1#{} for {C:attention}#2#%{} of Blind score",
+					},
+					{
+						"If no {C:money}Money{}, sells random {C:attention}Jokers{}",
+						"If no {C:attention}Jokers{}, sells random {C:attention}Playing Cards{}"
+					}
 				},
 			},
 			c_jojobal_stone_white = {
 				name = "Whitesnake",
 				text = {
-					"{C:attention}Retrigger{} each played {C:attention}6{}",
-					"{s:0.1} {}",
-					"{C:stand}Evolves{} after playing",
-					"{C:attention}#1#{} scoring {C:attention}#2#s{}"
+					{
+						"{C:attention}Retrigger{} each played {C:attention}6{}",
+					},
+					{
+						"{C:stand}Evolves{} after playing",
+						"{C:attention}#1#{} scoring {C:attention}#2#s{}"
+					}
 				},
 			},
 			c_jojobal_stone_white_moon = {
 				name = "C-MOON",
 				text = {
-					"{C:attention}Retrigger{} each played {C:attention}6{}",
-					"{C:attention}Retrigger{} each played {C:attention}Straight{}",
-					"{s:0.1} {}",
-					"{C:dark_edition,s:0.8}The time for Heaven has almost come...",
+					{
+						"{C:attention}Retrigger{} each played {C:attention}6{}",
+						"{C:attention}Retrigger{} each played {C:attention}Straight{}",
+					},
+					{
+						"{C:dark_edition,s:0.8}The time for Heaven has almost come...",
+					}
 				},
 			},
 			c_jojobal_stone_white_moon_detailed = {
 				name = "C-MOON",
 				text = {
-					"{C:attention}Retrigger{} each played {C:attention}6{}",
-					"{C:attention}Retrigger{} each played {C:attention}Straight{}",
-					"{s:0.1} {}",
-					"{C:stand}Evolves{} after using",
+					{
+						"{C:attention}Retrigger{} each played {C:attention}6{}",
+						"{C:attention}Retrigger{} each played {C:attention}Straight{}",
+					},
+					{
+						"{C:stand}Evolves{} after using",
 					"{C:attention}#1#{} {C:tarot}The Moon{} cards",
+					}					
 				},
 			},
 			c_jojobal_stone_white_heaven = {
@@ -337,44 +375,57 @@ return {
 			c_jojobal_steel_tusk_1 = {
 				name = "Tusk ACT1",
 				text = {
-					"Each played {C:attention}Ace{} or {C:attention}2{} gives",
-					"{C:chips}+#1#{} Chips when scored",
-					"{s:0.1} {}",
-					"{C:stand}Evolves{} after {C:attention}#2#{}",
-					"{C:attention}Aces{} or {C:attention}2s{} are scored",
+					{
+						"Each played {C:attention}Ace{} or {C:attention}2{} gives",
+						"{C:chips}+#1#{} Chips when scored",
+					},
+					{
+						"{C:stand}Evolves{} after {C:attention}#2#{}",
+						"{C:attention}Aces{} or {C:attention}2s{} are scored",
+					}
 				},
 			},
 			c_jojobal_steel_tusk_2 = {
 				name = "Tusk ACT2",
 				text = {
-					"Each played {C:attention}Ace{}, {C:attention}2{}, or {C:attention}3{} gives",
-					"{C:chips}+#1#{} Chips when scored",
-					"{s:0.1} {}",
-					"{C:stand}Evolves{} after {C:attention}#2#{} cards",
-					"are {C:attention}destroyed{}",
+					{
+						"Each played {C:attention}Ace{}, {C:attention}2{}, or {C:attention}3{} gives",
+						"{C:chips}+#1#{} Chips when scored",
+					},
+					{
+						"{C:stand}Evolves{} after {C:attention}#2#{} cards",
+						"are {C:attention}destroyed{}",
+					}
 				},
 			},
 			c_jojobal_steel_tusk_3 = {
 				name = "Tusk ACT3",
 				text = {
-					"Each played {C:attention}Ace{}, {C:attention}2{}, {C:attention}3{}, or {C:attention}5{}",
-					"gives {C:chips}+#1#{} Chips when scored",
-					"{s:0.1} {}",
-					"{C:stand}Evolves{} after defeating a {C:attention}Blind{}",
-					"within {C:attention}#2#%{} of required chips",
+					{
+						"Each played {C:attention}Ace{}, {C:attention}2{}, {C:attention}3{}, or {C:attention}5{}",
+						"gives {C:chips}+#1#{} Chips when scored",
+					},
+					{
+						"{C:stand}Evolves{} after defeating a {C:attention}Blind{}",
+						"within {C:attention}#2#%{} of required chips",
+					}
 				},
 			},
 			c_jojobal_steel_tusk_4 = {
 				name = "Tusk ACT4",
 				text = {
-					"{C:dark_edition}Unlocks Fibonacci poker hands{}",
-					"{C:inactive}(ex: {C:attention}8 5 3 2 A{C:inactive})",
-					"{s:0.1} {}",
-					"Played Fibonacci {C:attention}ranks{} give",
-					"{C:chips}+#1#{} Chips when scored",
-					"{s:0.1} {}",
-					"If played hand contains a",
-					"{C:attention}Fibonacci{}, gain {C:blue}+#2#{} Hand",
+					{
+						"{C:dark_edition}Unlocks Fibonacci poker hands{}",
+						"{C:inactive}(ex: {C:attention}8 5 3 2 A{C:inactive})",
+					},
+					{
+						"Played Fibonacci {C:attention}ranks{} give",
+						"{C:chips}+#1#{} Chips when scored",
+					},
+					{
+						"If played hand contains a",
+						"{C:attention}Fibonacci{}, gain {C:blue}+#2#{} Hand",
+					}			
 				},
 			},
 			c_jojobal_steel_civil = {
@@ -390,11 +441,14 @@ return {
 					"Dirt Cheap",
 				},
 				text = {
-					"Your first scored {C:attention}Pair{}",
-					"each round is {C:attention}destroyed{}",
-					"{s:0.1} {}",
-					"{C:stand}Evolves{} after your deck",
-					"contains {C:attention}#1# Lucky Cards {C:inactive}({}{C:attention}#2#{}{C:inactive}/#1#)",
+					{
+						"Your first scored {C:attention}Pair{}",
+						"each round is {C:attention}destroyed{}",
+					},
+					{
+						"{C:stand}Evolves{} after your deck",
+						"contains {C:attention}#1# Lucky Cards {C:inactive}({}{C:attention}#2#{}{C:inactive}/#1#)",
+					}
 				},
 			},
 			c_jojobal_steel_d4c_love = {
@@ -407,12 +461,15 @@ return {
 			c_jojobal_lion_soft = {
 				name = "Soft & Wet",
 				text = {
-					"Scoring {C:attention}Bonus{} and {C:attention}Mult Cards{}",
-					"lose their {C:attention}Enhancements{} but",
-					"permanently gain {C:attention}half{} their",
-					"Chip and Mult bonuses",
-					"{s:0.1} {}",
-					"{C:stand}Evolves{} after playing a {C:attention}Secret Hand{}",
+					{
+						"Scoring {C:attention}Bonus{} and {C:attention}Mult Cards{}",
+						"lose their {C:attention}Enhancements{} but",
+						"permanently gain {C:attention}half{} their",
+						"Chip and Mult bonuses",
+					},
+					{
+						"{C:stand}Evolves{} after playing a {C:attention}Secret Hand{}",
+					}				
 				},
 			},
 			c_jojobal_lion_soft_beyond = {
@@ -433,7 +490,6 @@ return {
 					"All {C:attention}face{} cards are",
 					"considered {C:attention}#1#s{}",
 					"{s:0.8}Rank changes at end of round",
-					
 				},
 			},
 			c_jojobal_lion_rock = {
@@ -472,9 +528,13 @@ return {
 			c_jojobal_lands_bigmouth = {
 				name = "Bigmouth Strikes Again",
 				text = {
-					"{C:attention}Flushes{} may be made with {C:attention}4{} cards",
-					"All additional cards or {C:attention}Wild Cards{} will",
-					"{C:attention}transform{} into the {C:attention}Flush's suit{}",
+					{
+						"{C:attention}Flushes{} may be made with {C:attention}4{} cards",
+					},
+					{
+						"All additional cards or {C:attention}Wild Cards{} will",
+						"{C:attention}transform{} into the {C:attention}Flush's suit{}",
+					}
 				},
 			},
 		},
