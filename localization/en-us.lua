@@ -556,7 +556,7 @@ return {
 				name = "DISC Deck",
 				text = {
 					"Start with the",
-					"{C:tarot}Crystal Ball{} voucher",
+					"{C:stand}Foo Fighter{} voucher",
 					"There is no {C:stand}Stand{} limit",
 				},
 				unlock = {
