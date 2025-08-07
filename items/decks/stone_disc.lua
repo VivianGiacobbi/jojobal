@@ -2,11 +2,11 @@ local deckInfo = {
     name = 'DISC Deck',
     config = {
         vouchers = {
-            'v_crystal_ball',
+            'v_arrow_foo',
         },
     },
     loc_vars = function(self, info_queue, card)
-        return {vars = {localize{type = 'name_text', key = 'v_crystal_ball', set = 'Voucher'}}}
+        return {vars = {localize{type = 'name_text', key = 'v_arrow_foo', set = 'Voucher'}}}
     end,
     unlocked = false,
     origin = {
