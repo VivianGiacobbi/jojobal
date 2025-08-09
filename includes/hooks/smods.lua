@@ -5,9 +5,8 @@ end
 local ref_four_fingers = SMODS.four_fingers
 function SMODS.four_fingers()
 	local ret = ref_four_fingers()
-	if not ret then
-		sendDebugMessage('checking for bigmouth')
-		ret = next(SMODS.find_card('c_jojobal_lands_bigmouth')) 
+	if ret >= 5 then
+		ret = next(SMODS.find_card('c_jojobal_lands_bigmouth')) and 4 or ret
 	end
 	return ret
 end
