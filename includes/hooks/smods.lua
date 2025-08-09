@@ -2,6 +2,16 @@ SMODS.current_mod.reset_game_globals = function(run_start)
     jojobal_reset_paper_rank()
 end
 
+local ref_four_fingers = SMODS.four_fingers
+function SMODS.four_fingers()
+	local ret = ref_four_fingers()
+	if not ret then
+		sendDebugMessage('checking for bigmouth')
+		ret = next(SMODS.find_card('c_jojobal_lands_bigmouth')) 
+	end
+	return ret
+end
+
 SMODS.Joker:take_ownership('j_perkeo', {
 	loc_vars = function(self, info_queue, card)
 		info_queue[#info_queue+1] = {key = 'e_negative_consumable', set = 'Edition', config = {extra = 1}}

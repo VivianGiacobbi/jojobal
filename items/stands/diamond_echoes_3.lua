@@ -67,15 +67,7 @@ end
 local ref_is = Card.is_suit
 function Card:is_suit(suit, bypass_debuff, flush_calc)
     local echoes = SMODS.find_card("c_jojobal_diamond_echoes_3")
-    local valid = false
-    for _, v in ipairs(echoes) do
-        if not v.debuff then
-            valid = true
-            break;
-        end
-    end
-    
-    return (valid and SMODS.has_enhancement(self, 'm_stone')) or ref_is(self, suit, bypass_debuff, flush_calc)
+    return (next(echoes) and SMODS.has_enhancement(self, 'm_stone')) or ref_is(self, suit, bypass_debuff, flush_calc)
 end
 
 

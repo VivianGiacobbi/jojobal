@@ -37,15 +37,21 @@ function consumInfo.add_to_deck(self, card)
 end
 
 function consumInfo.calculate(self, card, context)
-    if context.end_of_round and context.main_eval and not context.retrigger_joker and not context.blueprint then
+    if context.retrigger_joker or context.blueprint then return end
+
+    if context.after and context.scoring_name == 'Pair' then
+        card.ability.extra.d4c_pair_this_round = true
+    end
+
+    if context.end_of_round and context.main_eval then
         card.ability.extra.d4c_pair_this_round = nil
     end
 
     if card.debuff then return end
 
-    if context.destroy_card and not context.retrigger_joker and not context.blueprint
-    and context.scoring_name == "Pair" and not card.ability.extra.d4c_pair_this_round then
-        card.ability.extra.d4c_pair_this_round = true
+    if context.destroy_card and context.scoring_name == "Pair"
+    and SMODS.in_scoring(context.destroy_card, context.scoring_hand)
+    and not card.ability.extra.d4c_pair_this_round then
         context.destroy_card.jojobal_removed_by_d4c = true
         return {
             no_retrigger = true,
@@ -53,7 +59,7 @@ function consumInfo.calculate(self, card, context)
         }
     end
 
-    if context.remove_playing_cards and not context.retrigger_joker and not context.blueprint then
+    if context.remove_playing_cards then
         local valid_removes = 0
         for _, v in ipairs(context.removed) do
             if v.jojobal_removed_by_d4c then
