@@ -10,7 +10,6 @@ local consumInfo = {
         },
         custom_color = 'phantom'
     },
-    artist = 'cauthen'
 }
 
 function consumInfo.loc_vars(self, info_queue, card)

@@ -29,7 +29,6 @@ local consumInfo = {
         custom_color = 'steel'
     },
     blueprint_compat = true,
-    artist = {'cauthen', 'wario'}
 }
 
 function consumInfo.loc_vars(self, info_queue, card)

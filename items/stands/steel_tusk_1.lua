@@ -33,7 +33,6 @@ local consumInfo = {
         },
         custom_color = 'steel'
     },
-    artist = {'wario', 'cauthen'}
 }
 
 function consumInfo.loc_vars(self, info_queue, card)

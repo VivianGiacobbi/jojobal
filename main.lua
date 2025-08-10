@@ -43,7 +43,6 @@ ArrowAPI.credits.add_credits(SMODS.current_mod, {
 	['rerun'] = "KawaiiRerun",
 	['vivi'] = "Vivian Giacobbi",
 	['gameboy'] = "Sir. Gameboy",
-	['cauthen'] = "Cauthen Currie",
 	['chvsau'] = "chvsau",
 	['dolos'] = "Dolos",
 	['stup'] = 'Stupisms',
