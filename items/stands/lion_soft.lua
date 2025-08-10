@@ -94,7 +94,7 @@ function consumInfo.calculate(self, card, context)
                     v.jjba_soft_effect = nil
                 end
 
-                if not SMODS.PokerHands[context.scoring_name].visible then
+                if SMODS.PokerHands[context.scoring_name].visible == false then
                     check_for_unlock({ type = "evolve_soft" })
                     ArrowAPI.stands.evolve_stand(card)
                 end

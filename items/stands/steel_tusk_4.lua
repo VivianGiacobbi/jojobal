@@ -10,12 +10,11 @@ SMODS.PokerHand {
     key = 'jojobal_Fibonacci',
     prefix_config = false,
     evaluate = function(parts, hand)
-        if not (next(SMODS.find_card('j_fnwk_plancks_jokestar'))
-        or next(SMODS.find_card("c_jojobal_steel_tusk_4")))
-        or not next(parts.jojobal_fibonacci) then
-            return {} 
+        if not next(parts.jojobal_fibonacci) then
+            return {}
         end
-        return { hand }
+
+        return { SMODS.is_poker_hand_visible('jojobal_Fibonacci') and hand or nil }
     end,
     example = {
         {'D_8', true},
@@ -35,12 +34,12 @@ SMODS.PokerHand {
     key = 'jojobal_FlushFibonacci',
     prefix_config = false,
     evaluate = function(parts, hand)
-        if not (next(SMODS.find_card('j_fnwk_plancks_jokestar'))
-        or next(SMODS.find_card("c_jojobal_steel_tusk_4")))
-        or not next(parts.jojobal_fibonacci) or not next(parts._flush) then
-            return {} 
+        if not next(parts.jojobal_fibonacci) or not next(parts._flush) then
+            return {}
         end
-        return { SMODS.merge_lists(parts.jojobal_fibonacci, parts._flush) }
+
+        return { SMODS.is_poker_hand_visible('jojobal_Fibonacci')
+        and SMODS.merge_lists(parts.jojobal_fibonacci, parts._flush) or nil }
     end,
     example = {
         {'H_8', true},
