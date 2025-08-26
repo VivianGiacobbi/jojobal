@@ -557,7 +557,7 @@ return {
 				text = {
 					"Start with the",
 					"{C:stand}Foo Fighter{} voucher",
-					"There is no {C:stand}Stand{} limit",
+					"There is no {C:stand}Stand limit{}",
 				},
 				unlock = {
 					"{C:attention}Evolve{} a {C:stand}Stand",
