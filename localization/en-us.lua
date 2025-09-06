@@ -513,7 +513,25 @@ return {
 					"is added to your deck",
 				},
 			},
-			c_jojobal_lion_wonder= {
+			c_jojobal_lion_wonder = {
+				name = "Satoru Akefu",
+				text = {
+					"When a {C:attention}Lucky Card{} is scored,",
+					"{C:attention}destroy{} it and gain {X:mult,C:white}X#1#{} Mult",
+					"{C:inactive}(Currently{} {X:mult,C:white}X#2#{} {C:inactive}Mult){}",
+					
+				},
+			},
+			c_jojobal_lion_wonder_2 = {
+				name = "Satoru Akefu...?",
+				text = {
+					"When a {C:attention}Lucky Card{} is scored,",
+					"{C:attention}destroy{} it and gain {X:mult,C:white}X#1#{} Mult",
+					"{C:inactive}(Currently{} {X:mult,C:white}X#2#{} {C:inactive}Mult){}",
+					
+				},
+			},
+			c_jojobal_lion_wonder_3 = {
 				name = "Wonder of U",
 				text = {
 					"When a {C:attention}Lucky Card{} is scored,",

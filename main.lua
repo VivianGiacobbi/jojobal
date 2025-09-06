@@ -36,6 +36,7 @@ ArrowAPI.ui.add_badge_colors(SMODS.current_mod, {
 ArrowAPI.credits.add_credits(SMODS.current_mod, {
 	['gote'] = "BarrierTrio/Gote",
 	['cejai'] = "SagaciousCejai",
+	['winter'] = 'TheWinterComet',
 	['eremel'] = "Eremel",
 	['keku'] = "Keku",
 	['guff'] = "GuffNFluff",
