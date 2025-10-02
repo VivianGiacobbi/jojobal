@@ -6,7 +6,7 @@ return {
 		},
 		poker_hand_descriptions = {
 			jojobal_Fibonacci = {
-				"5 cards that make a Fibonacci sequence",
+				"5 cards that makecd .. a Fibonacci sequence",
 				"(each card's rank is the sum of the",
 				"two ranks that precede it)"
 			},
