@@ -6,6 +6,17 @@ SMODS.Atlas({
 	py = 32
 })
 
+if SMODS.current_mod.config['enable_Title'] then
+	-- Title Screen Logo Texture
+	SMODS.Atlas {
+		key = 'balatro',
+		path = 'jojobal_title_alt.png',
+		px = 489,
+		py = 216,
+		prefix_config = { key = false }
+	}
+end
+
 SMODS.current_mod.config_tab = function()
 	local ordered_config = {
 		'enable_Stands',
@@ -14,6 +25,7 @@ SMODS.current_mod.config_tab = function()
 		'enable_Consumables',
 		'enable_Vouchers',
 		'enable_Tags',
+		'enable_Title',
 	}
 	local left_settings = { n = G.UIT.C, config = { align = "tm" }, nodes = {} }
 	local right_settings = { n = G.UIT.C, config = { align = "tm" }, nodes = {} }

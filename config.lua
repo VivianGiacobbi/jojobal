@@ -4,5 +4,6 @@ return {
 	['enable_Consumables'] = true,
 	['enable_Decks'] = true,
 	['enable_Vouchers'] = true,
-	['enable_Tags'] = true
+	['enable_Tags'] = true,
+	['enable_Title'] = true
 }
