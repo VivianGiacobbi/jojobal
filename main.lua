@@ -1,5 +1,5 @@
-jojobal_config = SMODS.current_mod.config
-jojobal_enabled = copy_table(jojobal_config)
+JojobalMod = SMODS.current_mod
+JojobalMod.current_config = copy_table(JojobalMod.config)
 
 SMODS.current_mod.optional_features = {
 	retrigger_joker = true,
