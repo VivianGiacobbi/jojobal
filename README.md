@@ -21,7 +21,7 @@ This mod features a plethora of additions to the base game, including:
 3. Once all dependencies are installed, download the [latest release](https://github.com/VivianGiacobbi/jojobal/releases/tag/v1.0.0) and extract the `jojobal` folder into your mods directory. You're all set!
 
 ## Credits
-Created by **Vivian Giacobbi** and [Kekulism](https://github.com/Kekulism)
+Created by **Vivian Giacobbi**, [BarrierTrio](https://github.com/BarrierTrio), and [Kekulism](https://github.com/Kekulism)
 
 Logo by [Redastrin](https://gamejolt.com/@Redastrin)
 
