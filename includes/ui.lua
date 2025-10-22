@@ -7,16 +7,13 @@ SMODS.Atlas({
 })
 
 if JojobalMod.current_config['enable_Title'] then
-	local file_data = assert(NFS.newFileData(JojobalMod.path..'assets/'..G.SETTINGS.GRAPHICS.texture_scaling..'x/jojobal_title_alt.png'),
-		('Failed to collect file data for Atlas %s'):format('jojobal_title'))
-	local image_data = assert(love.image.newImageData(file_data),
-		('Failed to initialize image data for Atlas %s'):format('jojobal_title'))
-		sendDebugMessage('jojobal title replacement')
-	G.ASSET_ATLAS['balatro'] = {
-		name = 'balatro',
-		image = love.graphics.newImage(image_data, {mipmaps = true, dpiscale = G.SETTINGS.GRAPHICS.texture_scaling}),
+	-- Title Screen Logo Texture
+	SMODS.Atlas {
+		key = 'balatro',
+		path = 'jojobal_title_alt.png',
 		px = 489,
 		py = 216,
+		prefix_config = { key = false }
 	}
 end
 
