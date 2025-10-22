@@ -7,9 +7,9 @@ This mod features a plethora of additions to the base game, including:
 - **5 Jokers**
 - **46 Stands****
 - **2 Planet Cards + 2 new Poker Hands**
-- **1 Tarot Card/2 Spectral Cards***
-- **1 Tag**
-- **1 Booster Pack**
+- **1 Tarot Card/2 Spectral Cards****
+- **1 Tag****
+- **1 Booster Pack****
 
 **Content technicaly comes from Arrow, but is is enabled by this mod's installation
 
