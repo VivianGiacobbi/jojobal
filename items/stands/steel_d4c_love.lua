@@ -33,7 +33,7 @@ function eval_card(card, context)
     local ret, post = ref_eval_card(card, context)
 
     if card and context.cardarea == G.play and context.main_scoring and not card.debuff and card.config.center.key == 'm_lucky'
-    and not ret.playing_card.mult and not ret.playing_card.p_dollars then
+    and ret.playing_card and not ret.playing_card.mult and not ret.playing_card.p_dollars then
         if next(SMODS.find_card('c_jojobal_steel_d4c_love')) then
             local triggers = {'mult', 'p_dollars'}
             local key = pseudorandom_element(triggers, pseudoseed('jojobal_lovetrain'))
