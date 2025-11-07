@@ -2,7 +2,8 @@ local consumInfo = {
     name = 'Whirlpool',
     set = "Planet",
     config = { hand_type = 'jojobal_Fibonacci' },
-    artist = 'gote',
+    artist = 'BarrierTrio/Gote',
+    programmer = 'Kekulism'
 }
 
 consumInfo.loc_vars = function(self, info_queue, card)

@@ -33,23 +33,50 @@ ArrowAPI.ui.add_badge_colors(SMODS.current_mod, {
 	te_lands = HEX('409CE8'),
 })
 
-ArrowAPI.credits.add_credits(SMODS.current_mod, {
-	['gote'] = "BarrierTrio/Gote",
-	['cejai'] = "SagaciousCejai",
-	['winter'] = 'TheWinterComet',
-	['eremel'] = "Eremel",
-	['keku'] = "Keku",
-	['guff'] = "GuffNFluff",
-	['wario'] = "MightyKingWario",
-	['rerun'] = "KawaiiRerun",
-	['vivi'] = "Vivian Giacobbi",
-	['gameboy'] = "Sir. Gameboy",
-	['chvsau'] = "chvsau",
-	['dolos'] = "Dolos",
-	['stup'] = 'Stupisms',
-	['reda'] = 'Redastrin',
-	['araki'] = 'Hirohiko Araki',
-	['luckyland'] = 'Lucky Land Communications',
+ArrowAPI.credits.use_credits(JojobalMod, {
+    matrix = {col = 20, row = 16},
+    {
+        key = 'direction',
+        title_colour = G.C.YELLOW,
+        pos_start = {col = 0, row = 0},
+        pos_end = {col = 5, row = 16},
+        contributors = {
+            ["BarrierTrio/Gote"] = true,
+			["Kekulism"] = true,
+            ["Vivian Giacobbi"] = true,
+        }
+    },
+    {
+        key = 'artist',
+        title_colour = G.C.ETERNAL,
+        pos_start = {col = 5, row = 0},
+        pos_end = {col = 12, row = 16}
+    },
+    {
+        key = 'programmer',
+        title_colour = G.C.GOLD,
+        pos_start = {col = 12, row = 0},
+        pos_end = {col = 16, row = 10},
+    },
+    {
+        key = 'shader',
+        title_colour = G.C.DARK_EDITION,
+        pos_start = {col = 16, row = 0},
+        pos_end = {col = 20, row = 10},
+        contributors = {
+            ["Vivian Giacobbi"] = true,
+        }
+    },
+    {
+        key = 'special',
+        title_colour = G.C.GREEN,
+        pos_start = {col = 12, row = 10},
+        pos_end = {col = 20, row = 16},
+        contributors = {
+            ["Hirohiko Araki"] = true,
+            ["LuckyLand Communications"] = true,
+        }
+    },
 })
 
 local includes = {

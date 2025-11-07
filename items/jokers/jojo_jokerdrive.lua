@@ -11,7 +11,8 @@ local jokerInfo = {
     eternal_compat = true,
     perishable_compat = true,
     origin = 'jojo',
-    artist = 'gote',
+    artist = 'BarrierTrio/Gote',
+    programmer = 'Kekulism'
 }
 
 function jokerInfo.loc_vars(self, info_queue, card)

@@ -9,11 +9,12 @@ local jokerInfo = {
     eternal_compat = true,
     perishable_compat = true,
     origin = 'jojo',
-    artist = 'cejai',
+    artist = 'SagaciousCejai',
+    programmer = 'Kekulism'
 }
 
 function jokerInfo.calculate(self, card, context)
-    if context.retrigger_joker_check and not context.retrigger_joker 
+    if context.retrigger_joker_check and not context.retrigger_joker
     and context.other_card.ability and context.other_card.ability.set == "Stand" then
         return {
             no_retrigger_juice = true,

@@ -8,7 +8,8 @@ local jokerInfo = {
     perishable_compat = true,
     hasSoul = true,
     origin = 'jojo',
-    artist = 'gote',
+    artist = 'BarrierTrio/Gote',
+    programmer = 'Kekulism'
 }
 
 function jokerInfo.calculate(self, card, context)

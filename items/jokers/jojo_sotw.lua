@@ -13,7 +13,8 @@ local jokerInfo = {
     eternal_compat = true,
     perishable_compat = true,
     origin = 'jojo',
-    artist = 'gote',
+    artist = 'BarrierTrio/Gote',
+    programmer = 'Kekulism'
 }
 
 local function num_unique_stands()
@@ -21,8 +22,8 @@ local function num_unique_stands()
 
     if not G.consumeables then return unique_stands end
 
-    for k, v in pairs(G.GAME.consumeable_usage) do 
-        if v.set == 'Stand' then 
+    for k, v in pairs(G.GAME.consumeable_usage) do
+        if v.set == 'Stand' then
             unique_stands = unique_stands + 1
         end
     end
