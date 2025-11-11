@@ -18,13 +18,6 @@ local consumInfo = {
     cost = 4,
     rarity = 'StandRarity',
     hasSoul = true,
-    origin = {
-        category = 'jojo',
-        sub_origins = {
-            'steel',
-        },
-        custom_color = 'steel'
-    },
     blueprint_compat = true,
     origin = {
         category = 'jojo',
@@ -33,6 +26,8 @@ local consumInfo = {
         },
         custom_color = 'steel'
     },
+    artist = {'MightyKingWario', 'Vivian Giacobbi'},
+    programmer = 'Kekulism'
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -45,9 +40,9 @@ function consumInfo.in_pool(self, args)
     or G.GAME.used_jokers['c_jojobal_steel_tusk_4'] then
         return false
     end
-    
+
     return true
-end 
+end
 
 function consumInfo.calculate(self, card, context)
     if card.debuff then return end

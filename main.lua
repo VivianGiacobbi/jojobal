@@ -33,7 +33,7 @@ ArrowAPI.ui.add_badge_colors(SMODS.current_mod, {
 	te_lands = HEX('409CE8'),
 })
 
-ArrowAPI.credits.use_credits(JojobalMod, {
+ArrowAPI.config.use_credits(JojobalMod, {
     matrix = {col = 20, row = 16},
     {
         key = 'direction',
