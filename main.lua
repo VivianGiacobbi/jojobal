@@ -1,3 +1,8 @@
+if JojobalMod then
+	sendDebugMessage('[Jojobal] already provided. Skipping...')
+	return
+end
+
 JojobalMod = SMODS.current_mod
 JojobalMod.current_config = copy_table(JojobalMod.config)
 
@@ -33,7 +38,7 @@ ArrowAPI.ui.add_badge_colors(SMODS.current_mod, {
 	te_lands = HEX('409CE8'),
 })
 
-ArrowAPI.config.use_credits(JojobalMod, {
+ArrowAPI.config_tools.use_credits(JojobalMod, {
     matrix = {col = 20, row = 16},
     {
         key = 'direction',
@@ -78,6 +83,10 @@ ArrowAPI.config.use_credits(JojobalMod, {
         }
     },
 })
+
+ArrowAPI.game.add_game_globals_func(Cardsauce, function(run_start)
+    jojobal_reset_paper_rank()
+end)
 
 local includes = {
 	-- object hooks

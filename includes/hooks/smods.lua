@@ -1,7 +1,3 @@
-SMODS.current_mod.reset_game_globals = function(run_start)
-    jojobal_reset_paper_rank()
-end
-
 local ref_four_fingers = SMODS.four_fingers
 function SMODS.four_fingers(hand_type)
 	local ret = ref_four_fingers(hand_type)

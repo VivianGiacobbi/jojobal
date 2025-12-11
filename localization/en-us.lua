@@ -71,6 +71,14 @@ return {
 		},
 	},
 	descriptions = {
+		Edition = {
+			e_jojobal_phantom_hamon = {
+				name = "Hamon",
+				text = {
+					"Test Text",
+				},
+			},
+		},
 		Joker = {
 			j_jojobal_jojo_gravity = {
 				name = "Gravity",

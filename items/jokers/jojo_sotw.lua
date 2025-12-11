@@ -13,6 +13,11 @@ local jokerInfo = {
     eternal_compat = true,
     perishable_compat = true,
     origin = 'jojo',
+    dependencies = {
+        config = {
+            ['Stands'] = true,
+        }
+    },
     artist = 'BarrierTrio/Gote',
     programmer = 'Kekulism'
 }
@@ -46,11 +51,11 @@ function jokerInfo.check_for_unlock(self, args)
 end
 
 function jokerInfo.calculate(self, card, context)
-    if context.joker_main and context.cardarea == G.jokers then
+    if context.joker_main then
         local stands_obtained = num_unique_stands()
         if to_big(stands_obtained) > to_big(0) then
             return {
-                xmult = 1 + (card.ability.extra.x_mult_mod * stands_obtained),
+                x_mult = 1 + (card.ability.extra.x_mult_mod * stands_obtained),
             }
         end
     end

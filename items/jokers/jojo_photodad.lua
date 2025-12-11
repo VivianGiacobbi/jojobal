@@ -1,13 +1,20 @@
 local jokerInfo = {
     name = 'Photodad',
+    atlas = 'jokers',
+	pos = {x = 6, y = 15},
+    soul_pos = {x = 7, y = 15},
     config = {},
     rarity = 2,
     cost = 4,
     blueprint_compat = true,
     eternal_compat = true,
     perishable_compat = true,
-    hasSoul = true,
     origin = 'jojo',
+    dependencies = {
+        config = {
+            ['Stands'] = true,
+        }
+    },
     artist = 'BarrierTrio/Gote',
     programmer = 'Kekulism'
 }
@@ -15,7 +22,7 @@ local jokerInfo = {
 function jokerInfo.calculate(self, card, context)
     if card.debuff then return end
 
-    if context.cardarea == G.jokers and context.before and to_big(G.GAME.current_round.hands_left) == to_big(0) then
+    if context.before and to_big(G.GAME.current_round.hands_left) == to_big(0) then
         G.E_MANAGER:add_event(Event({func = function()
             if to_big(G.consumeables.config.card_limit) > to_big(#G.consumeables.cards) then
                 play_sound('timpani')
