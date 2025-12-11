@@ -1,4 +1,9 @@
-ArrowAPI.loading.batch_load({	
+ArrowAPI.loading.batch_load({
+	config = {
+        parent_folder = 'jojobal',
+	    mod_prefix = 'jojobal',
+    },
+
 	Joker = {
 		items = {
 			'jojo_gravity',
@@ -40,7 +45,7 @@ ArrowAPI.loading.batch_load({
 			'diamond_echoes_3',
 			'diamond_killer',
 			'diamond_killer_btd',
-			
+
 			-- vento aureo
 			'vento_gold',
 			'vento_gold_requiem',
