@@ -1,4 +1,8 @@
 ArrowAPI.loading.batch_load({
+	config = {
+        parent_folder = 'jojobal',
+	    mod_prefix = 'jojobal',
+    },
 	Joker = {
 		items = {
 			'jojo_gravity',
