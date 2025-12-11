@@ -3,7 +3,8 @@ local consumInfo = {
     set = "Planet",
     config = { hand_type = 'jojobal_FlushFibonacci' },
     origin = 'uzumaki',
-    artist = 'keku',
+    artist = 'Kekulism',
+    programmer = 'Kekulism'
 }
 
 consumInfo.loc_vars = function(self, info_queue, card)

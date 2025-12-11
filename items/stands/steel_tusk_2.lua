@@ -29,6 +29,8 @@ local consumInfo = {
         custom_color = 'steel'
     },
     blueprint_compat = true,
+    artist = {'MightyKingWario', 'Vivian Giacobbi'},
+    programmer = 'Kekulism'
 }
 
 function consumInfo.loc_vars(self, info_queue, card)
@@ -41,13 +43,13 @@ function consumInfo.in_pool(self, args)
     or G.GAME.used_jokers['c_jojobal_steel_tusk_4'] then
         return false
     end
-    
+
     return true
 end
 
 function consumInfo.calculate(self, card, context)
     if card.debuff then return end
-    
+
     if context.individual and context.cardarea == G.play and card.ability.extra.valid_ids[context.other_card:get_id()] then
         local flare_card = context.blueprint_card or card
         return {

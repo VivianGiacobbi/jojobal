@@ -10,6 +10,8 @@ local consumInfo = {
         },
         custom_color = 'phantom'
     },
+    artist = 'Vivian Giacobbi',
+    programmer = 'Vivian Giacobbi'
 }
 
 function consumInfo.loc_vars(self, info_queue, card)

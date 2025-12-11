@@ -15,7 +15,8 @@ local consumInfo = {
         },
         custom_color = 'vento'
     },
-    artist = 'dolos',
+    artist = 'Dolos',
+    programmer = 'Kekulism'
 }
 
 function consumInfo.add_to_deck(self, card)
