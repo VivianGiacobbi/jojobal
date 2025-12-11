@@ -4,12 +4,12 @@
 
 function G.FUNCS.jojobal_restart()
 	local settingsMatch = true
-	for k, v in pairs(jojobal_enabled) do
-		if v ~= jojobal_config[k] then
+	for k, v in pairs(JojobalMod.current_config) do
+		if v ~= JojobalMod.config [k] then
 			settingsMatch = false
 		end
 	end
-	
+
 	if settingsMatch then
 		sendDebugMessage('Settings match')
 		SMODS.full_restart = 0
@@ -53,7 +53,7 @@ function jojobal_get_fibonacci(hand)
 		elseif SMODS.has_no_rank(hand[i]) then
 			value = 0
 		end
-		
+
 		vals[#vals+1] = value
 	end
 	table.sort(vals, function(a, b) return a < b end)
@@ -67,7 +67,7 @@ function jojobal_get_fibonacci(hand)
 	local prev_2 = 0
 	for i=1, #vals do
 		sum = prev_1 + prev_2
-		
+
 		if vals[i] ~= sum then
 			return ret
 		end

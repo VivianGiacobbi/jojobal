@@ -16,7 +16,8 @@ local deckInfo = {
         },
         custom_color = 'stone'
     },
-    artist = 'gote',
+    artist = 'BarrierTrio/Gote',
+    programmer = 'Kekulism'
 }
 
 function deckInfo.check_for_unlock(self, args)

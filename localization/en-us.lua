@@ -6,7 +6,7 @@ return {
 		},
 		poker_hand_descriptions = {
 			jojobal_Fibonacci = {
-				"5 cards that make a Fibonacci sequence",
+				"5 cards that makecd .. a Fibonacci sequence",
 				"(each card's rank is the sum of the",
 				"two ranks that precede it)"
 			},
@@ -33,6 +33,7 @@ return {
 			jojobal_options_enable_Decks = "Decks",
 			jojobal_options_enable_Vouchers = "Vouchers",
 			jojobal_options_enable_Tags = "Tags",
+			jojobal_options_enable_Title = 'Enable Title',
 			jojobal_options_sub = "(Restart required to apply)",
 
 			-- badge names for jojo parts
@@ -70,6 +71,14 @@ return {
 		},
 	},
 	descriptions = {
+		Edition = {
+			e_jojobal_phantom_hamon = {
+				name = "Hamon",
+				text = {
+					"Test Text",
+				},
+			},
+		},
 		Joker = {
 			j_jojobal_jojo_gravity = {
 				name = "Gravity",
@@ -211,7 +220,7 @@ return {
 					},
 					{
 						"{C:stand}Evolves{} after {C:attention}#3#{} rounds",
-					}					
+					}
 				},
 			},
 			c_jojobal_diamond_echoes_3 = {
@@ -375,7 +384,7 @@ return {
 					{
 						"{C:stand}Evolves{} after using",
 					"{C:attention}#1#{} {C:tarot}The Moon{} cards",
-					}					
+					}
 				},
 			},
 			c_jojobal_stone_white_heaven = {
@@ -438,7 +447,7 @@ return {
 					{
 						"If played hand contains a",
 						"{C:attention}Fibonacci{}, gain {C:blue}+#2#{} Hand",
-					}			
+					}
 				},
 			},
 			c_jojobal_steel_civil = {
@@ -482,7 +491,7 @@ return {
 					},
 					{
 						"{C:stand}Evolves{} after playing a {C:attention}Secret Hand{}",
-					}				
+					}
 				},
 			},
 			c_jojobal_lion_soft_beyond = {
@@ -519,7 +528,7 @@ return {
 					"When a {C:attention}Lucky Card{} is scored,",
 					"{C:attention}destroy{} it and gain {X:mult,C:white}X#1#{} Mult",
 					"{C:inactive}(Currently{} {X:mult,C:white}X#2#{} {C:inactive}Mult){}",
-					
+
 				},
 			},
 			c_jojobal_lion_wonder_2 = {
@@ -528,7 +537,7 @@ return {
 					"When a {C:attention}Lucky Card{} is scored,",
 					"{C:attention}destroy{} it and gain {X:mult,C:white}X#1#{} Mult",
 					"{C:inactive}(Currently{} {X:mult,C:white}X#2#{} {C:inactive}Mult){}",
-					
+
 				},
 			},
 			c_jojobal_lion_wonder_3 = {
@@ -537,7 +546,7 @@ return {
 					"When a {C:attention}Lucky Card{} is scored,",
 					"{C:attention}destroy{} it and gain {X:mult,C:white}X#1#{} Mult",
 					"{C:inactive}(Currently{} {X:mult,C:white}X#2#{} {C:inactive}Mult){}",
-					
+
 				},
 			},
 			c_jojobal_lands_november = {

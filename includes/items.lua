@@ -1,4 +1,4 @@
-ArrowAPI.loading.batch_load({	
+ArrowAPI.loading.batch_load({
 	Joker = {
 		items = {
 			'jojo_gravity',
@@ -40,7 +40,7 @@ ArrowAPI.loading.batch_load({
 			'diamond_echoes_3',
 			'diamond_killer',
 			'diamond_killer_btd',
-			
+
 			-- vento aureo
 			'vento_gold',
 			'vento_gold_requiem',
@@ -78,5 +78,11 @@ ArrowAPI.loading.batch_load({
 			'lands_bigmouth',
 		}
 	},
+
+	Edition = {
+		items = {
+			'phantom_hamon'
+		}
+	}
 })
 
