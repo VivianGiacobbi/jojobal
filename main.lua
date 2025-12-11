@@ -4,7 +4,6 @@ if JojobalMod then
 end
 
 JojobalMod = SMODS.current_mod
-JojobalMod.current_config = copy_table(JojobalMod.config)
 
 SMODS.current_mod.optional_features = {
 	retrigger_joker = true,
@@ -84,7 +83,11 @@ ArrowAPI.config_tools.use_credits(JojobalMod, {
     },
 })
 
-ArrowAPI.game.add_game_globals_func(Cardsauce, function(run_start)
+ArrowAPI.config_tools.use_config(JojobalMod, {
+	{key = 'enable_Logo', order = 1, default_value = true},
+})
+
+ArrowAPI.game.add_game_globals_func(JojobalMod, function(run_start)
     jojobal_reset_paper_rank()
 end)
 
