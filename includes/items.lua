@@ -1,6 +1,6 @@
 ArrowAPI.loading.batch_load({
 	config = {
-        parent_folder = 'jojobal',
+        parent_folder = JojobalMod.custom_path,
 	    mod_prefix = 'jojobal',
     },
 	Joker = {
@@ -82,11 +82,5 @@ ArrowAPI.loading.batch_load({
 			'lands_bigmouth',
 		}
 	},
-
-	Edition = {
-		items = {
-			'phantom_hamon'
-		}
-	}
 })
 

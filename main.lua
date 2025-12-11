@@ -101,10 +101,15 @@ local includes = {
 	'items',
 }
 
+local module_path = JojobalMod.path.."modules\\jojobal"
+sendDebugMessage('module path '..module_path)
+local load_path = NFS.getInfo(module_path) and "modules\\jojobal\\"
+JojobalMod.custom_path = load_path
+
 for _, module in ipairs(includes) do
-	local init, error = NFS.load(SMODS.current_mod.path .. "includes/" .. module ..".lua")
-	if error then sendErrorMessage("[Stands] Failed to load "..module.." with error "..error) else
+	local init, error = SMODS.load_file((JojobalMod.custom_path or '') .. "includes\\" .. module ..".lua")
+	if error then sendErrorMessage("[Jojobal] Failed to load "..module.." with error "..error) else
 		init()
-		sendDebugMessage("[Stands] Loaded module: " .. module)
+		sendDebugMessage("[Jojobal] Loaded module: " .. module)
 	end
 end
