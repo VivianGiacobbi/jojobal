@@ -102,7 +102,6 @@ local includes = {
 }
 
 local module_path = JojobalMod.path.."modules/jojobal"
-sendDebugMessage('module path '..module_path)
 local load_path = NFS.getInfo(module_path) and "modules/jojobal/"
 JojobalMod.custom_path = load_path
 
