@@ -32,8 +32,8 @@ function consumInfo.loc_vars(self, info_queue, card)
     }
 end
 
-SMODS.Atlas({ key = 'lion_wonder_2', path = "stands/lion_wonder_2.png", px = 71, py = 95 })
-SMODS.Atlas({ key = 'lion_wonder_3', path = "stands/lion_wonder_3.png", px = 71, py = 95 })
+SMODS.Atlas({ key = 'lion_wonder_2', custom_path = JojobalMod.path..(JojobalMod.custom_path or ''), path = "stands/lion_wonder_2.png", px = 71, py = 95 })
+SMODS.Atlas({ key = 'lion_wonder_3', custom_path = JojobalMod.path..(JojobalMod.custom_path or ''), path = "stands/lion_wonder_3.png", px = 71, py = 95 })
 
 function consumInfo.set_ability(self, card, initial, delay_sprites)
     if not card.config.center.discovered and (G.OVERLAY_MENU or G.STAGE == G.STAGES.MAIN_MENU) then

@@ -2,6 +2,7 @@
 SMODS.Atlas({
 	key = "jojobal_modicon",
 	path = "stand_icon.png",
+	custom_path = JojobalMod.path..(JojobalMod.custom_path or ''),
 	px = 32,
 	py = 32,
     prefix_config = false
