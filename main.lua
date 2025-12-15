@@ -93,6 +93,8 @@ end)
 
 local includes = {
 	-- object hooks
+    'loc',
+
 	'hooks/card',
 	'hooks/misc_functions',
 	'hooks/smods',
