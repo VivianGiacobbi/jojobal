@@ -38,8 +38,7 @@ end
 ---------------------------
 
 local function is_perfect_square(x)
-	local sqrt = math.sqrt(x)
-	return sqrt^2 == x
+	return math.sqrt(x)^2 == x
 end
 
 function jojobal_get_fibonacci(hand)
@@ -72,8 +71,8 @@ function jojobal_get_fibonacci(hand)
 			return ret
 		end
 
-		prev_2 = prev_1
-		prev_1 = vals[i] == 0 and 1 or vals[i]
+		prev_2 = (sum == 0 and 1) or (sum == 1 and vals[i+1] == 1 and 0) or prev_1
+		prev_1 = sum
 	end
 
 	local t = {}

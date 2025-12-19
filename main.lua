@@ -5,7 +5,8 @@ end
 
 JojobalMod = SMODS.current_mod
 
-SMODS.current_mod.optional_features = {
+JojobalMod.optional_features = {
+    arrow_palettes = true,
 	retrigger_joker = true,
 	quantum_enhancements = true,
 }
