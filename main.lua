@@ -85,7 +85,7 @@ if not Cardsauce then
         },
     })
 
-    ArrowAPI.config_tools.use_config(JojobalMod, {
+    ArrowAPI.config_tools.use_default_config(JojobalMod, {
         {key = 'enable_Logo', order = 1, default_value = true},
     })
 end

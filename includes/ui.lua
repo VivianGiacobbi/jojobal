@@ -8,7 +8,7 @@ SMODS.Atlas({
     prefix_config = false
 })
 
-if JojobalMod.current_config['enable_Title'] then
+if JojobalMod.config['enable_Title'] then
 	-- Title Screen Logo Texture
 	ArrowAPI.ui.replace_title(Cardsauce, {
 		path = 'jojobal_title_alt.png',
