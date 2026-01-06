@@ -65,7 +65,7 @@ function consumInfo.calculate(self, card, context)
     end
 
     if context.after and not context.blueprint and not context.retrigger_joker and not card.ability.extra.evolved then
-        if to_big(card.ability.extra.evolve_scores) >= to_big(card.ability.extra.evolve_num) then
+        if card.ability.extra.evolve_scores) >= card.ability.extra.evolve_num) then
             card.ability.extra.evolved = true
             G.E_MANAGER:add_event(Event({
                 func = (function()

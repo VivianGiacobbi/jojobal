@@ -88,7 +88,7 @@ function check_for_unlock(args)
         local d4cs = SMODS.find_card('c_jojobal_steel_d4c')
         local num_luckies = ArrowAPI.game.get_enhanced_tally('m_lucky')
         for _, v in ipairs(d4cs) do
-            if to_big(num_luckies) >= to_big(v.ability.extra.evolve_num) then
+            if num_luckies) >= v.ability.extra.evolve_num) then
                 G.E_MANAGER:add_event(Event({
                     func = function()
                         check_for_unlock({ type = "evolve_d4c" })

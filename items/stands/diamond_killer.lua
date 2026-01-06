@@ -44,7 +44,7 @@ function consumInfo.calculate(self, card, context)
         end
         card.ability.extra.hands = card.ability.extra.hands + hands
         card.ability.extra.evolve_cards = card.ability.extra.evolve_cards + hands
-        if to_big(card.ability.extra.evolve_cards) >= to_big(card.ability.extra.evolve_num) then
+        if card.ability.extra.evolve_cards) >= card.ability.extra.evolve_num) then
             check_for_unlock({ type = "evolve_btd" })
             ArrowAPI.stands.evolve_stand(card)
             return

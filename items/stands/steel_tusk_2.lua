@@ -65,7 +65,7 @@ function consumInfo.calculate(self, card, context)
 
     if context.remove_playing_cards and not context.blueprint and not context.retrigger_joker then
         card.ability.extra.evolve_destroys = card.ability.extra.evolve_destroys + #context.removed
-        if to_big(card.ability.extra.evolve_destroys) >= to_big(card.ability.extra.evolve_num) and not card.ability.extra.evolved then
+        if card.ability.extra.evolve_destroys) >= card.ability.extra.evolve_num) and not card.ability.extra.evolved then
             card.ability.extra.evolved = true
             G.E_MANAGER:add_event(Event({
                 func = (function()

@@ -64,7 +64,7 @@ function consumInfo.calculate(self, card, context)
     end
 
     if context.end_of_round and context.main_eval and not context.blueprint and not context.retrigger_joker
-    and to_big(G.GAME.chips) <= to_big(G.GAME.blind.chips * (1+card.ability.extra.evolve_percent)) and not card.ability.extra.evolved then
+    and G.GAME.chips) <= G.GAME.blind.chips * (1+card.ability.extra.evolve_percent)) and not card.ability.extra.evolved then
         card.ability.extra.evolved = true
         G.E_MANAGER:add_event(Event({
             func = (function()
