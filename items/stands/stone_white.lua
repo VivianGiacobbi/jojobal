@@ -59,7 +59,7 @@ function consumInfo.calculate(self, card, context)
     end
 
     if context.after and not card.debuff and not context.blueprint and not context.retrigger_joker and not card.ability.extra.evolved then
-        if card.ability.extra.evolve_scores) >= card.ability.extra.evolve_num) then
+        if card.ability.extra.evolve_scores >= card.ability.extra.evolve_num then
             card.ability.extra.evolved = true
             ArrowAPI.stands.evolve_stand(card)
         else

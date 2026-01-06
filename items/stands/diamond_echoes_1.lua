@@ -63,7 +63,7 @@ end
 function consumInfo.calculate(self, card, context)
     if card.debuff then return end
 
-    if context.before and not context.blueprint and not context.retrigger_joker and G.GAME.current_round.hands_played) == 0)
+    if context.before and not context.blueprint and not context.retrigger_joker and G.GAME.current_round.hands_played == 0
     and #context.full_hand == card.ability.extra.num_cards and not SMODS.has_no_suit(context.full_hand[1]) then
         local ref_card = context.full_hand[1]
         card.ability.extra.ref_suit = SMODS.has_any_suit(ref_card) and "Wild" or ref_card.base.suit

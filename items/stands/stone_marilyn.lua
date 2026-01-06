@@ -32,7 +32,7 @@ local debt_collection = function(card)
     local percentage_left = (G.GAME.blind.chips-G.GAME.chips) / G.GAME.blind.chips
     local debt = math.ceil(percentage_left / card.ability.extra.conv_score)*card.ability.extra.conv_money
     local recoverable = 0
-    if G.GAME.dollars - debt) >= G.GAME.bankrupt_at) then
+    if G.GAME.dollars - debt >= G.GAME.bankrupt_at then
         return {
             saved = true,
             ease = -debt
@@ -53,10 +53,10 @@ local debt_collection = function(card)
                     end
                 end
                 recoverable = recoverable + joker.sell_cost
-                if (G.GAME.dollars + recoverable) - debt) >= G.GAME.bankrupt_at) then
+                if (G.GAME.dollars + recoverable) - debt >= G.GAME.bankrupt_at then
                     table.insert(sell, joker)
                     local ease = debt
-                    if (G.GAME.dollars + recoverable) - debt) > 0) then
+                    if (G.GAME.dollars + recoverable) - debt > 0 then
                         ease = ease + (G.GAME.dollars + recoverable) - debt
                     end
                     return {
@@ -70,7 +70,7 @@ local debt_collection = function(card)
             end
         end
 
-        if (G.GAME.dollars + recoverable) - debt) < G.GAME.bankrupt_at) then
+        if (G.GAME.dollars + recoverable) - debt < G.GAME.bankrupt_at then
             if #G.playing_cards > 0 then
                 local pool = {}
                 for i, v in ipairs(G.playing_cards) do
@@ -85,10 +85,10 @@ local debt_collection = function(card)
                         end
                     end
                     recoverable = recoverable + card.sell_cost
-                    if (G.GAME.dollars + recoverable) - debt) >= G.GAME.bankrupt_at) then
+                    if (G.GAME.dollars + recoverable) - debt >= G.GAME.bankrupt_at then
                         table.insert(sell, card)
                         local ease = -debt
-                        if (G.GAME.dollars + recoverable) - debt) > 0) then
+                        if (G.GAME.dollars + recoverable) - debt > 0 then
                             ease = (G.GAME.dollars + recoverable) - debt
                         end
                         return {

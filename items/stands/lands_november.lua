@@ -31,7 +31,7 @@ function consumInfo.calculate(self, card, context)
     if card.debuff then return end
 
     if context.modify_scoring_hand and not context.blueprint and not context.retrigger_joker
-    and not SMODS.has_no_rank(context.other_card) and context.other_card.base.nominal) <= 9) then
+    and not SMODS.has_no_rank(context.other_card) and context.other_card.base.nominal <= 9 then
         return {
             no_retrigger = true,
             add_to_hand = true
@@ -39,7 +39,7 @@ function consumInfo.calculate(self, card, context)
     end
 
     if context.individual and context.cardarea == G.play and not SMODS.has_no_rank(context.other_card)
-    and context.other_card.base.nominal) <= 9) then
+    and context.other_card.base.nominal <= 9 then
         local flare_card = context.blueprint_card or card
         return {
             func = function()

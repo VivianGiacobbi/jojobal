@@ -19,9 +19,9 @@ local jokerInfo = {
 function jokerInfo.calculate(self, card, context)
     if card.debuff then return end
 
-    if context.before and G.GAME.current_round.hands_left) == 0) then
+    if context.before and G.GAME.current_round.hands_left == 0 then
         G.E_MANAGER:add_event(Event({func = function()
-            if G.consumeables.config.card_limit) > #G.consumeables.cards) then
+            if G.consumeables.config.card_limit > #G.consumeables.cards then
                 play_sound('timpani')
                 SMODS.add_card({
                     set = 'Tarot',

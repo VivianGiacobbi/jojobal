@@ -89,12 +89,12 @@ function consumInfo.calculate(self, card, context)
 
     if context.post_playing_card_removed and context.removed.jojobal_removed_by_wonder and not context.blueprint then
         local update_sprite = false
-        if card.ability.extra.x_mult) >= 1.9) and card.ability.extra.wonder_form == 1 then
+        if card.ability.extra.x_mult >= 1.9 and card.ability.extra.wonder_form == 1 then
             card.config.center.config.stand_shadow = nil
             card.config.center.config.aura_colors = { '280101A0', '711B1AA0' }
             card.ability.extra.wonder_form = 2
             update_sprite = true
-        elseif card.ability.extra.x_mult) >= 3.9) and card.ability.extra.wonder_form == 2 then
+        elseif card.ability.extra.x_mult >= 3.9 and card.ability.extra.wonder_form == 2 then
             card.config.center.config.stand_shadow = nil
             card.config.center.config.aura_colors = { '280101DC', '711B1ADC' }
             card.ability.extra.wonder_form = 3
