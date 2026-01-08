@@ -6,6 +6,7 @@ local jokerInfo = {
     blueprint_compat = true,
     eternal_compat = true,
     perishable_compat = true,
+    hasSoul = true,
     origin = 'jojo',
     dependencies = {
         config = {
