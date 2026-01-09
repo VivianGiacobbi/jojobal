@@ -6,6 +6,7 @@ local jokerInfo = {
     blueprint_compat = true,
     eternal_compat = true,
     perishable_compat = true,
+    hasSoul = true,
     origin = 'jojo',
     dependencies = {
         config = {
@@ -15,6 +16,14 @@ local jokerInfo = {
     artist = 'BarrierTrio/Gote',
     programmer = 'Kekulism'
 }
+
+if Cardsauce then
+    jokerInfo.hasSoul = false
+    jokerInfo.atlas = 'csau_jokers'
+    jokerInfo.prefix_config = {atlas = false}
+    jokerInfo.pos = {x = 6, y = 15}
+    jokerInfo.soul_pos = {x = 7, y = 15}
+end
 
 function jokerInfo.calculate(self, card, context)
     if card.debuff then return end
