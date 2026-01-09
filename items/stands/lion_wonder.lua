@@ -7,7 +7,7 @@ local consumInfo = {
         extra = {
             wonder_form = 1,
             x_mult = 1,
-            x_mult_mod = 0.2,
+            x_mult_mod = 0.25,
         }
     },
     cost = 4,

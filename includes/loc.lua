@@ -418,6 +418,9 @@ ArrowAPI.loc.add_loc_text_func(JojobalMod, function()
         name = "Tusk ACT1",
         text = {
             {
+                "{C:dark_edition}Unlocks Fibonacci poker hands{}",
+            },
+            {
                 "Each played {C:attention}Ace{} or {C:attention}2{} gives",
                 "{C:chips}+#1#{} Chips when scored",
             },
@@ -431,6 +434,9 @@ ArrowAPI.loc.add_loc_text_func(JojobalMod, function()
         name = "Tusk ACT2",
         text = {
             {
+                "{C:dark_edition}Unlocks Fibonacci poker hands{}",
+            },
+            {
                 "Each played {C:attention}Ace{}, {C:attention}2{}, or {C:attention}3{} gives",
                 "{C:chips}+#1#{} Chips when scored",
             },
@@ -443,6 +449,9 @@ ArrowAPI.loc.add_loc_text_func(JojobalMod, function()
     SMODS.process_loc_text(G.localization.descriptions.Stand, 'c_jojobal_steel_tusk_3', {['en-us'] = {
         name = "Tusk ACT3",
         text = {
+            {
+                "{C:dark_edition}Unlocks Fibonacci poker hands{}",
+            },
             {
                 "Each played {C:attention}Ace{}, {C:attention}2{}, {C:attention}3{}, or {C:attention}5{}",
                 "gives {C:chips}+#1#{} Chips when scored",
@@ -458,7 +467,6 @@ ArrowAPI.loc.add_loc_text_func(JojobalMod, function()
         text = {
             {
                 "{C:dark_edition}Unlocks Fibonacci poker hands{}",
-                "{C:inactive}(ex: {C:attention}8 5 3 2 A{C:inactive})",
             },
             {
                 "Played Fibonacci {C:attention}ranks{} give",

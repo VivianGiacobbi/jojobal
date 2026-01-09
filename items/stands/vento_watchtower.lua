@@ -5,7 +5,7 @@ local consumInfo = {
         aura_colors = { 'd4483eDC', '374649DC' },
         stand_mask = true,
         extra = {
-            x_mult = 4,
+            x_mult = 3,
         }
     },
     cost = 4,

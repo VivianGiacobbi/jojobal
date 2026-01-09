@@ -54,6 +54,7 @@ function jokerInfo.calculate(self, card, context)
     if context.joker_main then
         local stands_obtained = num_unique_stands()
         if stands_obtained > 0 then
+            check_for_unlock({type = 'scale_card', card = card, value = (1 + (card.ability.extra.x_mult_mod * stands_obtained))})
             return {
                 x_mult = 1 + (card.ability.extra.x_mult_mod * stands_obtained),
             }

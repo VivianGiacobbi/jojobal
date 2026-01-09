@@ -44,6 +44,14 @@ function consumInfo.in_pool(self, args)
     return true
 end
 
+function consumInfo.add_to_deck(self, card)
+    ArrowAPI.game.toggle_poker_hand('jojobal_Fibonacci', true, card)
+end
+
+function consumInfo.remove_from_deck(self, card, from_debuff)
+    ArrowAPI.game.toggle_poker_hand('jojobal_Fibonacci', false, card)
+end
+
 function consumInfo.calculate(self, card, context)
     if card.debuff then return end
 

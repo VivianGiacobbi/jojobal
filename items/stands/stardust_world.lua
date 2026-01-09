@@ -5,7 +5,7 @@ local consumInfo = {
         stand_mask = true,
         aura_colors = { 'ce9c36DC' , 'ffd575DC' },
         extra = {
-            hand_mod = 1,
+            hand_mod = 2,
         }
     },
     cost = 4,

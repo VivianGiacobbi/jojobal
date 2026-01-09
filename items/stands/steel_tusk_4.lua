@@ -14,7 +14,12 @@ SMODS.PokerHand {
             return {}
         end
 
-        return { SMODS.is_poker_hand_visible('jojobal_Fibonacci') and hand or nil }
+        for k, v in pairs(G.GAME.hands) do
+            sendDebugMessage('hand '..k..' visible: '..tostring(v.visible))
+        end
+
+        sendDebugMessage('is fibonacci visible: '..tostring(SMODS.is_poker_hand_visible('jojobal_Fibonacci')))
+        return { G.GAME.hands['jojobal_Fibonacci'].visible and parts.jojobal_fibonacci or nil }
     end,
     example = {
         {'D_8', true},
@@ -38,7 +43,7 @@ SMODS.PokerHand {
             return {}
         end
 
-        return { SMODS.is_poker_hand_visible('jojobal_Fibonacci')
+        return { G.GAME.hands['jojobal_Fibonacci'].visible
         and SMODS.merge_lists(parts.jojobal_fibonacci, parts._flush) or nil }
     end,
     example = {
@@ -52,7 +57,9 @@ SMODS.PokerHand {
     l_mult = 4,
     chips = 150,
     l_chips = 45,
-    visible = false,
+    visible = function()
+        return G.GAME.hands['jojobal_Fibonacci'].visible and G.GAME.hands.jojobal_FlushFibonacci.played > 0
+    end,
 }
 
 local consumInfo = {
@@ -105,20 +112,11 @@ function consumInfo.in_pool(self, args)
 end
 
 function consumInfo.add_to_deck(self, card)
-    G.GAME.hands['jojobal_Fibonacci'].visible = true
-    if G.GAME.hands.jojobal_FlushFibonacci.played > 0 then
-        G.GAME.hands['jojobal_FlushFibonacci'].visible = true
-    end
+    ArrowAPI.game.toggle_poker_hand('jojobal_Fibonacci', true, card)
 end
 
 function consumInfo.remove_from_deck(self, card, from_debuff)
-    -- compatability with fanworks mod, this other card also enables fibonacci hands
-    if next(SMODS.find_card('j_fnwk_plancks_jokestar')) or next(SMODS.find_card("c_jojobal_steel_tusk_4")) then
-        return
-    end
-
-    G.GAME.hands['jojobal_Fibonacci'].visible = false
-    G.GAME.hands['jojobal_FlushFibonacci'].visible = false
+    ArrowAPI.game.toggle_poker_hand('jojobal_Fibonacci', false, card)
 end
 
 function consumInfo.calculate(self, card, context)
