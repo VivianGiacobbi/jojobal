@@ -14,11 +14,6 @@ SMODS.PokerHand {
             return {}
         end
 
-        for k, v in pairs(G.GAME.hands) do
-            sendDebugMessage('hand '..k..' visible: '..tostring(v.visible))
-        end
-
-        sendDebugMessage('is fibonacci visible: '..tostring(SMODS.is_poker_hand_visible('jojobal_Fibonacci')))
         return { G.GAME.hands['jojobal_Fibonacci'].visible and parts.jojobal_fibonacci or nil }
     end,
     example = {
