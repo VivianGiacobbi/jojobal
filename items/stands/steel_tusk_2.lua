@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Tusk ACT2',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 9, y = 7},
+    soul_pos = {x = 10, y = 7},
     set = 'Stand',
     config = {
         aura_colors = { 'ff7dbcDC', '81476fDC' },
@@ -20,7 +24,6 @@ local consumInfo = {
     cost = 10,
     rarity = 'EvolvedRarity',
     alerted = true,
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

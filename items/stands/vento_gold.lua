@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Gold Experience',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 5, y = 3},
+    soul_pos = {x = 6, y = 3},
     set = 'Stand',
     config = {
         stand_mask = true,
@@ -11,7 +15,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

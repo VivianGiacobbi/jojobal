@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'C-MOON',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 9, y = 6},
+    soul_pos = {x = 10, y = 6},
     set = 'Stand',
     config = {
         aura_colors = { '73b481DC', 'a3d88fDC' },
@@ -15,7 +19,6 @@ local consumInfo = {
     },
     cost = 10,
     rarity = 'EvolvedRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

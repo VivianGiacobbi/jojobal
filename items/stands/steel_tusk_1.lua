@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Tusk ACT1',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 5, y = 7},
+    soul_pos = {x = 6, y = 7},
     set = 'Stand',
     config = {
         aura_colors = { 'ff7dbcDC', 'e675c2DC' },
@@ -17,7 +21,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     blueprint_compat = true,
     origin = {
         category = 'jojo',

@@ -1,5 +1,8 @@
 local jokerInfo = {
     name = "Jokerdrive",
+    atlas = 'jojobal_jokers',
+    prefix_config = {atlas = false},
+    pos = {x = 1, y = 0},
     config = {
         extra = {
             mult = 15,

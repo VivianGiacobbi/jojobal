@@ -1,12 +1,15 @@
 local jokerInfo = {
     name = 'Photodad',
+    atlas = 'jojobal_jokers',
+    prefix_config = {atlas = false},
+    pos = {x = 1, y = 1},
+    soul_pos = {x = 2, y = 1},
     config = {},
     rarity = 2,
     cost = 4,
     blueprint_compat = true,
     eternal_compat = true,
     perishable_compat = true,
-    hasSoul = true,
     origin = 'jojo',
     dependencies = {
         config = {
@@ -18,7 +21,6 @@ local jokerInfo = {
 }
 
 if Cardsauce then
-    jokerInfo.hasSoul = false
     jokerInfo.atlas = 'csau_jokers'
     jokerInfo.prefix_config = {atlas = false}
     jokerInfo.pos = {x = 6, y = 15}

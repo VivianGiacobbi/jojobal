@@ -1,5 +1,8 @@
 local consumInfo = {
     name = 'Stone Mask',
+    atlas = 'jojobal_spectrals',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
     set = "Spectral",
     cost = 4,
     alerted = true,

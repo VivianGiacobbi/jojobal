@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Whitesnake',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 5, y = 6},
+    soul_pos = {x = 6, y = 6},
     set = 'Stand',
     config = {
         aura_colors = { '8b6cc9DC', '6c4ca0DC' },
@@ -13,7 +17,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Echoes ACT2',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 1, y = 2},
+    soul_pos = {x = 2, y = 2},
     set = 'Stand',
     config = {
         evolve_key = 'c_jojobal_diamond_echoes_3',
@@ -15,7 +19,6 @@ local consumInfo = {
     },
     cost = 10,
     rarity = 'EvolvedRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

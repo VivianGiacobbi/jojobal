@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Killer Queen: Bites the Dust',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 1, y = 3},
+    soul_pos = {x = 2, y = 3},
     set = 'Stand',
     config = {
         stand_mask = true,
@@ -8,7 +12,6 @@ local consumInfo = {
     },
     cost = 10,
     rarity = 'EvolvedRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

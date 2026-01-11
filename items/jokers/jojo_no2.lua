@@ -1,5 +1,8 @@
 local jokerInfo = {
     name = "No. 2 Joker",
+    atlas = 'jojobal_jokers',
+    prefix_config = {atlas = false},
+    pos = {x = 2, y = 0},
     config = {
         extra = 1,
     },

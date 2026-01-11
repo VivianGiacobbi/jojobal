@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Tohth',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 5, y = 0},
+    soul_pos = {x = 6, y = 0},
     set = 'Stand',
     config = {
         aura_colors = { '9d8f64DC' , 'b2a784DC' },
@@ -10,7 +14,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

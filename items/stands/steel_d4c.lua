@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Dirty Deeds Done Dirt Cheap',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 1, y = 9},
+    soul_pos = {x = 2, y = 9},
     set = 'Stand',
     config = {
         aura_colors = { 'f3b7f5DC', 'c77ecfDC' },
@@ -11,7 +15,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

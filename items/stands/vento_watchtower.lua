@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'All Along The Watchtower',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 5, y = 5},
+    soul_pos = {x = 6, y = 5},
     set = 'Stand',
     config = {
         aura_colors = { 'd4483eDC', '374649DC' },
@@ -11,7 +15,6 @@ local consumInfo = {
     cost = 4,
     rarity = 'StandRarity',
     alerted = true,
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

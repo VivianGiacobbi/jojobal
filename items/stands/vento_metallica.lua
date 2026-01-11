@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Metallica',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 5, y = 4},
+    soul_pos = {x = 6, y = 4},
     set = 'Stand',
     config = {
         stand_mask = true,
@@ -10,7 +14,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     blueprint_compat = false,
     origin = {
         category = 'jojo',

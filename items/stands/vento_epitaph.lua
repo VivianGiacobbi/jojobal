@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Epitaph',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 9, y = 4},
+    soul_pos = {x = 10, y = 4},
     set = 'Stand',
     config = {
         aura_colors = { 'fd5481DC', 'ee3c69DC' },
@@ -13,7 +17,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Moody Blues',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 1, y = 4},
+    soul_pos = {x = 2, y = 4},
     set = 'Stand',
     config = {
         aura_colors = { 'a3f2d7DC', '4fedd0DC' },
@@ -7,7 +11,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {
@@ -15,6 +18,7 @@ local consumInfo = {
         },
         custom_color = 'vento'
     },
+    requires_type = 'VHS',
     artist = 'Dolos',
     programmer = 'Kekulism'
 }

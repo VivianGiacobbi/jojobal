@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Paper Moon King',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 5, y = 10},
+    soul_pos = {x = 6, y = 10},
     set = 'Stand',
     config = {
         aura_colors = { 'afb5b1DC', '4a7e38DC' },
@@ -7,7 +11,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

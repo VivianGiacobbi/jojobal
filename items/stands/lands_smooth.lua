@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Smooth Operators',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 5, y = 12},
+    soul_pos = {x = 6, y = 12 },
     set = 'Stand',
     config = {
         aura_colors = { 'f2be53DC', 'f7e580DC' },
@@ -11,7 +15,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

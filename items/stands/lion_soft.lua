@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Soft & Wet',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 9, y = 9},
+    soul_pos = {x = 10 , y = 9},
     set = 'Stand',
     config = {
         aura_colors = { 'cc90f6DC', '734caeDC' },
@@ -11,7 +15,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

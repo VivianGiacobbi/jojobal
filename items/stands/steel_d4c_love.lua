@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'D4C -Love Train-',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 5, y = 9},
+    soul_pos = {x = 6, y = 9},
     set = 'Stand',
     config = {
         aura_colors = { 'f3b7f5DC', '8ae5ffDC' },
@@ -8,7 +12,6 @@ local consumInfo = {
     },
     cost = 10,
     rarity = 'EvolvedRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

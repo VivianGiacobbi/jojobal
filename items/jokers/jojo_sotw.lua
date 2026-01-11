@@ -1,5 +1,8 @@
 local jokerInfo = {
     name = "Stand of the Week",
+    atlas = 'jojobal_jokers',
+    prefix_config = {atlas = false},
+    pos = {x = 3, y = 0},
     config = {
         extra = {
             x_mult_mod = 0.25

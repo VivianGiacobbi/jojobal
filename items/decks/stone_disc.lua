@@ -1,5 +1,8 @@
 local deckInfo = {
     name = 'DISC Deck',
+    atlas = 'jojobal_decks',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
     config = {
         vouchers = {
             'v_arrow_foo',

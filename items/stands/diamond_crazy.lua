@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Crazy Diamond',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 1, y = 1},
+    soul_pos = {x = 2, y = 1},
     set = 'Stand',
     config = {
         stand_mask = true,
@@ -7,7 +11,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

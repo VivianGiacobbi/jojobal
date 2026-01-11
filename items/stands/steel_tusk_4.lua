@@ -59,6 +59,10 @@ SMODS.PokerHand {
 
 local consumInfo = {
     name = 'Tusk ACT4',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 5, y = 8},
+    soul_pos = {x = 6, y = 8},
     set = 'Stand',
     config = {
         aura_colors = { 'ff7dbcDC', '55a3ffDC' },
@@ -79,7 +83,6 @@ local consumInfo = {
     cost = 10,
     rarity = 'EvolvedRarity',
     alerted = true,
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

@@ -1,5 +1,8 @@
 local consumInfo = {
     name = 'Lost Galaxy',
+    atlas = 'jojobal_planets',
+    prefix_config = {atlas = false},
+    pos = {x = 1, y = 0},
     set = "Planet",
     config = { hand_type = 'jojobal_FlushFibonacci' },
     origin = 'uzumaki',

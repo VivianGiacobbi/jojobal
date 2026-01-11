@@ -106,6 +106,10 @@ SMODS.Consumable:take_ownership('c_emperor', {
 
 local consumInfo = {
     name = 'Civil War',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 9, y = 8},
+    soul_pos = {x = 10, y = 8},
     set = 'Stand',
     config = {
         aura_colors = { 'c09f5fDC', '6c161fDC' },
@@ -116,7 +120,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

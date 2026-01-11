@@ -1,5 +1,8 @@
 local consumInfo = {
     name = 'Whirlpool',
+    atlas = 'jojobal_planets',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
     set = "Planet",
     config = { hand_type = 'jojobal_Fibonacci' },
     artist = 'BarrierTrio/Gote',

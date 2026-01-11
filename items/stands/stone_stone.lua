@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Stone Free',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 9, y = 5},
+    soul_pos = {x = 10, y = 5},
     set = 'Stand',
     config = {
         aura_colors = { '4db8cfDC', '4d89cfDC' },
@@ -11,7 +15,6 @@ local consumInfo = {
     cost = 4,
     rarity = 'StandRarity',
     alerted = true,
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

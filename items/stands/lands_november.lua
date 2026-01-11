@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'November Rain',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 1, y = 12},
+    soul_pos = {x = 2, y = 12 },
     set = 'Stand',
     config = {
         aura_colors = { '43b7abDC', '2e8cfaDC' },
@@ -11,7 +15,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

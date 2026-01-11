@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'King Crimson',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 1, y = 5},
+    soul_pos = {x = 2, y = 5},
     set = 'Stand',
     config = {
         evolved = true,
@@ -8,7 +12,6 @@ local consumInfo = {
     },
     cost = 10,
     rarity = 'EvolvedRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

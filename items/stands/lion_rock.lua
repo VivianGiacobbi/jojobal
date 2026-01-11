@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'I Am a Rock',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 9, y = 10},
+    soul_pos = {x = 10, y = 10},
     set = 'Stand',
     config = {
         aura_colors = { '7ec7ffDC', 'ffbb49DC' },
@@ -7,7 +11,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

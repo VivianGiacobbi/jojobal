@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Wonder of U',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 1, y = 11},
+    soul_pos = {x = 2, y = 11},
     set = 'Stand',
     config = {
         stand_mask = true,
@@ -12,7 +16,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {
@@ -24,6 +27,11 @@ local consumInfo = {
     artist = {'Vivian Giacobbi', 'Stupisms'}
 }
 
+local wonder_pos = {
+    jojobal_lion_wonder_2 = {base = {x = 5, y = 11}, soul = {x = 6, y = 11}},
+    jojobal_lion_wonder_3 = {base = {x = 9, y = 11}, soul = {x = 10, y = 11}},
+}
+
 function consumInfo.loc_vars(self, info_queue, card)
     info_queue[#info_queue+1] = G.P_CENTERS.m_lucky
     return {
@@ -32,23 +40,17 @@ function consumInfo.loc_vars(self, info_queue, card)
     }
 end
 
-SMODS.Atlas({ key = 'lion_wonder_2', custom_path = JojobalMod.path..(JojobalMod.custom_path or ''), path = "stands/lion_wonder_2.png", px = 71, py = 95 })
-SMODS.Atlas({ key = 'lion_wonder_3', custom_path = JojobalMod.path..(JojobalMod.custom_path or ''), path = "stands/lion_wonder_3.png", px = 71, py = 95 })
-
-function consumInfo.set_ability(self, card, initial, delay_sprites)
-    if not card.config.center.discovered and (G.OVERLAY_MENU or G.STAGE == G.STAGES.MAIN_MENU) then
+function consumInfo.set_sprites(self, card, front)
+    if not self.discovered and not card.bypass_discovery_center then
         return
     end
 
     if G.PROFILES[G.SETTINGS.profile].progress.highest_wonder then
         card.ability.extra.wonder_form = G.PROFILES[G.SETTINGS.profile].progress.highest_wonder
 
-        if card.ability.extra.wonder_form > 1 then
-            card.config.center.atlas = "jojobal_lion_wonder_"..card.ability.extra.wonder_form
-        end
-
-        card:set_sprites(card.config.center)
-        card.config.center.atlas = 'jojobal_lion_wonder'
+        local pos = wonder_pos["jojobal_lion_wonder_"..card.ability.extra.wonder_form] or {base = {x = 1, y = 11}, soul = {x = 2, y = 11}}
+        card.children.center:set_sprite_pos(pos.base)
+        card.children.floating_sprite:set_sprite_pos(pos.soul)
 
         if card.ability.extra.wonder_form == 2 then
             card.config.center.config.stand_shadow = nil
@@ -113,11 +115,10 @@ function consumInfo.calculate(self, card, context)
                     G.E_MANAGER:add_event(Event({
                         func = function()
                             if update_sprite then
-                                if card.ability.extra.wonder_form > 1 then
-                                    card.config.center.atlas = "jojobal_lion_wonder_"..card.ability.extra.wonder_form
-                                end
-                                card:set_sprites(card.config.center)
-                                card.config.center.atlas = 'jojobal_lion_wonder'
+                                local pos = wonder_pos["jojobal_lion_wonder_"..card.ability.extra.wonder_form] or {base = {x = 1, y = 11}, soul = {x = 2, y = 11}}
+                                card.children.center:set_sprite_pos(pos.base)
+                                card.children.floating_sprite:set_sprite_pos(pos.soul)
+
                                 card:juice_up()
 
                                 G.PROFILES[G.SETTINGS.profile].progress.highest_wonder = card.ability.extra.wonder_form

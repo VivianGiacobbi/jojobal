@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Echoes ACT1',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 9, y = 1},
+    soul_pos = {x = 10, y = 1},
     set = 'Stand',
     config = {
         aura_colors = { 'DCFB8CDC', '5EEB2FDC' },
@@ -15,7 +19,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

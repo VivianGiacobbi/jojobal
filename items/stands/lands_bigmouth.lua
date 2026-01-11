@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Bigmouth Strikes Again',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 9, y = 12},
+    soul_pos = {x = 10, y = 12 },
     set = 'Stand',
     config = {
         aura_colors = { 'f3e2b5DC', 'd2caa4DC' },
@@ -10,7 +14,6 @@ local consumInfo = {
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

@@ -1,12 +1,15 @@
 local consumInfo = {
     name = 'The Hand',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 5 , y = 1},
+    soul_pos = {x = 6 , y = 1},
     set = 'Stand',
     config = {
         aura_colors = { '1d94e0DC', '4bc6e7DC' },
     },
     cost = 4,
     rarity = 'StandRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {

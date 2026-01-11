@@ -1,5 +1,8 @@
 local jokerInfo = {
     name = 'Gravity',
+    atlas = 'jojobal_jokers',
+    prefix_config = {atlas = false},
+    pos = {x = 0, y = 0},
     config = {
         extra = {
             mult = 0,

@@ -1,3 +1,10 @@
+local path = JojobalMod.path..(JojobalMod.custom_path or '')
+SMODS.Atlas({key = 'jojobal_jokers', custom_path = path, path = 'jokers.png', px = 71, py = 95, prefix_config = {key = {mod = false}}})
+SMODS.Atlas({key = 'jojobal_planets', custom_path = path, path = 'planets.png', px = 71, py = 95, prefix_config = {key = {mod = false}}})
+SMODS.Atlas({key = 'jojobal_spectrals', custom_path = path, path = 'spectrals.png', px = 71, py = 95, prefix_config = {key = {mod = false}}})
+SMODS.Atlas({key = 'jojobal_decks', custom_path = path, path = 'decks.png', px = 71, py = 95, prefix_config = {key = {mod = false}}})
+SMODS.Atlas({key = 'jojobal_stands', custom_path = path, path = 'stands.png', px = 71, py = 95, prefix_config = {key = {mod = false}}})
+
 ArrowAPI.loading.batch_load({
 	config = {
         parent_folder = JojobalMod.custom_path,

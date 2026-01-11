@@ -1,5 +1,9 @@
 local consumInfo = {
     name = 'Soft & Wet: Go Beyond',
+    atlas = 'jojobal_stands',
+    prefix_config = {atlas = false},
+    pos = {x = 1, y = 10},
+    soul_pos = {x = 2, y = 10},
     set = 'Stand',
     config = {
         aura_colors = { 'ebfafeDC', 'b48df1DC' },
@@ -11,7 +15,6 @@ local consumInfo = {
     },
     cost = 10,
     rarity = 'EvolvedRarity',
-    hasSoul = true,
     origin = {
         category = 'jojo',
         sub_origins = {
