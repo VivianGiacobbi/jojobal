@@ -24,6 +24,10 @@ ArrowAPI.loc.add_loc_text_func(JojobalMod, function()
 
 
 
+    SMODS.process_loc_text(G.localization.misc.labels, 'jojobal_hamon', {['en-us'] = 'Hamon'})
+
+
+
     ---------------------------
     --------------------------- Dictionary
     ---------------------------
@@ -59,15 +63,18 @@ ArrowAPI.loc.add_loc_text_func(JojobalMod, function()
     SMODS.process_loc_text(G.localization.misc.dictionary, 'k_thehand', {['en-us'] = 'Swipe!'})
     SMODS.process_loc_text(G.localization.misc.dictionary, 'k_stand_stickers', {['en-us'] = 'Stand Stickers'})
     SMODS.process_loc_text(G.localization.misc.dictionary, 'k_plus_hand', {['en-us'] = '+1 Hand'})
+    SMODS.process_loc_text(G.localization.misc.dictionary, 'k_downgrade_ex', {['en-us'] = 'Downgrade!'})
+    SMODS.process_loc_text(G.localization.misc.dictionary, 'k_hamon_overdrive', {['en-us'] = 'Overdrive!'})
 
 
 
     ---------------------------
     --------------------------- Variable Dictionary
     ---------------------------
-    SMODS.process_loc_text(G.localization.misc.dictionary, 'a_multilevel', {['en-us'] = "Level Up X#1#!"})
-    SMODS.process_loc_text(G.localization.misc.dictionary, 'a_plus_discard', {['en-us'] = "+#1# Discard"})
-
+    SMODS.process_loc_text(G.localization.misc.v_dictionary, 'a_multilevel', {['en-us'] = "Level Up X#1#!"})
+    SMODS.process_loc_text(G.localization.misc.v_dictionary, 'a_plus_discard', {['en-us'] = "+#1# Discard"})
+    SMODS.process_loc_text(G.localization.misc.v_dictionary, 'a_retrigger', {['en-us'] = "#1# retrigger"})
+    SMODS.process_loc_text(G.localization.misc.v_dictionary, 'a_retrigger_plural', {['en-us'] = "#1# retriggers"})
 
 
     ---------------------------
@@ -146,17 +153,19 @@ ArrowAPI.loc.add_loc_text_func(JojobalMod, function()
             "{C:chips}+#4#{} chips",
         }
     }})
-    SMODS.process_loc_text(G.localization.descriptions.Planet, 'c_jojobal_planet_lost', {['en-us'] = {
-        name = "Lost Galaxy",
+
+
+
+    SMODS.process_loc_text(G.localization.descriptions.Edition, 'e_jojobal_hamon', {['en-us'] = {
+        name = "Hamon",
         text = {
-            "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Level up",
-            "{C:attention}#2#",
-            "{C:mult}+#3#{} Mult and",
-            "{C:chips}+#4#{} chips",
+            "Gains {C:attention}#1#{} retrigger when",
+            "Blind is {C:attention}skipped{} and",
+            "loses {C:attention}#1#{} retrigger",
+            "at end of round",
+            "{C:inactive}(Currently{} {C:attention}#2#{} {C:inactive}retriggers){}"
         }
     }})
-
-
 
     ---------------------------
     --------------------------- Spectral
@@ -167,6 +176,22 @@ ArrowAPI.loc.add_loc_text_func(JojobalMod, function()
             "Add {C:dark_edition}Holographic{} and {C:attention}Eternal{}",
             "to a random Joker, overwriting",
             "existing {C:dark_edition}editions{} and {C:attention}stickers{}"
+        }
+    }})
+    SMODS.process_loc_text(G.localization.descriptions.Spectral, 'c_jojobal_spec_stone', {['en-us'] = {
+        name = "Red Stone",
+        text = {
+            "Add {X:edition,C:black}Hamon{} edition to",
+            "{C:attention}#1#{} selected card",
+            "in hand"
+        }
+    }})
+    SMODS.process_loc_text(G.localization.descriptions.Spectral, 'c_jojobal_spec_stone_multi', {['en-us'] = {
+        name = "Red Stone",
+        text = {
+            "Add {X:edition,C:black}Hamon{} edition to",
+            "up to {C:attention}#1#{} selected cards",
+            "in hand"
         }
     }})
 

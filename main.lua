@@ -9,6 +9,10 @@ JojobalMod.optional_features = {
     arrow_palettes = true,
 	retrigger_joker = true,
 	quantum_enhancements = true,
+    cardareas = {
+        discard = true,
+        deck = true,
+    }
 }
 
 ArrowAPI.ui.add_badge_colors(SMODS.current_mod, {

@@ -32,6 +32,7 @@ ArrowAPI.loading.batch_load({
 			'planet_whirlpool',
 			'planet_lost',
 			'spec_mask',
+			'spec_stone',
 		}
 	},
 
@@ -89,5 +90,11 @@ ArrowAPI.loading.batch_load({
 			'lands_bigmouth',
 		}
 	},
+
+	Edition = {
+		items = {
+			'hamon'
+		}
+	}
 })
 
